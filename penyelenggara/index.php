@@ -364,19 +364,23 @@
               <input type="text" class="form-control" name="nama_lomba" placeholder="masukan nama lomba">
             </div>
             <div class="form-group">
-              <label ><span class="glyphicon glyphicon-send"></span>  lokasi Kegiatan</label>
-              <input type="text" class="form-control" name="lokasi" placeholder="masukan lokasi kegiatn">
+              <label ><span class="glyphicon glyphicon-send"></span>  lokasi Lomba</label>
+              <input type="text" class="form-control" name="lokasi_lomba" placeholder="masukan lokasi lomba">
             </div>
             <div class="form-group">
-              <label ><span class="glyphicon glyphicon-calendar"></span>  Waktu Lomba</label>
-              <input type="date" class="form-control" name="waktu_lomba" placeholder="masukan waktu">
+              <label ><span class="glyphicon glyphicon-calendar"></span>  Waktu Awal Lomba</label>
+              <input type="date" class="form-control" name="waktu_awal_lomba" placeholder="masukan waktu">
             </div>
             <div class="form-group">
-					<label ><span class="glyphicon glyphicon-calendar"></span>  Kategori Kegiatan</label>
+              <label ><span class="glyphicon glyphicon-calendar"></span>  Waktu Akhir Lomba</label>
+              <input type="date" class="form-control" name="waktu_akhir_lomba" placeholder="masukan waktu">
+            </div>
+            <div class="form-group">
+					<label ><span class="glyphicon glyphicon-list"></span>  Kategori Kegiatan</label>
 					
-					<select name="kategori_lomba" class="form-control" required>
+					<select name="id_kategori" class="form-control" required>
 					<?php 
-						$sql = mysqli_query($koneksi, "SELECT * FROM kategori_lomba ORDER BY id_kategori_lomba ASC");
+						$sql = mysqli_query($koneksi, "SELECT * FROM kategori ORDER BY id_kategori ASC");
 						if(mysqli_num_rows($sql) == 0)
 						{
 							echo '<tr><td colspan="8">Data Tidak Ditemukan.</td></tr>';
@@ -386,7 +390,7 @@
 							echo '<option value=""> Pilih </option>'; 
 							while($row = mysqli_fetch_assoc($sql))
 							{
-								echo  '<option value='.$row['id_kategori_lomba'].'>'.$row['nama_kategori_lomba'].'</option>';
+								echo  '<option value='.$row['id_kategori'].'>'.$row['nama_kategori'].'</option>';
 		 					}
 		 				}
 	 				?>
@@ -400,19 +404,19 @@
             </div>
             <div class="form-group">
               <label for="usrname"><span class="glyphicon glyphicon-phone-alt"></span> No. Telepon</label>
-              <input type="text" class="form-control" name="nohp" placeholder="masukan no hp">
+              <input type="text" class="form-control" name="tlp_penyelenggara" placeholder="masukan no hp">
             </div>
             <div class="form-group">
               <label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>
-              <input type="text" class="form-control" name="usrname_penyelenggara" placeholder="Enter email">
+              <input type="text" class="form-control" name="username_penyelenggara" placeholder="Enter email">
             </div>
             <div class="form-group">
               <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
-              <input type="password" class="form-control" name="psw_penyelenggara" placeholder="Enter password">
+              <input type="password" class="form-control" name="password_penyelenggara" placeholder="Enter password">
             </div>
             <div class="form-group">
               <label for="psw"><span class="glyphicon glyphicon-picture"></span> Bukti Pembayaran</label>
-              <input type="file" name="bukti_pembayaran_penyelenggara" class="form-control" placeholder="foto" required>
+              <input type="file" name="pembayaran_penyelenggara" class="form-control" placeholder="foto" required>
             </div>
             
 						
