@@ -1,5 +1,5 @@
 <?php
-  include("connection.php");
+  include("../koneksi.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -112,7 +112,6 @@
           while($row = mysqli_fetch_assoc($sql)){
             echo '
             <tr>
-              <td style="text-align: center">'.$row['id_penyelenggara'].'</td>
               <td style="text-align: center">'.$row['nama_penyelenggara'].'</td>
               <td>'.$row['nama_lomba'].'</td>
               <td style="text-align: center">'.$row['lokasi_lomba'].'</td>
