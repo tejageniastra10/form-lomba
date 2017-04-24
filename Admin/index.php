@@ -91,7 +91,6 @@
 
       <table class="table table-bordered table-striped">
         <thead style="text-align: center">
-            <td>Id</td>
             <td>Nama Penyelenggara</td>
             <td>Nama Lomba</td>
             <td>Lokasi</td>
@@ -105,7 +104,7 @@
           $sql = mysqli_query($koneksi, "SELECT * FROM penyelenggara");
 
           if(mysqli_num_rows($sql) == 0){
-            echo '<tr style="text-align:center;"><td colspan="8">Empty</td></tr>';
+            echo '<tr style="text-align:center;"><td colspan="7">Empty</td></tr>';
           }
           else{
          
