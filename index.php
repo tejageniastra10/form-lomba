@@ -11,6 +11,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>E-Sport</title>
+	
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="Free HTML5 Template by FREEHTML5.CO" />
 	<meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
@@ -42,7 +43,7 @@
 	<meta name="twitter:card" content="" />
 
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-	<link rel="shortcut icon" href="favicon.ico">
+
 
 	<!-- Google Webfonts -->
 	<link href='http://fonts.googleapis.com/css?family=Roboto:400,300,100,500' rel='stylesheet' type='text/css'>
@@ -65,7 +66,10 @@
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
+
+
 	<style>
+
   .modal-header, h5, .close {
       background-color: #5cb85c;
       color:white !important;
@@ -76,6 +80,7 @@
       background-color: #f9f9f9;
   }
   </style>
+
 	</head>
 	<body>
 		
@@ -91,9 +96,9 @@
 					<ul class="nav navbar-nav navbar-right">
 						<li class="active"><a href="index.php"><span>Home <span class="border"></span></span></a></li>
 						<li><a href="instruksi.php"><span>Instruksi <span class="border"></span></span></a></li>
-						<li><a href="#" id="daftar-penyelenggara"><span>Daftar Penyelenggara <span class="border"></span></span></a></li>
-						<li><a href="#"><span>Daftar peserta <span class="border"></span></span></a></li>
-						<li><a href="#" id="myBtn"><span>Log In <span class="border"></span></span></a></li>
+						<li><a  id="daftar-penyelenggara"><span>Daftar Penyelenggara <span class="border"></span></span></a></li>
+						<li><a ><span>Daftar peserta <span class="border"></span></span></a></li>
+						<li><a  id="myBtn"><span>Log In <span class="border"></span></span></a></li>
 						
 						
 					</ul>
@@ -354,7 +359,7 @@
           <h5> Pendaftaran Penyelenggara</h5>
         </div>
         <div class="modal-body" style="padding:40px 50px;">
-          <form role="form" class="form-horizontal" action="penyelenggara/proses-tambah-penyelenggara.php" method="post" enctype="multipart/form-data">
+          <form id="form_tambah_penyelenggara" class="form-horizontal" action="penyelenggara/proses-tambah-penyelenggara.php" method="post" enctype="multipart/form-data">
           <div class="form-group">
               <label ><span class="glyphicon glyphicon-home"></span>  Nama Penyelenggara</label>
               <input type="text" class="form-control" name="nama_penyelenggara" placeholder="Masukan Nama Penyelenggara">
@@ -369,11 +374,11 @@
             </div>
             <div class="form-group">
               <label ><span class="glyphicon glyphicon-calendar"></span>  Waktu Awal Lomba</label>
-              <input type="date" class="form-control" name="waktu_awal_lomba" placeholder="masukan waktu">
+              <input type="date" class="form-control" name="waktu_awal_lomba" placeholder="masukan waktu" required>
             </div>
             <div class="form-group">
               <label ><span class="glyphicon glyphicon-calendar"></span>  Waktu Akhir Lomba</label>
-              <input type="date" class="form-control" name="waktu_akhir_lomba" placeholder="masukan waktu">
+              <input type="date" class="form-control" name="waktu_akhir_lomba" placeholder="masukan waktu" required>
             </div>
             <div class="form-group">
 					<label ><span class="glyphicon glyphicon-list"></span>  Kategori Kegiatan</label>
@@ -450,6 +455,103 @@ $(document).ready(function(){
 });
 </script>
 
-	
+		<link rel="stylesheet" href="css/bootstrapValidator.css">  
+        <script src="jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/bootstrapValidator.js"></script>
+
+<script type="text/javascript">
+            $(document).ready(function() {
+                $('#form_tambah_penyelenggara')
+                    .bootstrapValidator({
+                        
+                        feedbackIcons: {
+                            valid: 'glyphicon glyphicon-ok',
+                            invalid: 'glyphicon glyphicon-remove',
+                            validating: 'glyphicon glyphicon-refresh'
+                        },
+                        fields: {
+                            nama_penyelenggara: {
+                               
+                                validators: {
+                                    notEmpty: {
+                                        message: 'Nama Penyelenggara tidak boleh kosong'
+                                    },
+                                    
+                                }
+                            },
+
+                            nama_lomba: {
+                               
+                                validators: {
+                                    notEmpty: {
+                                        message: 'Nama lomba tidak boleh kosong'
+                                    },
+                                    
+                                }
+                            }, 
+
+                            lokasi_lomba: {
+                               
+                                validators: {
+                                    notEmpty: {
+                                        message: 'lokasi lomba tidak boleh kosong'
+                                    },
+                                    
+                                }
+                            },
+                            email_penyelenggara: {
+                               
+                                validators: {
+                                    notEmpty: {
+                                        message: 'email tidak boleh kosong'
+                                    },
+                                    
+                                }
+                            },
+                            tlp_penyelenggara: {
+                               
+                                validators: {
+                                    notEmpty: {
+                                        message: 'no telephone tidak boleh kosong'
+                                    },
+                                    stringLength: {
+				                        max: 11,
+				                        message: 'maksimal 11 karakter'
+				                    },
+				                    regexp: {
+				                        regexp: /^[a-zA-Z0-9_]+$/,
+				                        message: 'karakter tidak valid'
+				                    },
+				                     regexp: {
+				                        regexp: /^[0-9]/,
+				                        message: 'harus berupa angka'
+				                    }
+                                    
+                                }
+                            }, 
+                            username_penyelenggara: {
+                               
+                                validators: {
+                                    notEmpty: {
+                                        message: 'username tidak boleh kosong'
+                                    },
+                                    
+                                }
+                            },
+                            password_penyelenggara: {
+                               
+                                validators: {
+                                    notEmpty: {
+                                        message: 'password tidak boleh kosong'
+                                    },
+                                    
+                                }
+                            },
+                            
+                        }
+                    });
+                });
+        </script>
 	</body>
 </html>

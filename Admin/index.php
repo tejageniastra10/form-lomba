@@ -9,6 +9,10 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
     <title>Projek web a</title>
 
     <!-- Bootstrap core CSS -->
@@ -118,7 +122,7 @@
               <td style="text-align: center">'.$row['waktu_akhir_lomba'].'</td>
               <td style="text-align: center">'.$row['email_penyelenggara'].'</td>
               <td style="text-align: center">
-                <a href="" title="Edit Data" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+                <a href="#" id=' .$row["id_penyelenggara"].' class="btn btn-sm btn-info"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
                 <a href="index.php?aksi=delete&id_penyelenggara='.$row['id_penyelenggara'].'" title="Hapus Data" onclick="return confirm(\'Anda yakin akan menghapus data '.$row['nama_penyelenggara'].'?\')" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
               </td>
             </tr>
@@ -132,6 +136,36 @@
       </div><!-- /#page-wrapper -->
 
     </div><!-- /#wrapper -->
+
+     <div class="modal fade" id="ModalDetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-warning">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Edit Anggota</h4>
+      </div>
+      <div class="modal-body">
+      </div>
+    </div>
+  </div>
+</div>
+
+    <script type="text/javascript">
+            $(document).ready(function (){
+                $(".btn-info").click(function (e){
+                    var m = $(this).attr("id");
+                    $.ajax({
+                        url: "detail.php",
+                        type: "GET",
+                        data : {id_penyelenggara: m,},
+                        success: function (ajaxData){
+                            $("#ModalDetail").html(ajaxData);
+                            $("#ModalDetail").modal('show',{backdrop: 'true'});
+                        }
+                    });
+                });
+            });
+        </script>
 
     <!-- JavaScript -->
     <script src="js/jquery-1.10.2.js"></script>
