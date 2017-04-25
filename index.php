@@ -1,4 +1,3 @@
-
 <?php
 	include("koneksi.php");
 ?>
@@ -19,7 +18,6 @@
 
   <!-- 
 	//////////////////////////////////////////////////////
-
 	FREE HTML5 TEMPLATE 
 	DESIGNED & DEVELOPED by FREEHTML5.CO
 		
@@ -27,7 +25,6 @@
 	Email: 			info@freehtml5.co
 	Twitter: 		http://twitter.com/fh5co
 	Facebook: 		https://www.facebook.com/fh5co
-
 	//////////////////////////////////////////////////////
 	 -->
 
@@ -69,7 +66,6 @@
 
 
 	<style>
-
   .modal-header, h5, .close {
       background-color: #5cb85c;
       color:white !important;
@@ -96,9 +92,9 @@
 					<ul class="nav navbar-nav navbar-right">
 						<li class="active"><a href="index.php"><span>Home <span class="border"></span></span></a></li>
 						<li><a href="instruksi.php"><span>Instruksi <span class="border"></span></span></a></li>
-						<li><a  id="daftar-penyelenggara"><span>Daftar Penyelenggara <span class="border"></span></span></a></li>
-						<li><a  id="daftar-tim"><span>Daftar peserta <span class="border"></span></span></a></li>
-						<li><a  id="myBtn"><span>Log In <span class="border"></span></span></a></li>
+						<li><a  href="#" id="daftar-penyelenggara"><span>Daftar Penyelenggara <span class="border"></span></span></a></li>
+						<li><a href="#" id="daftar-tim"><span>Daftar peserta <span class="border"></span></span></a></li>
+						<li><a  href="#" id="myBtn"><span>Log In <span class="border"></span></span></a></li>
 						
 						
 					</ul>
@@ -480,7 +476,6 @@ $(document).ready(function(){
                                     
                                 }
                             },
-
                             nama_lomba: {
                                
                                 validators: {
@@ -490,7 +485,6 @@ $(document).ready(function(){
                                     
                                 }
                             }, 
-
                             lokasi_lomba: {
                                
                                 validators: {
@@ -505,8 +499,11 @@ $(document).ready(function(){
                                 validators: {
                                     notEmpty: {
                                         message: 'email tidak boleh kosong'
-                                    },
-                                    
+                                    }, 
+                                    regexp: {
+				                        regexp: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]{2,4}$/,
+				                        message: 'format email salah'
+				                    },
                                 }
                             },
                             tlp_penyelenggara: {
@@ -709,7 +706,6 @@ $(document).ready(function(){
                                     
                                 }
                             },
-
                            alamat_tim: {
                                
                                 validators: {
@@ -719,7 +715,6 @@ $(document).ready(function(){
                                     
                                 }
                             }, 
-
                             penanggung_jawab: {
                                
                                 validators: {
@@ -734,8 +729,11 @@ $(document).ready(function(){
                                 validators: {
                                     notEmpty: {
                                         message: 'email tidak boleh kosong'
-                                    },
-                                    
+                                    }, 
+                                    regexp: {
+				                        regexp: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]{2,4}$/,
+				                        message: 'format email salah'
+				                    },
                                 }
                             },
                             tlp_tim: {
