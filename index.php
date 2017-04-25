@@ -97,7 +97,7 @@
 						<li class="active"><a href="index.php"><span>Home <span class="border"></span></span></a></li>
 						<li><a href="instruksi.php"><span>Instruksi <span class="border"></span></span></a></li>
 						<li><a  id="daftar-penyelenggara"><span>Daftar Penyelenggara <span class="border"></span></span></a></li>
-						<li><a ><span>Daftar peserta <span class="border"></span></span></a></li>
+						<li><a  id="daftar-tim"><span>Daftar peserta <span class="border"></span></span></a></li>
 						<li><a  id="myBtn"><span>Log In <span class="border"></span></span></a></li>
 						
 						
@@ -553,5 +553,235 @@ $(document).ready(function(){
                     });
                 });
         </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="modal fade" id="Modal-tim" role="dialog">
+    <div class="modal-dialog">
+    
+      <div class="modal-content">
+        <div class="modal-header" style="padding:35px 50px;">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h5> Pendaftaran TIM Peserta</h5>
+        </div>
+        <div class="modal-body" style="padding:40px 50px;">
+          <form id="form_tambah_tim" class="form-horizontal" action="tim/proses-tambah-tim.php" method="post" enctype="multipart/form-data">
+          <div class="form-group">
+              <label ><span class="glyphicon glyphicon-home"></span>  Nama Tim Peserta</label>
+              <input type="text" class="form-control" name="nama_tim" placeholder="Masukan Nama Tim Peserta">
+            </div>
+            <div class="form-group">
+              <label ><span class="glyphicon glyphicon-file"></span>  Alamat Tim Peserta</label>
+              <input type="text" class="form-control" name="alamat_tim" placeholder="Masukan Alamat Tim Peserta">
+            </div>
+            <div class="form-group">
+              <label ><span class="glyphicon glyphicon-send"></span>  Penanggung Jawab</label>
+              <input type="text" class="form-control" name="penanggung_jawab" placeholder="Masukan Penanggung Jawab">
+            </div>
+            <div class="form-group">
+					<label ><span class="glyphicon glyphicon-list"></span>  Kategori Kegiatan</label>
+					
+					<select name="id_kategori" class="form-control" required>
+					<?php 
+						$sql = mysqli_query($koneksi, "SELECT * FROM kategori ORDER BY id_kategori ASC");
+						if(mysqli_num_rows($sql) == 0)
+						{
+							echo '<tr><td colspan="8">Data Tidak Ditemukan.</td></tr>';
+						}
+						else
+						{
+							echo '<option value=""> Pilih </option>'; 
+							while($row = mysqli_fetch_assoc($sql))
+							{
+								echo  '<option value='.$row['id_kategori'].'>'.$row['nama_kategori'].'</option>';
+		 					}
+		 				}
+	 				?>
+					</select>
+					
+				</div>
+			 	<div class="form-group">
+					<label ><span class="glyphicon glyphicon-list"></span>  Penyelenggara </label>
+					
+					<select name="id_penyelenggara" class="form-control" required>
+					<?php 
+						$sql = mysqli_query($koneksi, "SELECT * FROM penyelenggara ORDER BY id_penyelenggara ASC");
+						if(mysqli_num_rows($sql) == 0)
+						{
+							echo '<tr><td colspan="8">Data Tidak Ditemukan.</td></tr>';
+						}
+						else
+						{
+							echo '<option value=""> Pilih </option>'; 
+							while($row = mysqli_fetch_assoc($sql))
+							{
+								echo  '<option value='.$row['id_penyelenggara'].'>'.$row['nama_penyelenggara'].'</option>';
+		 					}
+		 				}
+	 				?>
+					</select>
+					
+				</div>
+            <div class="form-group">
+              <label ><span class="glyphicon glyphicon-envelope"></span> Email Tim Peserta</label>
+              <input type="text" class="form-control" name="email_tim" placeholder="Enter email Tim">
+            </div>
+            <div class="form-group">
+              <label for="usrname"><span class="glyphicon glyphicon-phone-alt"></span> No. Telepon</label>
+              <input type="text" class="form-control" name="tlp_tim" placeholder="masukan no hp">
+            </div>
+            <div class="form-group">
+              <label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>
+              <input type="text" class="form-control" name="username_tim" placeholder="Enter username">
+            </div>
+            <div class="form-group">
+              <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
+              <input type="password" class="form-control" name="password_tim" placeholder="Enter password">
+            </div>
+            <div class="form-group">
+              <label for="psw"><span class="glyphicon glyphicon-picture"></span> Bukti Pembayaran</label>
+              <input type="file" name="pembayaran_tim" class="form-control" placeholder="foto" required>
+            </div>
+            
+						
+					
+            
+              <button type="submit" href="index.php" type="submit" name="add" value="Simpan" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> daftar</button>
+          </form>
+        </div>     
+      </div>
+    </div>
+  </div> 
+</div>
+ 
+
+<!---script daftar log in-->
+<script>
+$(document).ready(function(){
+    $("#myBtn").click(function(){
+        $("#myModal").modal();
+    });
+});
+</script>
+
+
+<!---script daftar penyelenggara-->
+<script>
+$(document).ready(function(){
+    $("#daftar-tim").click(function(){
+        $("#Modal-tim").modal();
+    });
+});
+</script>
+
+		<link rel="stylesheet" href="css/bootstrapValidator.css">  
+        <script src="jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/bootstrapValidator.js"></script>
+
+<script type="text/javascript">
+            $(document).ready(function() {
+                $('#form_tambah_tim')
+                    .bootstrapValidator({
+                        
+                        feedbackIcons: {
+                            valid: 'glyphicon glyphicon-ok',
+                            invalid: 'glyphicon glyphicon-remove',
+                            validating: 'glyphicon glyphicon-refresh'
+                        },
+                        fields: {
+                            nama_tim: {
+                               
+                                validators: {
+                                    notEmpty: {
+                                        message: 'Nama Tim tidak boleh kosong'
+                                    },
+                                    
+                                }
+                            },
+
+                           alamat_tim: {
+                               
+                                validators: {
+                                    notEmpty: {
+                                        message: 'Alamat Tim tidak boleh kosong'
+                                    },
+                                    
+                                }
+                            }, 
+
+                            penanggung_jawab: {
+                               
+                                validators: {
+                                    notEmpty: {
+                                        message: 'penanggung jawab tidak boleh kosong'
+                                    },
+                                    
+                                }
+                            },
+                            email_tim: {
+                               
+                                validators: {
+                                    notEmpty: {
+                                        message: 'email tidak boleh kosong'
+                                    },
+                                    
+                                }
+                            },
+                            tlp_tim: {
+                               
+                                validators: {
+                                    notEmpty: {
+                                        message: 'no telephone tidak boleh kosong'
+                                    },
+                                    stringLength: {
+				                        max: 11,
+				                        message: 'maksimal 11 karakter'
+				                    },
+				                    regexp: {
+				                        regexp: /^[a-zA-Z0-9_]+$/,
+				                        message: 'karakter tidak valid'
+				                    },
+				                     regexp: {
+				                        regexp: /^[0-9]/,
+				                        message: 'harus berupa angka'
+				                    }
+                                    
+                                }
+                            }, 
+                            username_tim: {
+                               
+                                validators: {
+                                    notEmpty: {
+                                        message: 'username tidak boleh kosong'
+                                    },
+                                    
+                                }
+                            },
+                            password_tim: {
+                               
+                                validators: {
+                                    notEmpty: {
+                                        message: 'password tidak boleh kosong'
+                                    },
+                                    
+                                }
+                            },
+                            
+                        }
+                    });
+                });
+        </script>
+
 	</body>
 </html>
