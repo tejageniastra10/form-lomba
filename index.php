@@ -354,7 +354,7 @@
           <h5> Pendaftaran Penyelenggara</h5>
         </div>
         <div class="modal-body" style="padding:40px 50px;">
-          <form role="form" class="form-horizontal" action="proses-tambah-penyelenggara.php" method="post" enctype="multipart/form-data">
+          <form role="form" class="form-horizontal" action="penyelenggara/proses-tambah-penyelenggara.php" method="post" enctype="multipart/form-data">
           <div class="form-group">
               <label ><span class="glyphicon glyphicon-home"></span>  Nama Penyelenggara</label>
               <input type="text" class="form-control" name="nama_penyelenggara" placeholder="Masukan Nama Penyelenggara">
