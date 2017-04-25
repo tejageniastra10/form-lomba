@@ -2,8 +2,6 @@
     <?php
       $nama = $_POST['nama'];
       $usia = $_POST['usia'];
-      $noktp= $_POST['noktp'];
-      $fakultas = $_POST['fakultas'];
       $idtim = $_POST['idtim'];
       $idpemain = $_POST['idpemain'];
   ?>
@@ -26,8 +24,8 @@
           </div>
           <br>
           <input class="form-control" required="required" type="text" placeholder="No. KTP" value="<?=$noktp;?>" name="noktp" maxlength="20">
-          <input type="hidden" value="<?=$idtim ?>" name="idtim1">
-          <input type="hidden" value="<?=$idpemain ?>" name="idpemain">
+          <input type="hidden" value="<?=$id_tim ?>" name="id_tim1">
+          <input type="hidden" value="<?=$id_pemain ?>" name="id_pemain">
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         <button type="submit" value="ganti" name="GANTI" class="btn btn-warning">Edit</button>

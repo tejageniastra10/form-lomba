@@ -144,7 +144,7 @@ h1 span {
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="sip.php">Nama Kegiatan | Peserta</a>
+                <a class="navbar-brand" href="index.php">Nama Kegiatan | Peserta</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -171,7 +171,7 @@ h1 span {
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                      <li >
-                        <a href="sip.php"><i class="fa fa-fw fa-dashboard"></i> Home</a>
+                        <a href="index.php"><i class="fa fa-fw fa-dashboard"></i> Home</a>
                     </li>
                      <li>
                         <a href="pengumuman_peserta.php"><i class="fa fa-fw fa-list"></i> Pengumuman</a>
@@ -209,7 +209,7 @@ h1 span {
                         </h1>
                         <ol class="breadcrumb">
                             <li>
-                                <i class="fa fa-dashboard"></i>  <a href="sip.php">Home</a>
+                                <i class="fa fa-dashboard"></i>  <a href="index.php">Home</a>
                             </li>
                             <li class="active">
                                 <i class="fa fa-calendar"></i> Hasil Undian dan Jadwal
