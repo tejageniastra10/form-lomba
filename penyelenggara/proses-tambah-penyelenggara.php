@@ -1,6 +1,6 @@
 <?php
 
-include "koneksi.php";
+include "../koneksi.php";
 				if(isset($_POST['add']))
 				{
 					
@@ -29,7 +29,7 @@ include "koneksi.php";
 						$insert = mysqli_query($koneksi, "INSERT INTO penyelenggara(nama_penyelenggara, nama_lomba, lokasi_lomba, waktu_awal_lomba,waktu_akhir_lomba,id_kategori, email_penyelenggara, tlp_penyelenggara, username_penyelenggara, password_penyelenggara, pembayaran_penyelenggara) VALUES('$nama_penyelenggara', '$nama_lomba', '$lokasi_lomba', '$waktu_awal_lomba', '$waktu_akhir_lomba', '$id_kategori', '$email_penyelenggara', '$tlp_penyelenggara', '$username_penyelenggara', '$password_penyelenggara', '$fotobaru')") or die(mysqli_error($koneksi));
 							if($insert)
 							{
-								header("location: index.php");
+								header("location: ../index.php");
 							}
 					}
 					else
