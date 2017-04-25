@@ -1,3 +1,6 @@
+<?php
+  include "../koneksi.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,13 +15,13 @@
     <title>Peserta | Jadwal </title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="../css/sb-admin.css" rel="stylesheet">
+    <link href="css/sb-admin.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -128,22 +131,6 @@ h1 span {
 }
 </style>
 <body>
-<?php
-  session_start();
-    if(!isset($_SESSION['username'])) 
-    {
-      header('location:login1.php?failed=5'); 
-    }
-    else 
-    { 
-      $username = $_SESSION['username'];
-      $idtim    = $_SESSION['idtim'];
-    }
-    require_once("../koneksi.php");
-    $query = 'SELECT namatim FROM tim WHERE id = "'.$idtim.'"';
-    $hasil = mysqli_query($konek, $query);
-    $name  = mysqli_fetch_array($hasil);
-    ?>
 
     <div id="wrapper">
 
@@ -162,7 +149,7 @@ h1 span {
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?=$username?> <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="../index.php"><i class="fa fa-fw fa-user"></i> Homepage</a>
@@ -237,8 +224,8 @@ h1 span {
                 <!--isi-->
     <?php
         require_once("../koneksi.php");
-        $sql = "SELECT id FROM tim";
-        $result = mysqli_query($konek, $sql);
+        $sql = "SELECT id_tim FROM jadwal";
+        $result = mysqli_query($koneksi, $sql);
         $jumlah = mysqli_num_rows($result);
 
     if($jumlah!=16)
@@ -254,11 +241,11 @@ h1 span {
                     require_once("../koneksi.php");
 
                     $undian = array();
-                    $query3 = "SELECT namatim FROM undian INNER JOIN tim ON undian.idtim = tim.id";
-                    $result3 = mysqli_query($konek, $query3);
+                    $query3 = "SELECT nama_tim FROM undian INNER JOIN tim ON undian.id_tim = tim.id_penyelenggara";
+                    $result3 = mysqli_query($koneksi, $query3);
 
                     while($data2 = mysqli_fetch_array($result3)){
-                        $undian[] = $data2['namatim'];
+                        $undian[] = $data2['nama_tim'];
                     }
                 ?>
                 <div class="row">
@@ -324,19 +311,11 @@ h1 span {
         {
             require_once("../koneksi.php");
                     $tim = array();
-                    $query = "SELECT namatim FROM undian INNER JOIN tim ON undian.idtim = tim.id";
-                    $result = mysqli_query($konek, $query);
+                    $query = "SELECT id_tim FROM undian INNER JOIN tim ON undian.id_tim = tim.id_penyelenggara";
+                    $result = mysqli_query($koneksi, $query);
 
                     while($data = mysqli_fetch_array($result)){
-                        $tim[] = $data['namatim'];
-                    }
-
-                    $jam = array();
-                    $query2 = "SELECT jam FROM jadwal";
-                    $result2 = mysqli_query($konek, $query2);
-
-                    while($data2 = mysqli_fetch_array($result2)){
-                        $jam[] = $data2['jam'];
+                        $tim[] = $data['nama_tim'];
                     }
 
         ?>
@@ -345,125 +324,48 @@ h1 span {
                     <h1>Jadwal Pertandingan</h1>
                         <table class="responstable">
                             <tr>
-                                <th p align="center" colspan="2" ><b>LAPANGAN 1</b></th>
-                            </tr>
-                            <tr>
-                                <th p align="center" >JAM</th>
                                 <th p align="center" >PERTANDINGAN</th>
                             </tr>
                             <tr>
-                                <td p align="center" ><?= $jam[0]; ?></td>
                                 <td p align="center" ><?php echo"<b>$tim[0]</b> VS <b>$tim[1]</b>"; ?></td>
                             </tr>
                             <tr>
-                                <td p align="center" ><?= $jam[1]; ?></td>
                                 <td p align="center" ><?php echo"<b>$tim[4]</b> VS <b>$tim[5]</b>"; ?></td>
                             </tr>
                             <tr>
-                                <td p align="center" ><?= $jam[2]; ?></td>
                                 <td p align="center" ><?php echo"<b>$tim[2]</b> VS <b>$tim[3]</b>"; ?></td>
                             </tr>
                             <tr>
-                                <td p align="center" ><?= $jam[3]; ?></td>
                                 <td p align="center" ><?php echo"<b>$tim[6]</b> VS <b>$tim[7]</b>"; ?></td>
                             </tr>
                             <tr>
-                                <td p align="center" ><?= $jam[4]; ?></td>
                                 <td p align="center" ><?php echo"<b>$tim[0]</b> VS <b>$tim[2]</b>"; ?></td>
                             </tr>
                             <tr>
-                                <td p align="center" ><?= $jam[5]; ?></td>
                                 <td p align="center" ><?php echo"<b>$tim[4]</b> VS <b>$tim[6]</b>"; ?></td>
                             </tr>
                                 <tr>
-                                <td p align="center" ><?= $jam[6]; ?></td>
                                 <td p align="center" ><?php echo"<b>$tim[1]</b> VS <b>$tim[3]</b>"; ?></td>
                             </tr>
                             <tr>
-                                <td p align="center" ><?= $jam[7]; ?></td>
                                 <td p align="center" ><?php echo"<b>$tim[5]</b> VS <b>$tim[7]</b>"; ?></td>
                             </tr>
                             <tr>
-                                <td p align="center" ><?= $jam[8]; ?></td>
                                 <td p align="center" ><?php echo"<b>$tim[0]</b> VS <b>$tim[3]</b>"; ?></td>
                             </tr>
                             <tr>
-                                <td p align="center" ><?= $jam[9]; ?></td>
                                 <td p align="center" ><?php echo"<b>$tim[4]</b> VS <b>$tim[7]</b>"; ?></td>
                             </tr>
                             <tr>
-                                <td p align="center" ><?= $jam[10]; ?></td>
                                 <td p align="center" ><?php echo"<b>$tim[1]</b> VS <b>$tim[2]</b>"; ?></td>
                             </tr>
                             <tr>
-                                <td p align="center" ><?= $jam[11]; ?></td>
                                 <td p align="center" ><?php echo"<b>$tim[5]</b> VS <b>$tim[6]</b>"; ?></td>
                             </tr>
                         </div>
                         </table>
                     </div>
-                    <div class="col-xs-4 col-sm-6">
-                    <a href="jadwal.php" class="btn btn-primary btn-lg pull-right" role="button">Hasil Undian</a><br><br><br>
-                        <table class="responstable">
-                            <tr>
-                                <th p align="center" colspan="2" ><b>LAPANGAN 2</b></th>
-                            </tr>
-                            <tr>
-                                <th p align="center" >JAM</th>
-                                <th p align="center" >PERTANDINGAN</th>
-                            </tr>
-                            <tr>
-                                <td p align="center" ><?= $jam[12]; ?></td>
-                                <td p align="center" ><?php echo"<b>$tim[8]</b> VS <b>$tim[9]</b>"; ?></td>
-                            </tr>
-                            <tr>
-                                <td p align="center" ><?= $jam[13]; ?></td>
-                                <td p align="center" ><?php echo"<b>$tim[12]</b> VS <b>$tim[13]</b>"; ?></td>
-                            </tr>
-                            <tr>
-                                <td p align="center" ><?= $jam[14]; ?></td>
-                                <td p align="center" ><?php echo"<b>$tim[10]</b> VS <b>$tim[11]</b>"; ?></td>
-                            </tr>
-                            <tr>
-                                <td p align="center" ><?= $jam[15]; ?></td>
-                                <td p align="center" ><?php echo"<b>$tim[14]</b> VS <b>$tim[15]</b>"; ?></td>
-                            </tr>
-                            <tr>
-                                <td p align="center" ><?= $jam[16]; ?></td>
-                                <td p align="center" ><?php echo"<b>$tim[8]</b> VS <b>$tim[10]</b>"; ?></td>
-                            </tr>
-                            <tr>
-                                <td p align="center" ><?= $jam[17]; ?></td>
-                                <td p align="center" ><?php echo"<b>$tim[12]</b> VS <b>$tim[14]</b>"; ?></td>
-                            </tr>
-                                <tr>
-                                <td p align="center" ><?= $jam[18]; ?></td>
-                                <td p align="center" ><?php echo"<b>$tim[9]</b> VS <b>$tim[11]</b>"; ?></td>
-                            </tr>
-                            <tr>
-                                <td p align="center" ><?= $jam[19]; ?></td>
-                                <td p align="center" ><?php echo"<b>$tim[13]</b> VS <b>$tim[15]</b>"; ?></td>
-                            </tr>
-                            <tr>
-                                <td p align="center" ><?= $jam[20]; ?></td>
-                                <td p align="center" ><?php echo"<b>$tim[8]</b> VS <b>$tim[11]</b>"; ?></td>
-                            </tr>
-                            <tr>
-                                <td p align="center" ><?= $jam[21]; ?></td>
-                                <td p align="center" ><?php echo"<b>$tim[12]</b> VS <b>$tim[14]</b>"; ?></td>
-                            </tr>
-                            <tr>
-                                <td p align="center" ><?= $jam[22]; ?></td>
-                                <td p align="center" ><?php echo"<b>$tim[9]</b> VS <b>$tim[10]</b>"; ?></td>
-                            </tr>
-                            <tr>
-                                <td p align="center" ><?= $jam[23]; ?></td>
-                                <td p align="center" ><?php echo"<b>$tim[13]</b> VS <b>$tim[14]</b>"; ?></td>
-                            </tr>
-                        </div>
-                        </table>
-                    </div>
-                </div>
+                    
     <?php           
         }
     } ?>
@@ -478,10 +380,10 @@ h1 span {
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="../js/jquery.js"></script>
+    <script src="js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="../js/bootstrap.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 
 </body>
 

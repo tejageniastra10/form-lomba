@@ -1,3 +1,6 @@
+<?php
+  include "../koneksi.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,13 +15,13 @@
     <title>Peserta | List Pemain</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="../css/sb-admin.css" rel="stylesheet">
+    <link href="css/sb-admin.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -147,7 +150,7 @@ h1 span {
             <ul class="nav navbar-right top-nav">
                 
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?=$username?> <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="../index.php"><i class="fa fa-fw fa-user"></i> Homepage</a>
@@ -203,7 +206,6 @@ h1 span {
                     <div class="col-lg-12">
                         <h1 class="page-header">
                             Tambah Anggota tim
-                            <small><?=$name['namatim'];?></small>
                         </h1>
                         <ol class="breadcrumb">
                             <li>
@@ -225,7 +227,7 @@ h1 span {
           }
           else
           {?>
-              <div class="alert alert-danger" role="alert"><b>Gagal Menambah pemain. Hanya dapat mendaftarkan 12 pemain per tim.<b></div> 
+              <div class="alert alert-danger" role="alert"><b>Gagal Menambah pemain. Hanya dapat mendaftarkan 16 pemain per tim.<b></div> 
     <?php }
         ?>
 
@@ -235,17 +237,17 @@ h1 span {
         <center>
 
         <?php if (!isset($_GET['order'])) {
-          $kolom = 'idpemain';
+          $kolom = 'id_pemain';
           $order = 'asc';
           }
           else if($_GET['order']=='desc')
           {
-            $kolom = 'nama';
+            $kolom = 'nama_pemain';
             $order = 'desc';
             } 
           else if($_GET['order']=='asc')
           {
-            $kolom = 'nama';
+            $kolom = 'nama_pemain';
             $order = 'asc';
             } ?>
 
@@ -271,28 +273,24 @@ h1 span {
             ?>
           </th>
           <th p align="center" ><b>USIA</b></th>
-          <th p align="center" ><b>NO. KTP</b></th>
-          <th p align="center" ><b>FAKULTAS</b></th>
           <th p align="center" ><b>ACTION</b></th>
           </tr>
 
           <?php
-            $sql  = "SELECT * FROM pemain WHERE idtim = '$idtim' ORDER BY $kolom $order";
-            $result = mysqli_query($konek, $sql);
+            $sql  = "SELECT * FROM pemain WHERE id_tim = '$id_tim' ORDER BY $kolom $order";
+            $result = mysqli_query($koneksi, $sql);
             while($data = mysqli_fetch_array($result)){ 
           ?>
               <tr>
-                <td p align="center" ><b><?php echo $data['nama'];?></b></td>
-                <td p align="center" ><?php echo $data['usia']; ?></td>
-                <td p align="center" ><?php echo $data['noktp']; ?></td>
-                <td p align="center" ><?php echo $data['fakultas']; ?> </td>
+                <td p align="center" ><b><?php echo $data['nama_pemain'];?></b></td>
+                <td p align="center" ><?php echo $data['usia_pemain']; ?></td>
                 <td p align="center" >
                 <a href="../uploads/<?php echo $data['file']; ?>" target="_blank" class="btn btn-success" role="button">
                 <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
-                  <button type="button" class="btn btn-warning edit-record" data-nama="<?=$data['nama'];?>" data-usia="<?=$data['usia'];?>" data-noktp="<?=$data['noktp'];?>" data-fakultas="<?=$data['fakultas'];?>" data-idtim="<?=$data['idtim'];?>" data-idpemain="<?=$data['idpemain'];?>" aria-label="Left Align" data-toggle="modal" data-target="#edit">
+                  <button type="button" class="btn btn-warning edit-record" data-nama="<?=$data['nama_pemain'];?>" data-usia="<?=$data['usia_pemain'];?>"  data-id_tim="<?=$data['id_tim'];?>" data-id_pemain="<?=$data['id_pemain'];?>" aria-label="Left Align" data-toggle="modal" data-target="#edit">
                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                   </button>
-                  <button type="button" class="btn btn-danger hapus-record" data-nama="<?=$data['nama'];?>" data-idpemain="<?=$data['idpemain'];?>" aria-label="Left Align">
+                  <button type="button" class="btn btn-danger hapus-record" data-nama="<?=$data['nama_pemain'];?>" data-idpemain="<?=$data['id_pemain'];?>" aria-label="Left Align">
                     <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                   </button>
               </tr>
@@ -360,10 +358,10 @@ h1 span {
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="../js/jquery.js"></script>
+    <script src="js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="../js/bootstrap.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 
     <!--AJAX edit-->
      <script>
@@ -373,10 +371,8 @@ h1 span {
                 $.post('modaledit.php',
                     { nama:$(this).attr('data-nama'),
                       usia:$(this).attr('data-usia'),
-                      noktp:$(this).attr('data-noktp'),
-                      fakultas:$(this).attr('data-fakultas'),
-                      idtim:$(this).attr('data-idtim'),
-                      idpemain:$(this).attr('data-idpemain')}, 
+                      idtim:$(this).attr('data-id_tim'),
+                      idpemain:$(this).attr('data-id_pemain')}, 
                     function(html){
                         $(".modal-body").html(html);
                     }   
@@ -391,7 +387,7 @@ h1 span {
                 $("#hapus").modal('show');
                 $.post('modalhapus.php',
                     { nama:$(this).attr('data-nama'),
-                      idpemain:$(this).attr('data-idpemain')}, 
+                      idpemain:$(this).attr('data-id_pemain')}, 
                     function(html){
                         $(".modal-body").html(html);
                     }   
@@ -405,7 +401,7 @@ h1 span {
             $(document).on('click','.tambah-record',function(e){
                 $("#tambah").modal('show');
                 $.post('modaltambah.php',
-                    {idtim:$(this).attr('data-idtim')}, 
+                    {idtim:$(this).attr('data-id_tim')}, 
                     function(html){
                         $(".modal-body").html(html);
                     }   

@@ -1,3 +1,6 @@
+<?php
+  include "../koneksi.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,16 +12,16 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Peserta | Home </title>
+    <title>Peserta | List Peserta</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="../css/sb-admin.css" rel="stylesheet">
+    <link href="css/sb-admin.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -49,7 +52,7 @@
 .responstable th {
   display: none;
   border: 1px solid #FFF;
-  background-color: #167F92;
+  background-color: #34495E;
   color: #FFF;
   padding: 1em;
   text-align: center;
@@ -126,6 +129,7 @@ h1 {
 h1 span {
   color: #167F92;
 }
+
 </style>
 
 <body>
@@ -147,6 +151,7 @@ h1 span {
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
                 
+               
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -169,13 +174,13 @@ h1 span {
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
-                    <li  class="active">
+                    <li >
                         <a href="sip.php"><i class="fa fa-fw fa-dashboard"></i> Home</a>
                     </li>
                      <li>
                         <a href="pengumuman_peserta.php"><i class="fa fa-fw fa-list"></i> Pengumuman</a>
                     </li>
-                    <li>
+                    <li  class="active">
                         <a href="list.php"><i class="fa fa-fw fa-list"></i> Tim Terdaftar</a>
                     </li>
                     <li>
@@ -201,10 +206,17 @@ h1 span {
 
                 <!-- Page Heading -->
                 <div class="row">
-                    
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            List Tim
+                            <small>Peserta</small>
+                        </h1>
                         <ol class="breadcrumb">
                             <li>
                                 <i class="fa fa-dashboard"></i>  <a href="sip.php">Home</a>
+                            </li>
+                            <li class="active">
+                                <i class="fa fa-list"></i> List Tim
                             </li>
                         </ol>
                     </div>
@@ -212,13 +224,60 @@ h1 span {
                 <!-- /.row -->
 
                 <!--isi-->
-            <center>
-                <h2><b>SISTEM INFORMASI PENDAFTARAN KOMPETISI</b></h2>
-                <h2><b>PESERTA</b></h2>
-            </center>
-            <br>
-            <br>
             
+                <!-- Table -->
+        <?php
+        if(!isset($_GET["view"]))
+            {?>
+                *Klik Nama tim untuk melihat anggota tim
+                <table class="responstable">
+                    <tr>
+                    <th p align="center" ><b>NAMA TIM</b></th>
+                    <th p align="center" ><b>ALAMAT</b></th>
+                    <th p align="center" ><b>NO. TELEPON</b></th>
+                    </tr>
+
+
+
+                    <?php
+                        $result = mysqli_query($koneksi, "SELECT * FROM tim WHERE id_penyelenggara='$id_penyelenggara'");
+                        while($data = mysqli_fetch_array($result)){ 
+                    ?>
+                        <tr>
+                            <td p align="center" ><b><a href="list.php?view=<?=$data['id_tim']; ?>"><?php echo $data['nama_tim'];?></a><b></td>
+                            <td p align="center" ><?php echo $data['alamat_tim']; ?></td>
+                            <td p align="center" ><?php echo $data['tlp_tim']; ?></td>
+                        </tr>
+                    <?php
+                        }
+                    ?>
+                </table>
+    <?php } 
+        else
+            {
+                $view=$_GET["view"];
+                    $sql  = mysqli_query($koneksi, "SELECT nama_tim FROM tim WHERE id_tim = '$view'");
+                    $result = mysqli_fetch_array($sql);
+                    ?>
+                    <h1><?php echo $result['nama_tim']; ?></h1>
+                    <table class="responstable">
+                    <tr>
+                        <th p align="center" ><b>NAMA</b></th>
+                        <th p align="center" ><b>USIA</b></th>
+                    </tr>
+
+                <?php
+                    $sql  = "SELECT * FROM pemain WHERE id_tim = '$view'";
+                    $result = mysqli_query($koneksi, $sql);
+                    while($data = mysqli_fetch_array($result)){ 
+                ?>
+                    <tr>
+                        <td p align="center" ><b><?php echo $data['nama_pemain'];?></b></td>
+                        <td p align="center" ><?php echo $data['usia_pemain']; ?></td>
+                    </tr>
+                <?php } ?>
+                 </table>
+    <?php  } ?>
   
             </div>
 
@@ -233,10 +292,10 @@ h1 span {
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="../js/jquery.js"></script>
+    <script src="js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="../js/bootstrap.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 
 </body>
 
