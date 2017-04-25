@@ -25,13 +25,13 @@
 		font-size: 11pt;
 		font-weight: 300;
 		line-height: 1.75em;
-		color: #fff;
+		color: #777;
 	}
 
 	h1,h2,h3,h4,h5,h6
 	{
-		font-weight: 500;
-		color: #fff;
+		font-weight: 300;
+		color: #777;
 	}
 	
 		h2
@@ -271,7 +271,7 @@
 	{
 		position: relative;
 		display: inline-block;
-		background: #317589;
+		background: #80BA8E;
 		padding: 0.8em 2em;
 		text-decoration: none !important;
 		font-size: 1.2em;
@@ -288,7 +288,7 @@
 
 	.button:hover
 	{
-		background: #044F67;
+		background: #70AA7E;
 		color: #FFF !important;
 	}
 
@@ -771,7 +771,7 @@
 	#header
 	{
 		position: relative;
-		background: url(../images/004.jpg.) no-repeat bottom center;
+		background: url(../images/header.jpg) no-repeat bottom center;
 		background-attachment: fixed;
 		background-size: cover;
 		text-align: center;
@@ -807,7 +807,7 @@
 		{
 			display: block;
 			text-decoration: none;
-			font-weight: 500;
+			font-weight: 300;
 			line-height: 1em;
 			font-size: 7em;
 			color: #FFF;
@@ -888,7 +888,7 @@
 	#main
 	{
 		position: relative;
-		background: #044F67;
+		background: #fff;
 	}
 	
 	.homepage #content
@@ -923,7 +923,7 @@
 	
 	#footer header .byline
 	{
-		color: #fff;
+		color: rgba(255,255,255,.2);
 	}
 
 /*********************************************************************************/
@@ -958,9 +958,8 @@
 	#featured
 	{
 		position: relative;
-		background: #264348;
+		background: #f2f2f2;
 		text-align: center;
-		22313F
 	}
 	
 	#featured h3
@@ -987,7 +986,7 @@
 	{
 		position: relative;
 		text-align: center;
-		background: url(../images/004.jpg) no-repeat center center;
+		background: url(../images/header.jpg) no-repeat center center;
 		background-attachment: fixed;
 		background-size: cover;
 	}
