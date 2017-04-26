@@ -213,7 +213,7 @@ h1 span {
                         </h1>
                         <ol class="breadcrumb">
                             <li>
-                                <i class="fa fa-dashboard"></i>  <a href="sip.php">Home</a>
+                                <i class="fa fa-dashboard"></i>  <a href="index.php">Home</a>
                             </li>
                             <li class="active">
                                 <i class="fa fa-list"></i> List Tim
@@ -240,7 +240,7 @@ h1 span {
 
 
                     <?php
-                        $result = mysqli_query($koneksi, "SELECT * FROM tim WHERE id_penyelenggara='$id_penyelenggara'");
+                        $result = mysqli_query($koneksi, "SELECT * FROM tim WHERE id_penyelenggara=1");
                         while($data = mysqli_fetch_array($result)){ 
                     ?>
                         <tr>
