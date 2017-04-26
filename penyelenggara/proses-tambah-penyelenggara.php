@@ -34,7 +34,11 @@ include "../koneksi.php";
 					}
 					else
 					{
-						echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>NIM Sudah Ada..!</div>';
+						echo "<script>
+							alert('Username Sudah ada');
+							window.location.href='javascript:history.go(-1)';
+							</script>";
+
 					}
 				}
 				
