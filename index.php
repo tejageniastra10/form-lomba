@@ -1,6 +1,11 @@
 <?php
 	include("koneksi.php");
 ?>
+
+<?php
+session_start();
+
+?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -323,12 +328,12 @@
     <div class="modal-dialog">
     
       <div class="modal-content">
-        <div class="modal-header" style="padding:35px 50px;">
+        <div class="modal-header" style="padding:25px 40px;">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h5><span class="glyphicon glyphicon-lock"></span> Login</h5>
         </div>
         <div class="modal-body" style="padding:40px 50px;">
-          <form role="form" action="" method="post">
+          <form role="form" action="proses-login.php" method="post">
 					<div class="form-group">
 						<label ><span class="glyphicon glyphicon-user"></span>  Username</label>
 						<input type="text" name="username" class="form-control" placeholder="Username" required autofocus />
@@ -338,8 +343,8 @@
 						<input type="password" name="password" class="form-control" placeholder="Password" required autofocus />
 					</div>
 					<div class="form-group">
-						<label ><span class="glyphicon glyphicon-home"></span> masuk Sebagai</label>
-						<select name="level" class="form-control" required>
+						<label >masuk Sebagai</label>
+						<select name="id_level" class="form-control" required>
 							
 							<option value="1">Admin</option>
 							<option value="2">Penyelenggara</option>
@@ -428,6 +433,10 @@
             <div class="form-group">
               <label for="psw"><span class="glyphicon glyphicon-picture"></span> Bukti Pembayaran</label>
               <input type="file" name="pembayaran_penyelenggara" class="form-control" placeholder="foto" required>
+            </div>
+            <div class="form-group">
+              
+              <input  name="id_level" value="2" type="hidden">
             </div>
             
 						
