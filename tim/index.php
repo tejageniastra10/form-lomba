@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+if(empty($_SESSION)){
+  header("Location: ../index.php");
+}
+?>
+<?php
+  include("../koneksi.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -148,7 +158,7 @@ h1 span {
             <ul class="nav navbar-right top-nav">
                 
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <b><?php echo $_SESSION['nama_tim']; ?></b> <i class="fa fa-user"></i> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="../index.php"><i class="fa fa-fw fa-user"></i> Homepage</a>
