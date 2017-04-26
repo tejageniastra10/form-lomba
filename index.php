@@ -647,7 +647,7 @@ $(document).ready(function(){
             </div>
             <div class="form-group">
               <label for="psw"><span class="glyphicon glyphicon-picture"></span> Bukti Pembayaran</label>
-              <input type="file" name="pembayaran_tim" class="form-control" placeholder="foto" required>
+              <input type="file" name="pembayaran_tim" class="form-control" placeholder="foto" >
             </div>
             
 						

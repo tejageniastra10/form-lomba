@@ -13,7 +13,8 @@ include "../koneksi.php";
 					$email_penyelenggara		    = $_POST['email_penyelenggara'];
 					$tlp_penyelenggara			 	= $_POST['tlp_penyelenggara'];
 					$username_penyelenggara	  	    = $_POST['username_penyelenggara'];
-					$password_penyelenggara 		= $_POST['password_penyelenggara'];
+					$pass_penyelenggara 			= md5($_POST['password_penyelenggara']);
+					$password_penyelenggara			= md5($pass_penyelenggara);
 
 					
 					$pembayaran_penyelenggara = $_FILES['pembayaran_penyelenggara']['name'];
