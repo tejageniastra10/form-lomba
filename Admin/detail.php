@@ -1,6 +1,10 @@
 <?php
 
     include '../koneksi.php';
+    $id_penyelenggara = $_GET['id_penyelenggara'];
+    $sql = mysqli_query($koneksi,"SELECT * FROM penyelenggara where id_penyelenggara='$id_penyelenggara'");
+
+    while($row=  mysqli_fetch_array($sql)){
     
 ?>
 
@@ -17,83 +21,110 @@
                     <div class="container">
   
                         <div class="row">
-                          <div class="col-md-3">
+                          <div class="col-md-4">
                                                                 
                                         <div class="form-group">
-                                        <label class="col-lg-6 control-label">Nim</label>
+                                        <label class="col-lg-6 control-label">Id Penyelenggara</label>
                                                 <div class="col-lg-5">
-                                                    <input style="width: 200px;"  class="form-control" type="text" name="nim" value="<?php echo $row['nim']; ?>" readonly/>
+                                                    <input style="width: 200px;"  class="form-control" type="text" name="nim" value="<?php echo $row['id_penyelenggara']; ?>" readonly/>
                                                 </div>
                                         </div>
                                         
                                         <div class="form-group">
-                                            <label class="col-lg-6 control-label">Nama</label>
+                                            <label class="col-lg-6 control-label">Nama Penyelengara</label>
                                                 <div class="col-lg-5">
-                                                    <input style="width: 200px;"  class="form-control" type="text" name="nama" value="<?php echo $row['nama']; ?>" readonly/>
+                                                    <input style="width: 200px;"  class="form-control" type="text" name="nama" value="<?php echo $row['nama_penyelenggara']; ?>" readonly/>
                                                 </div>
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="col-lg-6 control-label">Tempat Lahir</label>
+                                            <label class="col-lg-6 control-label">Nama Lomba</label>
                                                 <div class="col-lg-5">
-                                                    <input style="width: 200px;"  class="form-control" type="text" name="tempat_lahir" value="<?php echo $row['tempat_lahir']; ?>" readonly/>
+                                                    <input style="width: 200px;"  class="form-control" type="text" name="tempat_lahir" value="<?php echo $row['nama_lomba']; ?>" readonly/>
                                                 </div>
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="col-lg-6 control-label">Tanggal Lahir</label>
+                                            <label class="col-lg-6 control-label">Lokasi Lomba</label>
                                                 <div class="col-lg-5">
-                                                    <input style="width: 200px;"  class="form-control" type="text" name="tanggal_lahir" value="<?php echo $row['tanggal_lahir']; ?>" readonly/>
+                                                    <input style="width: 200px;"  class="form-control" type="text" name="tanggal_lahir" value="<?php echo $row['lokasi_lomba']; ?>" readonly/>
                                                 </div>
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="col-lg-6 control-label">Alamat</label>
+                                            <label class="col-lg-6 control-label">Waktu Awal</label>
                                                 <div class="col-lg-5">
-                                                    <textarea style="width: 200px" name="alamat" class="form-control" readonly><?php echo $row['alamat'];?></textarea>
+                                                    <textarea style="width: 200px" name="alamat" class="form-control" readonly><?php echo $row['waktu_awal_lomba'];?></textarea>
                     
                                                 </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-lg-6 control-label">Jenis Kelamin</label>
+                                            <label class="col-lg-6 control-label">Waktu Akhir</label>
                                                 <div class="col-lg-5">
-                                                    <input style="width: 200px;"  class="form-control" type="text" name="jenis_kelamin" value="<?php echo $row['jk']; ?>" readonly/>
+                                                    <input style="width: 200px;"  class="form-control" type="text" name="jenis_kelamin" value="<?php echo $row['waktu_akhir_lomba']; ?>" readonly/>
                                                 </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-lg-6 control-label">Jurusan</label>
+                                            <label class="col-lg-6 control-label">Nama Kategori</label>
                                                 <div class="col-lg-5">
-                                                    <input style="width: 200px;"  class="form-control" type="text" name="jurusan" value="<?php echo $row['nama_jurusan']; ?>" readonly/>
+                                                    <input style="width: 200px;"  class="form-control" type="text" name="jurusan" value="<?php echo $row['id_kategori']; ?>" readonly/>
                                                 </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-lg-6 control-label">No HP</label>
+                                            <label class="col-lg-6 control-label">Email Penyelengara</label>
                                                 <div class="col-lg-5">
-                                                    <input style="width: 200px;"  class="form-control" type="text" name="no_tlp" value="<?php echo $row['no_tlp']; ?>" readonly/>
+                                                    <input style="width: 200px;"  class="form-control" type="text" name="no_tlp" value="<?php echo $row['email_penyelenggara']; ?>" readonly/>
                                                 </div>
                                         </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-6 control-label">No Telepon</label>
+                                                <div class="col-lg-5">
+                                                    <input style="width: 200px;"  class="form-control" type="text" name="no_tlp" value="<?php echo $row['tlp_penyelenggara']; ?>" readonly/>
+                                                </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-6 control-label">Username</label>
+                                                <div class="col-lg-5">
+                                                    <input style="width: 200px;"  class="form-control" type="text" name="no_tlp" value="<?php echo $row['username_penyelenggara']; ?>" readonly/>
+                                                </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-6 control-label">Password</label>
+                                                <div class="col-lg-5">
+                                                    <input style="width: 200px;"  class="form-control" type="text" name="no_tlp" value="<?php echo $row['password_penyelenggara']; ?>" readonly/>
+                                                </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-6 control-label">Jumlah Tim</label>
+                                                <div class="col-lg-5">
+                                                    <input style="width: 200px;"  class="form-control" type="text" name="no_tlp" value="<?php echo $row['jml_tim']; ?>" readonly/>
+                                                </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-6 control-label">Pembayaran</label>
+                                                <div class="col-lg-5">
+                                                    <input style="width: 200px;"  class="form-control" type="text" name="no_tlp" value="<?php echo $row['pembayaran_penyelenggara']; ?>" readonly/>
+                                                </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-6 control-label">Status Penyelenggara</label>
+                                                <div class="col-lg-5">
+                                                    <input style="width: 200px;"  class="form-control" type="text" name="no_tlp" value="<?php echo $row['status_penyelenggara']; ?>" readonly/>
+                                                </div>
+                                        </div>
+
 
 
                             
                         </div>
-                        
-                        
-                         <div class="col-lg-3 control-label">
-                             <a href="2.jpg" target="_blank">
-                                <?php echo '<img src=foto/'.$row['foto'].' width="180" height="190">'  ?>  
-                                
-                             </a>
-                          
-                        </div>
-                              
                     </div>
                  </div>
                             
                 
                             
             </form>
-            <?php
-    
+              <?php
+    }
             ?>
         </div>
     </div>
