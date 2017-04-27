@@ -46,8 +46,8 @@
         <!-- pilihan menu -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           <ul class="nav navbar-nav side-nav">
-            <li class="active"><a href="index.php"><i class="fa fa-dashboard"></i> Data Penyelenggara</a></li>
-            <li><a href="confirmasi_penyelenggara.php"><i class="fa fa-bar-chart-o"></i> Confirmasi Penyelenggara</a></li>
+            <li class="active"><a href="index.php"><i class="fa fa-dashboard"></i> Confirmasi Penyelenggara</a></li>
+            <li><a href="data_penyelenggara.php"><i class="fa fa-bar-chart-o"></i> Data Penyelenggara</a></li>
             <li><a href="tables.html"><i class="fa fa-table"></i> Statistik</a></li>
             <li><a href="forms.html"><i class="fa fa-edit"></i> Ivent</a></li>
           </ul>
@@ -91,17 +91,17 @@
       ?>
 
       <div id="page-wrapper"><br />
-      <h2>Data Penyelenggara</h2><br />
+      <h2>Tampilan Data Admin</h2><br />
 
       <table class="table table-bordered table-striped">
         <thead style="text-align: center">
             <td>No</td>
             <td>Nama Penyelenggara</td>
             <td>Nama Lomba</td>
-            <td>Lokasi</td>
-            <td>Waktu Awal</td>
-            <td>Waktu Akhir</td>
             <td>Email</td>
+            <td>No Telepon</td>
+            <td>Pembayaran</td>
+            <td>Status</td>
             <td>Pilihan</td>
         </thead>
         <tbody>
@@ -119,10 +119,10 @@
               <td style="text-align: center">'.$no.'</td>
               <td style="text-align: center">'.$row['nama_penyelenggara'].'</td>
               <td>'.$row['nama_lomba'].'</td>
-              <td style="text-align: center">'.$row['lokasi_lomba'].'</td>
-              <td style="text-align: center">'.$row['waktu_awal_lomba'].'</td>
-              <td style="text-align: center">'.$row['waktu_akhir_lomba'].'</td>
               <td style="text-align: center">'.$row['email_penyelenggara'].'</td>
+              <td style="text-align: center">'.$row['tlp_penyelenggara'].'</td>
+              <td><img src="image/'.$row['pembayaran_penyelenggara'].'?>" border="0"/></td>
+              <td style="text-align: center">'.$row['status_penyelenggara'].'</td>
               <td style="text-align: center">
                 <a href="#" id=' .$row["id_penyelenggara"].' class="btn btn-sm btn-info"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
                 <a href="index.php?aksi=delete&id_penyelenggara='.$row['id_penyelenggara'].'" title="Hapus Data" onclick="return confirm(\'Anda yakin akan menghapus data '.$row['nama_penyelenggara'].'?\')" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
