@@ -2,7 +2,7 @@
 require_once('../koneksi.php');
 if(isset($_POST['btn-upload']))
 {    
-  $idpemain = $_POST['id_pemain'];
+  $id_pemain = $_POST['id_pemain'];
      
     $file = rand(1000,100000)."-".$_FILES['file']['name'];
     $file_loc = $_FILES['file']['tmp_name'];

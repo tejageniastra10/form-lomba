@@ -2,6 +2,7 @@
     <?php
       $nama = $_POST['nama'];
       $usia = $_POST['usia'];
+      $alamat = $_POST['alamat'];
       $idtim = $_POST['idtim'];
       $idpemain = $_POST['idpemain'];
   ?>
@@ -12,19 +13,11 @@
             <div class="col-xs-8 col-sm-6">
               <input class="form-control" required="required" type="text" value="<?=$usia;?>" placeholder="Usia" name="usia" maxlength="2">
             </div>
-            <div class="col-xs-4 col-sm-6">
-              <select required="required" name="fakultas" class="form-control">
-                <option disabled>Fakultas</option>
-                <option <?php if($fakultas=='TEKNIK') { echo 'selected';};?>>TEKNIK</option>
-                <option <?php if($fakultas=='MIPA') { echo 'selected';};?>>MIPA</option>
-                <option <?php if($fakultas=='FISIP') { echo 'selected';};?>>FISIP</option>
-                <option <?php if($fakultas=='KEDOKTERAN') { echo 'selected';};?>>KEDOKTERAN</option>
-              </select>
             </div>
-          </div>
-          <br>
-          <input class="form-control" required="required" type="text" placeholder="No. KTP" value="<?=$noktp;?>" name="noktp" maxlength="20">
-          <input type="hidden" value="<?=$id_tim ?>" name="id_tim1">
+            <br>
+          <input class="form-control" required="required" type="text" value="<?=$alamat;?>" name="alamat" maxlength="30">
+        <br>
+          <input type="hidden" value="<?=$id_tim ?>" name="id_tim">
           <input type="hidden" value="<?=$id_pemain ?>" name="id_pemain">
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
