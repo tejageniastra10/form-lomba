@@ -1,4 +1,14 @@
 <?php
+session_start();
+
+if(empty($_SESSION)){
+  header("Location: ../index.php");
+}
+if ($_SESSION['id_level']!='3') {
+  header("Location: ../index.php");
+}
+?>
+<?php
   $id_tim = $_POST["id_tim"];
 ?>
 <form action="insert.php" method="post" enctype="multipart/form-data">

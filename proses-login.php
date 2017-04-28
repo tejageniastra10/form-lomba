@@ -54,6 +54,7 @@
 						$_SESSION['username_tim']=$row['username_tim'];
 						$_SESSION['id_level']='3';
 						$_SESSION['id_penyelenggara']=$row['id_penyelenggara'];
+						$_SESSION['id_tim']=$row['id_tim'];
 						header("Location: tim/index.php");
 					}
 					}

@@ -273,7 +273,7 @@ h1 span {
                     <tr>
                         <th p align="center" ><b>NAMA</b></th>
                         <th p align="center" ><b>USIA</b></th>
-                        <th p align="center" ><b>USIA</b></th>
+                        <th p align="center" ><b>ALAMAT</b></th>
                     </tr>
 
                 <?php
