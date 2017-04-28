@@ -13,7 +13,7 @@ include "../koneksi.php";
 					$tlp_tim		 				= $_POST['tlp_tim'];
 					$username_tim	  	   			= $_POST['username_tim'];
 					$pass_tim 						= md5($_POST['password_tim']);
-					$password_tim					=md5($pass_tim);
+					$password_tim					= $pass_tim;
 
 					
 					$pembayaran_tim = $_FILES['pembayaran_tim']['name'];
