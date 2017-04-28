@@ -581,7 +581,7 @@ $(document).ready(function(){
 
 
 
-
+<!-- Modal daftar tim -->
 
 <div class="modal fade" id="Modal-tim" role="dialog">
     <div class="modal-dialog">
@@ -656,7 +656,10 @@ $(document).ready(function(){
               <input type="file" name="pembayaran_tim" class="form-control" placeholder="foto" >
             </div>
             
-						
+			<div class="form-group">
+              
+              <input  name="id_level" value="3" type="hidden">
+            </div>
 					
             
               <button type="submit" href="index.php" type="submit" name="add" value="Simpan" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> daftar</button>

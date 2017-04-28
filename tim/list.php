@@ -1,5 +1,15 @@
 <?php
-  include "../koneksi.php";
+session_start();
+
+if(empty($_SESSION)){
+  header("Location: ../index.php");
+}
+if ($_SESSION['id_level']!='3') {
+  header("Location: ../index.php");
+}
+?>
+<?php
+  include("../koneksi.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -153,7 +163,7 @@ h1 span {
                 
                
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $_SESSION['nama_tim'];  ?> <i class="fa fa-user"></i> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="../index.php"><i class="fa fa-fw fa-user"></i> Homepage</a>
@@ -240,6 +250,7 @@ h1 span {
 
 
                     <?php
+                        $id_penyelenggara = $_SESSION['id_penyelenggara'];
                         $result = mysqli_query($koneksi, "SELECT * FROM tim WHERE id_penyelenggara='$id_penyelenggara'");
                         while($data = mysqli_fetch_array($result)){ 
                     ?>
@@ -252,6 +263,7 @@ h1 span {
                         }
                     ?>
                 </table>
+
     <?php } 
         else
             {

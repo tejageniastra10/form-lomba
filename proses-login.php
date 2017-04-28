@@ -19,6 +19,8 @@
 						
 						$_SESSION['nama_admin']=$row['nama_admin'];
 						$_SESSION['username_admin']=$row['username_admin'];
+						$_SESSION['id_level']='1';
+
 						header("Location: admin/index.php");
 					}
 					}
@@ -34,6 +36,7 @@
 						
 						
 						$_SESSION['username_penyelenggara']=$row['username_penyelenggara'];
+						$_SESSION['id_level']='2';
 						header("Location: penyelenggara/index-penyelenggara.php");
 					}
 					}
@@ -49,6 +52,8 @@
 						
 						$_SESSION['nama_tim']=$row['nama_tim'];
 						$_SESSION['username_tim']=$row['username_tim'];
+						$_SESSION['id_level']='3';
+						$_SESSION['id_penyelenggara']=$row['id_penyelenggara'];
 						header("Location: tim/index.php");
 					}
 					}

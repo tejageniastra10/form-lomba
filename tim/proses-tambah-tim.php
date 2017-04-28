@@ -20,13 +20,14 @@ include "../koneksi.php";
 					$tmp = $_FILES['pembayaran_tim']['tmp_name'];
 					$fotobaru = date('dmYHis').$pembayaran_tim;
 					$path = "pembayaran_tim/".$fotobaru;
-
+					$id_level						=$_POST['id_level'];
+					
 
 					if(move_uploaded_file($tmp, $path)){
 					$cek = mysqli_query($koneksi, "SELECT * FROM tim WHERE username_tim='$username_tim'")or die (mysqli_error($koneksi));
 					if(mysqli_num_rows($cek) == 0)
 					{
-						$insert = mysqli_query($koneksi, "INSERT INTO tim(nama_tim, alamat_tim, penanggung_jawab, id_kategori, id_penyelenggara, email_tim, tlp_tim, username_tim, password_tim, pembayaran_tim) VALUES('$nama_tim', '$alamat_tim', '$penanggung_jawab', '$id_kategori','$id_penyelenggara', '$email_tim', '$tlp_tim', '$username_tim', '$password_tim', '$fotobaru')") or die(mysqli_error($koneksi));
+						$insert = mysqli_query($koneksi, "INSERT INTO tim(nama_tim, alamat_tim, penanggung_jawab, id_kategori, id_penyelenggara, email_tim, tlp_tim, username_tim, password_tim, pembayaran_tim, id_level) VALUES('$nama_tim', '$alamat_tim', '$penanggung_jawab', '$id_kategori','$id_penyelenggara', '$email_tim', '$tlp_tim', '$username_tim', '$password_tim', '$fotobaru', '$id_level')") or die(mysqli_error($koneksi));
 							if($insert)
 							{
 								header("location: ../index.php");
