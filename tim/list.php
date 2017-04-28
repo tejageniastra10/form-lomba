@@ -240,7 +240,7 @@ h1 span {
 
 
                     <?php
-                        $result = mysqli_query($koneksi, "SELECT * FROM tim WHERE id_penyelenggara=1");
+                        $result = mysqli_query($koneksi, "SELECT * FROM tim WHERE id_penyelenggara='$id_penyelenggara'");
                         while($data = mysqli_fetch_array($result)){ 
                     ?>
                         <tr>
