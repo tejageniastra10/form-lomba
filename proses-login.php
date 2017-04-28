@@ -34,10 +34,10 @@
 					}else{
 						$row = mysqli_fetch_assoc($query);
 						
-						
-						$_SESSION['username_penyelenggara']=$row['username_penyelenggara'];
+						$_SESSION['id_penyelenggara']=$row['id_penyelenggara'];
+						$_SESSION['nama_lomba']=$row['nama_lomba'];
 						$_SESSION['id_level']='2';
-						header("Location: penyelenggara/index-penyelenggara.php");
+						header("Location: penyelenggara/index.php");
 					}
 					}
 					else{
