@@ -2,7 +2,7 @@
 require_once('../koneksi.php');
 if(isset($_POST['btn-upload']))
 {    
-  $idpemain = $_POST['idpemain'];
+  $id_pemain = $_POST['id_pemain'];
      
     $file = rand(1000,100000)."-".$_FILES['file']['name'];
     $file_loc = $_FILES['file']['tmp_name'];
@@ -17,8 +17,8 @@ if(isset($_POST['btn-upload']))
  
  
     move_uploaded_file($file_loc,$folder.$final_file);
-    $sql= "UPDATE pemain SET file = '$final_file' WHERE idpemain = '$idpemain'";
-    $result = mysqli_query($konek, $sql);
+    $sql= "UPDATE pemain SET file = '$final_file' WHERE id_pemain = '$id_pemain'";
+    $result = mysqli_query($koneksi, $sql);
    
     if($result)
     {

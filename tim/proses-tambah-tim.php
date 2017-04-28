@@ -5,7 +5,7 @@ include "../koneksi.php";
 				{
 					
 					$nama_tim  						= $_POST['nama_tim'];
-					$alamat_tim			 			= $_POST['nama_tim'];
+					$alamat_tim			 			= $_POST['alamat_tim'];
 					$penanggung_jawab				= $_POST['penanggung_jawab'];
 					$id_kategori	 				= $_POST['id_kategori'];
 					$id_penyelenggara	 			= $_POST['id_penyelenggara'];

@@ -1,14 +1,6 @@
-<?php
-session_start();
 
-if(empty($_SESSION)){
-  header("Location: ../index.php");
-}
-if ($_SESSION['id_level']!='3') {
-  header("Location: ../index.php");
-}
-?>
 <?php
+include("../session.php");
   include("../koneksi.php");
 ?>
 <!DOCTYPE html>
@@ -284,6 +276,7 @@ h1 span {
                     <tr>
                         <td p align="center" ><b><?php echo $data['nama_pemain'];?></b></td>
                         <td p align="center" ><?php echo $data['usia_pemain']; ?></td>
+                        <td p align="center" ><?php echo $data['alamat_pemain']; ?></td>
                     </tr>
                 <?php } ?>
                  </table>
