@@ -462,7 +462,6 @@ $(document).ready(function(){
 </script>
 
 		<link rel="stylesheet" href="css/bootstrapValidator.css">  
-        <script src="jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/bootstrapValidator.js"></script>
 
@@ -597,47 +596,33 @@ $(document).ready(function(){
             </div>
             <div class="form-group">
 					<label ><span class="glyphicon glyphicon-list"></span>  Kategori Kegiatan</label>
+					<?php
+					$sql_kategori = mysqli_query($koneksi, 'select * FROM kategori');
+					?>
 					
-					<select name="id_kategori" class="form-control" required>
-					<?php 
-						$sql = mysqli_query($koneksi, "SELECT * FROM kategori ORDER BY id_kategori ASC");
-						if(mysqli_num_rows($sql) == 0)
-						{
-							echo '<tr><td colspan="8">Data Tidak Ditemukan.</td></tr>';
-						}
-						else
-						{
-							echo '<option value=""> Pilih </option>'; 
-							while($row = mysqli_fetch_assoc($sql))
-							{
-								echo  '<option value='.$row['id_kategori'].'>'.$row['nama_kategori'].'</option>';
-		 					}
-		 				}
-	 				?>
+					<select name="id_kategori" class="form-control" required id="kategori">
+					<option value="">pilih</option>
+					<?php while($row_kategori = mysqli_fetch_array($sql_kategori)) {?>
+					<option value="<?php echo $row_kategori['id_kategori'] ?>"> <?php echo $row_kategori['nama_kategori'] ?></option>
+					
+				
+					<?php } ?>
 					</select>
 					
 				</div>
 			 	<div class="form-group">
 					<label ><span class="glyphicon glyphicon-list"></span>  Penyelenggara </label>
+
 					
-					<select name="id_penyelenggara" class="form-control" required>
-					<?php 
-						$sql = mysqli_query($koneksi, "SELECT * FROM penyelenggara ORDER BY id_penyelenggara ASC");
-						if(mysqli_num_rows($sql) == 0)
-						{
-							echo '<tr><td colspan="8">Data Tidak Ditemukan.</td></tr>';
-						}
-						else
-						{
-							echo '<option value=""> Pilih </option>'; 
-							while($row = mysqli_fetch_assoc($sql))
-							{
-								echo  '<option value='.$row['id_penyelenggara'].'>'.$row['nama_penyelenggara'].'</option>';
-		 					}
-		 				}
-	 				?>
+					<select name="id_penyelenggara" class="form-control" required id="penyelenggara">
+					<option value="" > input penyelenggara</option>
+					
+					
 					</select>
 					
+
+
+
 				</div>
             <div class="form-group">
               <label ><span class="glyphicon glyphicon-envelope"></span> Email Tim Peserta</label>
@@ -692,7 +677,6 @@ $(document).ready(function(){
 </script>
 
 		<link rel="stylesheet" href="css/bootstrapValidator.css">  
-        <script src="jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/bootstrapValidator.js"></script>
 
@@ -790,6 +774,31 @@ $(document).ready(function(){
                     });
                 });
         </script>
+
+        	<script>
+        	$(document).ready(function(){
+        		$("#kategori").change(function () {
+					var kategori_id = $("#kategori").val();
+
+					$.ajax({
+						type:"POST",
+						url:"penyelenggara.php",
+						data:"kat_id="+kategori_id,
+						success: function(msg) {
+							if (msg=="") {
+								alert('tidak ada kata');
+							}
+							else{
+								$("#penyelenggara").html(msg);
+							}
+						},
+						error: function(XMLHttpRequest){
+							alert(XMLHttpRequest.responseText);
+						}
+					});
+				});
+        	});
+        	</script>
 
 	</body>
 </html>
