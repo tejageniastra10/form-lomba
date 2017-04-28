@@ -1,14 +1,6 @@
-<?php
-session_start();
 
-if(empty($_SESSION)){
-  header("Location: ../index.php");
-}
-if ($_SESSION['id_level']!='3') {
-  header("Location: ../index.php");
-}
-?>
 <?php
+  include("../session.php");
   include "../koneksi.php";
 ?>
 <!DOCTYPE html>
@@ -238,7 +230,7 @@ h1 span {
     <?php }
         ?>
 
-            <button type="button" data-idtim="<?=$id_tim;?>" class="btn btn-primary tambah-record pull-right" data-toggle="modal" data-target="#tambah"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Tambah Pemain</button>
+            <button type="button" data-id_tim="<?=$id_tim;?>" class="btn btn-primary tambah-record pull-right" data-toggle="modal" data-target="#tambah"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Tambah Pemain</button>
         </div>
 
         <center>
@@ -299,7 +291,7 @@ h1 span {
                   <button type="button" class="btn btn-warning edit-record" data-nama="<?=$data['nama_pemain'];?>" data-usia="<?=$data['usia_pemain'];?>"  data-alamat="<?=$data['alamat_pemain'];?>" data-id_tim="<?=$data['id_tim'];?>" data-id_pemain="<?=$data['id_pemain'];?>" aria-label="Left Align" data-toggle="modal" data-target="#edit">
                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                   </button>
-                  <button type="button" class="btn btn-danger hapus-record" data-nama="<?=$data['nama_pemain'];?>" data-idpemain="<?=$data['id_pemain'];?>" aria-label="Left Align">
+                  <button type="button" class="btn btn-danger hapus-record" data-nama="<?=$data['nama_pemain'];?>" data-id_pemain="<?=$data['id_pemain'];?>" aria-label="Left Align">
                     <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                   </button>
               </tr>
