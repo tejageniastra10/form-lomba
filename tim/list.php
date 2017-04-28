@@ -164,15 +164,12 @@ h1 span {
                
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $_SESSION['nama_tim'];  ?> <i class="fa fa-user"></i> <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
+                   <ul class="dropdown-menu">
                         <li>
-                            <a href="../index.php"><i class="fa fa-fw fa-user"></i> Homepage</a>
+                            <a href="index.php"><i class="fa fa-fw fa-user"></i> Homepage</a>
                         </li>
                         <li>
                             <a href="../petunjuk.php"><i class="fa fa-fw fa-info"></i> Petunjuk</a>
-                        </li>
-                         <li>
-                            <a href="../kegiatan.php"><i class="fa fa-fw fa-info"></i> Kegiatan</a>
                         </li>
                         <li class="divider"></li>
                         <li>
@@ -275,6 +272,7 @@ h1 span {
                     <table class="responstable">
                     <tr>
                         <th p align="center" ><b>NAMA</b></th>
+                        <th p align="center" ><b>USIA</b></th>
                         <th p align="center" ><b>USIA</b></th>
                     </tr>
 

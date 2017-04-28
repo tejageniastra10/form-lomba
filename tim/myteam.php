@@ -1,4 +1,14 @@
 <?php
+session_start();
+
+if(empty($_SESSION)){
+  header("Location: ../index.php");
+}
+if ($_SESSION['id_level']!='3') {
+  header("Location: ../index.php");
+}
+?>
+<?php
   include "../koneksi.php";
 ?>
 <!DOCTYPE html>
@@ -150,16 +160,13 @@ h1 span {
             <ul class="nav navbar-right top-nav">
                 
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $_SESSION['nama_tim'];  ?> <i class="fa fa-user"></i> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="../index.php"><i class="fa fa-fw fa-user"></i> Homepage</a>
+                            <a href="index.php"><i class="fa fa-fw fa-user"></i> Homepage</a>
                         </li>
                         <li>
                             <a href="../petunjuk.php"><i class="fa fa-fw fa-info"></i> Petunjuk</a>
-                        </li>
-                         <li>
-                            <a href="../kegiatan.php"><i class="fa fa-fw fa-info"></i> Kegiatan</a>
                         </li>
                         <li class="divider"></li>
                         <li>
@@ -212,7 +219,7 @@ h1 span {
                                 <i class="fa fa-dashboard"></i>  <a href="index.php">Nama Kegiatan | Peserta</a>
                             </li>
                             <li class="active">
-                                <i class="fa fa-plus"></i> Tambah Anggota tim
+                                <i class="fa fa-plus"></i> Tambah Pemain Tim
                             </li>
                         </ol>
                     </div>
@@ -231,7 +238,7 @@ h1 span {
     <?php }
         ?>
 
-            <button type="button" data-idtim="<?=$id_tim;?>" class="btn btn-primary tambah-record pull-right" data-toggle="modal" data-target="#tambah"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Tambah anggota</button>
+            <button type="button" data-idtim="<?=$id_tim;?>" class="btn btn-primary tambah-record pull-right" data-toggle="modal" data-target="#tambah"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Tambah Pemain</button>
         </div>
 
         <center>
@@ -273,21 +280,23 @@ h1 span {
             ?>
           </th>
           <th p align="center" ><b>USIA</b></th>
+          <th p align="center" ><b>ALAMAT</b></th>
           <th p align="center" ><b>ACTION</b></th>
           </tr>
 
           <?php
-            $sql  = "SELECT * FROM pemain WHERE id_tim = '$id_tim' ORDER BY $kolom $order";
-            $result = mysqli_query($koneksi, $sql);
+            $id_tim = $_SESSION['id_tim'];
+            $result = mysqli_query($koneksi, "SELECT * FROM pemain WHERE id_tim = '$id_tim' ORDER BY $kolom $order");
             while($data = mysqli_fetch_array($result)){ 
           ?>
               <tr>
                 <td p align="center" ><b><?php echo $data['nama_pemain'];?></b></td>
                 <td p align="center" ><?php echo $data['usia_pemain']; ?></td>
+                <td p align="center" ><?php echo $data['alamat_pemain']; ?></td>
                 <td p align="center" >
                 <a href="../uploads/<?php echo $data['file']; ?>" target="_blank" class="btn btn-success" role="button">
                 <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
-                  <button type="button" class="btn btn-warning edit-record" data-nama="<?=$data['nama_pemain'];?>" data-usia="<?=$data['usia_pemain'];?>"  data-id_tim="<?=$data['id_tim'];?>" data-id_pemain="<?=$data['id_pemain'];?>" aria-label="Left Align" data-toggle="modal" data-target="#edit">
+                  <button type="button" class="btn btn-warning edit-record" data-nama="<?=$data['nama_pemain'];?>" data-usia="<?=$data['usia_pemain'];?>"  data-alamat="<?=$data['alamat_pemain'];?>" data-id_tim="<?=$data['id_tim'];?>" data-id_pemain="<?=$data['id_pemain'];?>" aria-label="Left Align" data-toggle="modal" data-target="#edit">
                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                   </button>
                   <button type="button" class="btn btn-danger hapus-record" data-nama="<?=$data['nama_pemain'];?>" data-idpemain="<?=$data['id_pemain'];?>" aria-label="Left Align">
@@ -318,7 +327,7 @@ h1 span {
     <div class="modal-content">
       <div class="modal-header bg-primary">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Tambah Anggota</h4>
+        <h4 class="modal-title" id="myModalLabel">Tambah Pemain</h4>
       </div>
       <div class="modal-body">
       </div>
@@ -332,7 +341,7 @@ h1 span {
     <div class="modal-content">
       <div class="modal-header bg-warning">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Edit Anggota</h4>
+        <h4 class="modal-title" id="myModalLabel">Edit Pemain</h4>
       </div>
       <div class="modal-body">
       </div>
@@ -346,7 +355,7 @@ h1 span {
     <div class="modal-content">
       <div class="modal-header bg-danger">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Hapus Anggota</h4>
+        <h4 class="modal-title" id="myModalLabel">Hapus Pemain</h4>
       </div>
       <div class="modal-body">
       </div>
@@ -371,6 +380,7 @@ h1 span {
                 $.post('modaledit.php',
                     { nama:$(this).attr('data-nama'),
                       usia:$(this).attr('data-usia'),
+                      alamat:$(this).attr('data-alamat'),
                       idtim:$(this).attr('data-id_tim'),
                       idpemain:$(this).attr('data-id_pemain')}, 
                     function(html){

@@ -152,13 +152,10 @@ h1 span {
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="../index.php"><i class="fa fa-fw fa-user"></i> Homepage</a>
+                            <a href="index.php"><i class="fa fa-fw fa-user"></i> Homepage</a>
                         </li>
                         <li>
                             <a href="../petunjuk.php"><i class="fa fa-fw fa-info"></i> Petunjuk</a>
-                        </li>
-                        <li>
-                            <a href="../kegiatan.php"><i class="fa fa-fw fa-info"></i> Kegiatan</a>
                         </li>
                         <li class="divider"></li>
                         <li>
@@ -224,8 +221,7 @@ h1 span {
                 <!--isi-->
     <?php
         require_once("../koneksi.php");
-        $sql = "SELECT id_tim FROM jadwal";
-        $result = mysqli_query($koneksi, $sql);
+        $result = mysqli_query($koneksi, "SELECT id_tim FROM jadwal");
         $jumlah = mysqli_num_rows($result);
 
     if($jumlah!=16)

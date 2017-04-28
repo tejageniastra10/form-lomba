@@ -10,6 +10,8 @@
                     </div>
                 </div>
                 <br>
+                 <input class="form-control" required="required"  type="text" placeholder="No. KTP" name="noktp" maxlength="100"><br>
+                <br>
                 <input type="file" name="file" required="required" /><br>
                 <input type="hidden" value="<?=$id_tim; ?>" name="id_tim1">  
       <div class="modal-footer">
