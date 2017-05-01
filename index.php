@@ -73,6 +73,32 @@ session_start();
 
 
 	<style>
+
+
+.utama ul{
+	display: none;
+	position: absolute;
+	z-index: 2px;
+	background-color: white;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+.utama:hover ul{
+	display: block;
+
+}
+.utama ul li{
+	display: block;
+
+}
+
+
   .modal-header, h5, .close {
       background-color: #5cb85c;
       color:white !important;
@@ -98,7 +124,13 @@ session_start();
 				<div id="fh5co-navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav navbar-right">
 						<li class="active"><a href="index.php"><span>Home <span class="border"></span></span></a></li>
-						<li><a href="instruksi.php"><span>Instruksi <span class="border"></span></span></a></li>
+						<li class="utama"><a href="instruksi.php">Instruksi</a>
+						<ul>
+						<li><a href="instruksi_penyelenggara.php">Penyelenggara</li>
+						<li><a href="instruksi_Peserta.php">Peserta</a></li>
+						</ul>
+						</li>
+						<li><a href="tentang.php"><span>Tentang <span class="border"></span></span></a></li>
 						<li><a  href="#" id="daftar-penyelenggara"><span>Daftar Penyelenggara <span class="border"></span></span></a></li>
 						<li><a href="#" id="daftar-tim"><span>Daftar peserta <span class="border"></span></span></a></li>
 						<li><a  href="#" id="myBtn"><span>Log In <span class="border"></span></span></a></li>
@@ -143,15 +175,15 @@ session_start();
 		    		</div>
 		    	</div>
 		    </div>
-		    <div class="item" style="background-image:url(images/slide3.jpg)">
+		    <div class="item" style="background-image:url(images/slide4.jpg)">
 		    	<div class="fh5co-overlay"></div>
 		    	<div class="container">
 		    		<div class="row">
 		    			<div class="col-md-8 col-md-offset-2">
 			    			<div class="fh5co-owl-text-wrap">
 						    	<div class="fh5co-owl-text text-center to-animate">
-						    		<h1 class="fh5co-lead">BOLA VOLI</h1>
-									<h2 class="fh5co-sub-lead">olahraga permainan yang dimainkan oleh dua grup berlawanan. Masing-masing grup memiliki enam orang pemain. Terdapat pula variasi permainan bola voli pantai yang masing-masing grup hanya memiliki dua orang pemain</a></h2>
+						    		<h1 class="fh5co-lead">FUTSAL</h1>
+									<h2 class="fh5co-sub-lead">Futsal adalah permainan bola yang dimainkan oleh dua tim, yang masing-masing beranggotakan lima orang. Tujuannya adalah memasukkan bola ke gawang lawan, dengan memanipulasi bola dengan kaki. Selain lima pemain utama, setiap regu juga diizinkan memiliki pemain cadangan. Tidak seperti permainan sepak bola dalam ruangan lainnya, lapangan futsal dibatasi garis, bukan net atau papan.</a></h2>
 						    	</div>
 						    </div>
 					    </div>
