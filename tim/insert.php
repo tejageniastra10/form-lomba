@@ -1,5 +1,5 @@
 <?php
-include("../session.php");
+include("session.php");
 ?>
 <?php
 if($_POST["ADD"]=="add")
