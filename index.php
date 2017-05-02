@@ -73,6 +73,32 @@ session_start();
 
 
 	<style>
+
+
+.utama ul{
+	display: none;
+	position: absolute;
+	z-index: 2px;
+	background-color: white;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+.utama:hover ul{
+	display: block;
+
+}
+.utama ul li{
+	display: block;
+
+}
+
+
   .modal-header, h5, .close {
       background-color: #5cb85c;
       color:white !important;
@@ -98,7 +124,13 @@ session_start();
 				<div id="fh5co-navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav navbar-right">
 						<li class="active"><a href="index.php"><span>Home <span class="border"></span></span></a></li>
-						<li><a href="instruksi.php"><span>Instruksi <span class="border"></span></span></a></li>
+						<li class="utama"><a href="instruksi.php">Instruksi</a>
+						<ul>
+						<li><a href="instruksi_penyelenggara.php">Penyelenggara</li>
+						<li><a href="instruksi_Peserta.php">Peserta</a></li>
+						</ul>
+						</li>
+						<li><a href="tentang.php"><span>Tentang <span class="border"></span></span></a></li>
 						<li><a  href="#" id="daftar-penyelenggara"><span>Daftar Penyelenggara <span class="border"></span></span></a></li>
 						<li><a href="#" id="daftar-tim"><span>Daftar peserta <span class="border"></span></span></a></li>
 						<li><a  href="#" id="myBtn"><span>Log In <span class="border"></span></span></a></li>
@@ -143,15 +175,15 @@ session_start();
 		    		</div>
 		    	</div>
 		    </div>
-		    <div class="item" style="background-image:url(images/slide3.jpg)">
+		    <div class="item" style="background-image:url(images/slide4.jpg)">
 		    	<div class="fh5co-overlay"></div>
 		    	<div class="container">
 		    		<div class="row">
 		    			<div class="col-md-8 col-md-offset-2">
 			    			<div class="fh5co-owl-text-wrap">
 						    	<div class="fh5co-owl-text text-center to-animate">
-						    		<h1 class="fh5co-lead">BOLA VOLI</h1>
-									<h2 class="fh5co-sub-lead">olahraga permainan yang dimainkan oleh dua grup berlawanan. Masing-masing grup memiliki enam orang pemain. Terdapat pula variasi permainan bola voli pantai yang masing-masing grup hanya memiliki dua orang pemain</a></h2>
+						    		<h1 class="fh5co-lead">FUTSAL</h1>
+									<h2 class="fh5co-sub-lead">Futsal adalah permainan bola yang dimainkan oleh dua tim, yang masing-masing beranggotakan lima orang. Tujuannya adalah memasukkan bola ke gawang lawan, dengan memanipulasi bola dengan kaki. Selain lima pemain utama, setiap regu juga diizinkan memiliki pemain cadangan. Tidak seperti permainan sepak bola dalam ruangan lainnya, lapangan futsal dibatasi garis, bukan net atau papan.</a></h2>
 						    	</div>
 						    </div>
 					    </div>
@@ -473,7 +505,6 @@ $(document).ready(function(){
 </script>
 
 		<link rel="stylesheet" href="css/bootstrapValidator.css">  
-        <script src="jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/bootstrapValidator.js"></script>
 
@@ -582,7 +613,7 @@ $(document).ready(function(){
 
 
 
-
+<!-- Modal daftar tim -->
 
 <div class="modal fade" id="Modal-tim" role="dialog">
     <div class="modal-dialog">
@@ -608,47 +639,33 @@ $(document).ready(function(){
             </div>
             <div class="form-group">
 					<label ><span class="glyphicon glyphicon-list"></span>  Kategori Kegiatan</label>
+					<?php
+					$sql_kategori = mysqli_query($koneksi, 'select * FROM kategori');
+					?>
 					
-					<select name="id_kategori" class="form-control" required>
-					<?php 
-						$sql = mysqli_query($koneksi, "SELECT * FROM kategori ORDER BY id_kategori ASC");
-						if(mysqli_num_rows($sql) == 0)
-						{
-							echo '<tr><td colspan="8">Data Tidak Ditemukan.</td></tr>';
-						}
-						else
-						{
-							echo '<option value=""> Pilih </option>'; 
-							while($row = mysqli_fetch_assoc($sql))
-							{
-								echo  '<option value='.$row['id_kategori'].'>'.$row['nama_kategori'].'</option>';
-		 					}
-		 				}
-	 				?>
+					<select name="id_kategori" class="form-control" required id="kategori">
+					<option value="">pilih</option>
+					<?php while($row_kategori = mysqli_fetch_array($sql_kategori)) {?>
+					<option value="<?php echo $row_kategori['id_kategori'] ?>"> <?php echo $row_kategori['nama_kategori'] ?></option>
+					
+				
+					<?php } ?>
 					</select>
 					
 				</div>
 			 	<div class="form-group">
 					<label ><span class="glyphicon glyphicon-list"></span>  Penyelenggara </label>
+
 					
-					<select name="id_penyelenggara" class="form-control" required>
-					<?php 
-						$sql = mysqli_query($koneksi, "SELECT * FROM penyelenggara ORDER BY id_penyelenggara ASC");
-						if(mysqli_num_rows($sql) == 0)
-						{
-							echo '<tr><td colspan="8">Data Tidak Ditemukan.</td></tr>';
-						}
-						else
-						{
-							echo '<option value=""> Pilih </option>'; 
-							while($row = mysqli_fetch_assoc($sql))
-							{
-								echo  '<option value='.$row['id_penyelenggara'].'>'.$row['nama_penyelenggara'].'</option>';
-		 					}
-		 				}
-	 				?>
+					<select name="id_penyelenggara" class="form-control" required id="penyelenggara">
+					<option value="" > input penyelenggara</option>
+					
+					
 					</select>
 					
+
+
+
 				</div>
             <div class="form-group">
               <label ><span class="glyphicon glyphicon-envelope"></span> Email Tim Peserta</label>
@@ -671,7 +688,10 @@ $(document).ready(function(){
               <input type="file" name="pembayaran_tim" class="form-control" placeholder="foto" >
             </div>
             
-						
+			<div class="form-group">
+              
+              <input  name="id_level" value="3" type="hidden">
+            </div>
 					
             
               <button type="submit" href="index.php" type="submit" name="add" value="Simpan" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> daftar</button>
@@ -703,7 +723,6 @@ $(document).ready(function(){
 </script>
 
 		<link rel="stylesheet" href="css/bootstrapValidator.css">  
-        <script src="jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/bootstrapValidator.js"></script>
 
@@ -801,6 +820,31 @@ $(document).ready(function(){
                     });
                 });
         </script>
+
+        	<script>
+        	$(document).ready(function(){
+        		$("#kategori").change(function () {
+					var kategori_id = $("#kategori").val();
+
+					$.ajax({
+						type:"POST",
+						url:"penyelenggara.php",
+						data:"kat_id="+kategori_id,
+						success: function(msg) {
+							if (msg=="") {
+								alert('tidak ada kata');
+							}
+							else{
+								$("#penyelenggara").html(msg);
+							}
+						},
+						error: function(XMLHttpRequest){
+							alert(XMLHttpRequest.responseText);
+						}
+					});
+				});
+        	});
+        	</script>
 
 	</body>
 </html>

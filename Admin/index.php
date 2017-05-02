@@ -4,6 +4,10 @@ session_start();
 if(empty($_SESSION)){
   header("Location: ../index.php");
 }
+if ($_SESSION['id_level']!='1') {
+  header("Location: ../index.php");
+}
+
 ?>
 
 <?php

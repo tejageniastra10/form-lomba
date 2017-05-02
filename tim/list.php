@@ -1,5 +1,7 @@
+
 <?php
-  include "../koneksi.php";
+include("session.php");
+  include("../koneksi.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -153,16 +155,13 @@ h1 span {
                 
                
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $_SESSION['nama_tim'];  ?> <i class="fa fa-user"></i> <b class="caret"></b></a>
+                   <ul class="dropdown-menu">
                         <li>
-                            <a href="../index.php"><i class="fa fa-fw fa-user"></i> Homepage</a>
+                            <a href="index.php"><i class="fa fa-fw fa-user"></i> Homepage</a>
                         </li>
                         <li>
                             <a href="../petunjuk.php"><i class="fa fa-fw fa-info"></i> Petunjuk</a>
-                        </li>
-                         <li>
-                            <a href="../kegiatan.php"><i class="fa fa-fw fa-info"></i> Kegiatan</a>
                         </li>
                         <li class="divider"></li>
                         <li>
@@ -213,7 +212,7 @@ h1 span {
                         </h1>
                         <ol class="breadcrumb">
                             <li>
-                                <i class="fa fa-dashboard"></i>  <a href="sip.php">Home</a>
+                                <i class="fa fa-dashboard"></i>  <a href="index.php">Home</a>
                             </li>
                             <li class="active">
                                 <i class="fa fa-list"></i> List Tim
@@ -240,6 +239,7 @@ h1 span {
 
 
                     <?php
+                        $id_penyelenggara = $_SESSION['id_penyelenggara'];
                         $result = mysqli_query($koneksi, "SELECT * FROM tim WHERE id_penyelenggara='$id_penyelenggara'");
                         while($data = mysqli_fetch_array($result)){ 
                     ?>
@@ -252,6 +252,7 @@ h1 span {
                         }
                     ?>
                 </table>
+
     <?php } 
         else
             {
@@ -264,6 +265,7 @@ h1 span {
                     <tr>
                         <th p align="center" ><b>NAMA</b></th>
                         <th p align="center" ><b>USIA</b></th>
+                        <th p align="center" ><b>ALAMAT</b></th>
                     </tr>
 
                 <?php
@@ -274,6 +276,7 @@ h1 span {
                     <tr>
                         <td p align="center" ><b><?php echo $data['nama_pemain'];?></b></td>
                         <td p align="center" ><?php echo $data['usia_pemain']; ?></td>
+                        <td p align="center" ><?php echo $data['alamat_pemain']; ?></td>
                     </tr>
                 <?php } ?>
                  </table>

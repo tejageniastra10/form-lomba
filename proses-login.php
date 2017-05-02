@@ -19,6 +19,8 @@
 						
 						$_SESSION['nama_admin']=$row['nama_admin'];
 						$_SESSION['username_admin']=$row['username_admin'];
+						$_SESSION['id_level']='1';
+
 						header("Location: admin/index.php");
 					}
 					}
@@ -32,9 +34,10 @@
 					}else{
 						$row = mysqli_fetch_assoc($query);
 						
-						
-						$_SESSION['username_penyelenggara']=$row['username_penyelenggara'];
-						header("Location: penyelenggara/index-penyelenggara.php");
+						$_SESSION['id_penyelenggara']=$row['id_penyelenggara'];
+						$_SESSION['nama_lomba']=$row['nama_lomba'];
+						$_SESSION['id_level']='2';
+						header("Location: penyelenggara/index.php");
 					}
 					}
 					else{
@@ -49,6 +52,9 @@
 						
 						$_SESSION['nama_tim']=$row['nama_tim'];
 						$_SESSION['username_tim']=$row['username_tim'];
+						$_SESSION['id_level']='3';
+						$_SESSION['id_penyelenggara']=$row['id_penyelenggara'];
+						$_SESSION['id_tim']=$row['id_tim'];
 						header("Location: tim/index.php");
 					}
 					}
