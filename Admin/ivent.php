@@ -49,7 +49,7 @@
             <li><a href="index.php"><i class="fa fa-dashboard"></i> Confirmasi Penyelenggara</a></li>
             <li class="active"><a href="data_penyelenggara.php"><i class="fa fa-bar-chart-o"></i> Data Penyelenggara</a></li>
             <li><a href="tables.html"><i class="fa fa-table"></i> Statistik</a></li>
-            <li><a href="ivent.php"><i class="fa fa-edit"></i> Ivent</a></li>
+            <li><a href="forms.html"><i class="fa fa-edit"></i> Ivent</a></li>
           </ul>
 
           <ul class="nav navbar-nav navbar-right navbar-user">
@@ -91,18 +91,16 @@
       ?>
 
       <div id="page-wrapper"><br />
-      <h2>Data Penyelenggara</h2><br />
+      <h2>Data Kejuaraan</h2><br />
 
       <table class="table table-bordered table-striped">
         <thead style="text-align: center">
             <td>No</td>
-            <td>Nama Penyelenggara</td>
-            <td>Nama Lomba</td>
-            <td>Lokasi</td>
-            <td>Waktu Awal</td>
-            <td>Waktu Akhir</td>
-            <td>Email</td>
-            <td>Pilihan</td>
+            <td>Nama Kejuaraan</td>
+            <td>Lokasi Kejuaraan</td>
+            <td>Waktu Awal Kejuaraan</td>
+            <td>Waktu Akir Kejuaraan</td>
+            <td>Jumlah Tim Partisipan</td>
         </thead>
         <tbody>
       <?php
