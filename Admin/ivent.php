@@ -47,9 +47,9 @@
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           <ul class="nav navbar-nav side-nav">
             <li><a href="index.php"><i class="fa fa-dashboard"></i> Confirmasi Penyelenggara</a></li>
-            <li class="active"><a href="data_penyelenggara.php"><i class="fa fa-bar-chart-o"></i> Data Penyelenggara</a></li>
-            <li><a href="tables.html"><i class="fa fa-table"></i> Statistik</a></li>
-            <li><a href="forms.html"><i class="fa fa-edit"></i> Ivent</a></li>
+            <li><a href="data_penyelenggara.php"><i class="fa fa-bar-chart-o"></i> Data Penyelenggara</a></li>
+            <li><a href="#"><i class="fa fa-table"></i> Statistik</a></li>
+            <li  class="active"><a href="ivent.php"><i class="fa fa-edit"></i> Ivent</a></li>
           </ul>
 
           <ul class="nav navbar-nav navbar-right navbar-user">
@@ -64,6 +64,8 @@
           </ul>
         </div><!-- /.navbar-collapse -->
       </nav>
+
+
 
       <?php
       if(isset($_GET['aksi']) == 'delete'){
@@ -91,7 +93,19 @@
       ?>
 
       <div id="page-wrapper"><br />
-      <h2>Data Kejuaraan</h2><br />
+      <h2>Data Kejuaraan</h2>
+      <hr />
+      <form class="form-inline" method="get">
+        <div class="form-group">
+          <select name="filter" class="form-control" onchange="form.submit()">
+            <option value="0">Filter Data Kejuaraan</option>
+            <?php $filter = (isset($_GET['filter']) ? strtolower($_GET['filter']) : NULL);  ?>
+            <option value="1" <?php if($filter == '1'){ echo 'selected'; } ?>>Sepak Bola</option>
+            <option value="2" <?php if($filter == '2'){ echo 'selected'; } ?>>Futsal</option>
+            <option value="3" <?php if($filter == '3'){ echo 'selected'; } ?>>Basket</option>
+          </select>
+        </div>
+      </form><br />
 
       <table class="table table-bordered table-striped">
         <thead style="text-align: center">
@@ -101,10 +115,16 @@
             <td>Waktu Awal Kejuaraan</td>
             <td>Waktu Akir Kejuaraan</td>
             <td>Jumlah Tim Partisipan</td>
+            <td>Pilihan</td>
         </thead>
         <tbody>
       <?php
-          $sql = mysqli_query($koneksi, "SELECT * FROM penyelenggara");
+
+          if($filter){
+            $sql = mysqli_query($koneksi, "SELECT * FROM penyelenggara WHERE id_kategori='$filter'");
+          }else{
+            $sql = mysqli_query($koneksi, "SELECT * FROM penyelenggara");
+          }
 
           if(mysqli_num_rows($sql) == 0){
             echo '<tr style="text-align:center;"><td colspan="7">Empty</td></tr>';
@@ -115,12 +135,11 @@
             echo '
             <tr>
               <td style="text-align: center">'.$no.'</td>
-              <td style="text-align: center">'.$row['nama_penyelenggara'].'</td>
-              <td>'.$row['nama_lomba'].'</td>
-              <td style="text-align: center">'.$row['lokasi_lomba'].'</td>
+              <td style="text-align: center">'.$row['nama_lomba'].'</td>
+              <td>'.$row['lokasi_lomba'].'</td>
               <td style="text-align: center">'.$row['waktu_awal_lomba'].'</td>
               <td style="text-align: center">'.$row['waktu_akhir_lomba'].'</td>
-              <td style="text-align: center">'.$row['email_penyelenggara'].'</td>
+              <td style="text-align: center">'.$row['jml_tim'].'</td>
               <td style="text-align: center">
                 <a href="#" id=' .$row["id_penyelenggara"].' class="btn btn-sm btn-info"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
                 <a href="index.php?aksi=delete&id_penyelenggara='.$row['id_penyelenggara'].'" title="Hapus Data" onclick="return confirm(\'Anda yakin akan menghapus data '.$row['nama_penyelenggara'].'?\')" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
