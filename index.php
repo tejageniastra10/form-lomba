@@ -79,10 +79,10 @@ session_start();
 	display: none;
 	position: absolute;
 	z-index: 2px;
+	font-size: 13px;
 	background-color: white;
     color: white;
     padding: 16px;
-    font-size: 16px;
     border: none;
     cursor: pointer;
     min-width: 160px;
@@ -91,10 +91,12 @@ session_start();
 }
 .utama:hover ul{
 	display: block;
+	font-size: 13px;
 
 }
 .utama ul li{
 	display: block;
+	font-size: 13px;
 
 }
 
@@ -471,6 +473,10 @@ session_start();
             <div class="form-group">
               
               <input  name="id_level" value="2" type="hidden">
+            </div>
+            <div class="form-group">
+              
+              <input  name="status_penyelenggara" value="0" type="hidden">
             </div>
             
 						

@@ -7,6 +7,7 @@
 					$password	= md5($_POST['password']);
 					$level		= $_POST['id_level'];
 
+
 					if ($level=='1') {
 						$query = mysqli_query($koneksi, "SELECT * FROM admin WHERE username_admin='$username' AND password_admin='$password'");
 					if(mysqli_num_rows($query) == 0){
@@ -25,7 +26,7 @@
 					}
 					}
 					else if ($level=='2') {
-						$query = mysqli_query($koneksi, "SELECT * FROM penyelenggara WHERE username_penyelenggara='$username' AND password_penyelenggara='$password'");
+						$query = mysqli_query($koneksi, "SELECT * FROM penyelenggara WHERE username_penyelenggara='$username' AND password_penyelenggara='$password' ");
 					if(mysqli_num_rows($query) == 0){
 						echo "<script>
 							alert('Username atau password salah !!!');
@@ -33,11 +34,22 @@
 							</script>";
 					}else{
 						$row = mysqli_fetch_assoc($query);
-						
+						if ($row['status_penyelenggara']=='1') {
 						$_SESSION['id_penyelenggara']=$row['id_penyelenggara'];
 						$_SESSION['nama_lomba']=$row['nama_lomba'];
 						$_SESSION['id_level']='2';
 						header("Location: penyelenggara/index.php");
+						}
+						else{
+							echo "<script>
+							alert('Akun Belum Terkonfirmasi');
+							window.location.href='index.php';
+							</script>";
+
+						}
+						
+						
+						
 					}
 					}
 					else{
