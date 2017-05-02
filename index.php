@@ -474,6 +474,10 @@ session_start();
               
               <input  name="id_level" value="2" type="hidden">
             </div>
+            <div class="form-group">
+              
+              <input  name="status_penyelenggara" value="0" type="hidden">
+            </div>
             
 						
 					
