@@ -136,6 +136,16 @@
       </tbody>
   </table>
 
+  <div id="convert">
+    <div class="table-responsive">
+      <div id="live_data">
+        <form action="excel.php" method="post">
+          <input type="submit" name="export_excel" class="btn btn-success" value="Export to Excel" />
+        </form>
+      </div>
+    </div>
+  </div>
+
       </div><!-- /#page-wrapper -->
 
     </div><!-- /#wrapper -->
@@ -153,22 +163,26 @@
   </div>
 </div>
 
-    <script type="text/javascript">
-            $(document).ready(function (){
-                $(".btn-info").click(function (e){
-                    var m = $(this).attr("id");
-                    $.ajax({
-                        url: "detail.php",
-                        type: "GET",
-                        data : {id_penyelenggara: m,},
-                        success: function (ajaxData){
-                            $("#ModalDetail").html(ajaxData);
-                            $("#ModalDetail").modal('show',{backdrop: 'true'});
-                        }
-                    });
+<script type="text/javascript">
+        $(document).ready(function (){
+            $(".btn-info").click(function (e){
+                var m = $(this).attr("id");
+                $.ajax({
+                    url: "detail.php",
+                    type: "GET",
+                    data : {id_penyelenggara: m,},
+                    success: function (ajaxData){
+                        $("#ModalDetail").html(ajaxData);
+                        $("#ModalDetail").modal('show',{backdrop: 'true'});
+                    }
                 });
             });
-        </script>
+        });
+    </script>
+
+
+
+
 
     <!-- JavaScript -->
     <script src="js/jquery-1.10.2.js"></script>
