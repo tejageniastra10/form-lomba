@@ -27,7 +27,14 @@
               <!-- sidebar menu start-->
               <ul class="sidebar-menu" id="nav-accordion">
               
-                  <p class="centered"><a href="profile.html"><img src="assets/img/kim.png" class="img-circle" width="60"></a></p>
+                  <p class="centered"><a href="profile.html">
+                            <?php 
+                            $id_penyelenggara=$_SESSION['id_penyelenggara'];
+                            $sql = mysqli_query($koneksi, "SELECT * FROM penyelenggara WHERE id_penyelenggara=$id_penyelenggara");
+                            $row = mysqli_fetch_assoc($sql);
+
+            echo '<img src=logo/'.$row['logo'].' class="img-circle" height="60px" width="60px">';
+            ?></a></p>
                   <h5 class="centered"><?php echo $_SESSION['nama_lomba']; ?></h5> 
                     
                   <li class="mt">
@@ -108,6 +115,7 @@
       <!-- **********************************************************************************************************************************************************
       MAIN CONTENT
       *********************************************************************************************************************************************************** -->
+      
       <!--main content start-->
       <section id="main-content">
           <section class="wrapper">
@@ -119,11 +127,11 @@
                             <div class="darkblue-header">
                     <h3>PESAN</h3>
                             </div>
-                            <h1 class="mt"><i class="fa fa-comment fa-3x"></i></h1>
+                            <h1 class="mt"><i class="fa fa-comment fa-2x"></i></h1>
                 
                 <footer>
                   <div class="centered">
-                    <h4><i></i> 17</h4>
+                    <h2><i></i> 17</h2>
                   </div>
                 </footer>
                           </div><! -- /darkblue panel -->
@@ -135,11 +143,22 @@
                             <div class="darkblue-header">
                     <h3>TIM TERDAFTAR</h3>
                             </div>
-                            <h1 class="mt"><i class="fa fa-user fa-3x"></i></h1>
+                            <h1 class="mt"><i class="fa fa-user fa-2x"></i></h1>
                
                 <footer>
                   <div class="centered">
-                    <h4><i></i> 17</h4>
+                  <?php
+                        $id_penyelenggara = $_SESSION['id_penyelenggara'];
+                            $sql = mysqli_query($koneksi, "SELECT * FROM tim where id_penyelenggara='$id_penyelenggara' ");        
+                              $i=0;
+
+                            while($row = mysqli_fetch_assoc($sql)){
+                             
+                              $i++;
+                            }
+                          
+                          ?>
+                    <h2><i></i><?php echo ''.$i.'';  ?></h2>
                   </div>
                 </footer>
                           </div><! -- /darkblue panel -->
@@ -152,7 +171,7 @@
                   <div style="background: #68dff0"  class="green-header">
                     <h3 >SLOT KOSONG</h3>
                   </div>
-                <canvas id="serverstatus03" height="120" width="120"></canvas>
+                <canvas id="serverstatus03" height="110" width="110"></canvas>
                 <script>
                   var doughnutData = [
                       {
@@ -166,7 +185,7 @@
                     ];
                     var myDoughnut = new Chart(document.getElementById("serverstatus03").getContext("2d")).Doughnut(doughnutData);
                 </script>
-                <h5>SISA 3 SLOT</h5>
+                <h3><?php $slot=16-$i; echo ''.$slot.' slot tersisa';  ?></h3>
                 </div>
               </div><! --/col-md-4 -->               
             
@@ -175,7 +194,16 @@
            <h1 style="text-transform: uppercase;color: white;text-align: center;">  XXXXXXXXX</h1>
             <div class="panel-body">
               <div class="row">
-                <div class="col-md-4 col-lg-4 " align="center"> <img alt="User Pic" src="kim.png" class=" img-responsive"> </div>
+                <div class="col-md-4 col-lg-4 " align="center"> 
+
+                <?php 
+                            $id_penyelenggara=$_SESSION['id_penyelenggara'];
+                            $sql = mysqli_query($koneksi, "SELECT * FROM penyelenggara WHERE id_penyelenggara=$id_penyelenggara");
+                            $row = mysqli_fetch_assoc($sql);
+
+            echo '<img src=logo/'.$row['logo'].' width="348px" height="335px">';
+            ?>  
+                </div>
                 
                 <!--<div class="col-xs-10 col-sm-10 hidden-md hidden-lg"> <br>
                   <dl>
@@ -236,15 +264,19 @@
                                    <td><b>Username</b> </td>
                                   <td><?php echo $row['username_penyelenggara']; ?></td>
                                 </tr>
-                              </tbody>
+                                </tbody>
                             </table>
                          
 
                          <?php }
 
                          ?>   
-                            <a href="#" id="edit-penyelenggara" class="btn btn-primary">edit profil</a>               
-                          </div>
+                            
+                            
+                            <a href="#" id="edit-penyelenggara" class="btn btn-primary">edit profil</a>
+                             <a href="#" id="logo" class="btn btn-warning">ganti logo</a>
+                            
+                            
               </div>
             </div> 
           </div>
@@ -365,11 +397,83 @@
     </div>
   </div> 
 
+
+<?php
+        if(isset($_POST['ganti_logo']))
+        {
+          
+          $logo = $_FILES['logo']['name'];
+          $tmp = $_FILES['logo']['tmp_name'];
+          $fotobaru = date('dmYHis').$logo;
+          $path = "logo/".$fotobaru;
+          $id_penyelenggara=$_SESSION['id_penyelenggara'];
+
+          
+
+          
+        if(move_uploaded_file($tmp, $path)){
+          
+         $update = mysqli_query($koneksi, "UPDATE penyelenggara set logo='$fotobaru' WHERE id_penyelenggara='$id_penyelenggara'") or die(mysqli_error($koneksi));
+              if($update)
+              {
+                echo "<script>
+                  alert('berhasil tersimpan');
+                  window.location.href='index.php';
+                  </script>";
+              }
+              else
+              {
+                echo "<script>
+                  alert('gagal tersimpan');
+                  window.location.href='index.php';
+                  </script>";
+
+              }
+        }
+        
+        }
+      ?>
+
+
+
+     
+<!-- Modal ganti logo -->
+  <div class="modal fade" id="Modal-logo" role="dialog">
+    <div class="modal-dialog">
+    
+      <div class="modal-content">
+        
+        <div class="modal-body" style="padding:40px 50px;">
+          <form id="logo" class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+                                
+                            <?php 
+                            $id_penyelenggara=$_SESSION['id_penyelenggara'];
+                            $sql = mysqli_query($koneksi, "SELECT * FROM penyelenggara WHERE id_penyelenggara=$id_penyelenggara");
+                            $row = mysqli_fetch_assoc($sql);
+
+            echo '<img src=logo/'.$row['logo'].' width="500px" height="430px">';
+            ?>  
+              <input type="file" name="logo" class="form-control" >
+              <button type="submit" href="index.php" type="submit" name="ganti_logo" value="Simpan" class="btn btn-success btn-block"> ganti</button>
+          </form>
+        </div>     
+      </div>
+    </div>
+  </div> 
+
   <!---script edit penyelenggara-->
 <script>
 $(document).ready(function(){
     $("#edit-penyelenggara").click(function(){
         $("#Modal-penelenggara").modal();
+    });
+});
+</script>
+<!---script edit logo-->
+<script>
+$(document).ready(function(){
+    $("#logo").click(function(){
+        $("#Modal-logo").modal();
     });
 });
 </script>
