@@ -47,6 +47,7 @@
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           <ul class="nav navbar-nav side-nav">
             <li><a href="index.php"><i class="fa fa-dashboard"></i> Confirmasi Penyelenggara</a></li>
+            <li><a href="konfirmasi_pembayaran.php"><i class="fa fa-tachometer"></i> Confirmasi Pembayaran</a></li>
             <li class="active"><a href="data_penyelenggara.php"><i class="fa fa-bar-chart-o"></i> Data Penyelenggara</a></li>
             <li><a href="tables.html"><i class="fa fa-table"></i> Statistik</a></li>
             <li><a href="ivent.php"><i class="fa fa-edit"></i> Ivent</a></li>
