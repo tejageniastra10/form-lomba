@@ -27,6 +27,7 @@ if ($_SESSION['id_level']!='1') {
     <link href="css/sb-admin.css" rel="stylesheet">
     <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="http://cdn.oesmith.co.uk/morris-0.4.3.min.css">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <title>Indek Admin</title>
   </head>
 
@@ -46,6 +47,7 @@ if ($_SESSION['id_level']!='1') {
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           <ul class="nav navbar-nav side-nav">
             <li class="active"><a href="index.php"><i class="fa fa-dashboard"></i> Confirmasi Penyelenggara</a></li>
+             <li><a href="konfirmasi_pembayaran.php"><i class="fa fa-tachometer"></i> Confirmasi Pembayaran</a></li>
             <li><a href="data_penyelenggara.php"><i class="fa fa-bar-chart-o"></i> Data Penyelenggara</a></li>
             <li><a href="tables.html"><i class="fa fa-table"></i> Statistik</a></li>
             <li><a href="ivent.php"><i class="fa fa-edit"></i> Ivent</a></li>
@@ -99,7 +101,6 @@ if(isset($_GET['aksi']) == 'delete'){
             <td>Nama Lomba</td>
             <td>Email</td>
             <td>No Telepon</td>
-            <td>Pembayaran</td>
             <td>Pilihan</td>
         </thead>
         <tbody>
@@ -120,7 +121,6 @@ if(isset($_GET['aksi']) == 'delete'){
                 <td>'.$row['nama_lomba'].'</td>
                 <td style="text-align: center">'.$row['email_penyelenggara'].'</td>
                 <td style="text-align: center">'.$row['tlp_penyelenggara'].'</td>
-                <td style="text-align: center"><img src="../penyelenggara/pembayaran_penyelenggara/'.$row['pembayaran_penyelenggara'].'" style="width:75px; height:60px";/></td>
                 <td style="text-align: center">
 
                   <a href="index.php?aksi=delete&id_penyelenggara='.$row['id_penyelenggara'].'" title="Hapus Data" onclick="return confirm(\'Anda yakin akan menghapus data '.$row['nama_penyelenggara'].'?\')" class="btn btn-danger btn-sm" style="width:90px;">Delete</a>

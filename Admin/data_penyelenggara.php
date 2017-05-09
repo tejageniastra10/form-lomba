@@ -47,6 +47,7 @@
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           <ul class="nav navbar-nav side-nav">
             <li><a href="index.php"><i class="fa fa-dashboard"></i> Confirmasi Penyelenggara</a></li>
+            <li><a href="konfirmasi_pembayaran.php"><i class="fa fa-tachometer"></i> Confirmasi Pembayaran</a></li>
             <li class="active"><a href="data_penyelenggara.php"><i class="fa fa-bar-chart-o"></i> Data Penyelenggara</a></li>
             <li><a href="tables.html"><i class="fa fa-table"></i> Statistik</a></li>
             <li><a href="ivent.php"><i class="fa fa-edit"></i> Ivent</a></li>
@@ -136,6 +137,16 @@
       </tbody>
   </table>
 
+  <div id="convert">
+    <div class="table-responsive">
+      <div id="live_data">
+        <form action="excel.php" method="post">
+          <input type="submit" name="export_excel" class="btn btn-success" value="Export to Excel" />
+        </form>
+      </div>
+    </div>
+  </div>
+
       </div><!-- /#page-wrapper -->
 
     </div><!-- /#wrapper -->
@@ -153,22 +164,26 @@
   </div>
 </div>
 
-    <script type="text/javascript">
-            $(document).ready(function (){
-                $(".btn-info").click(function (e){
-                    var m = $(this).attr("id");
-                    $.ajax({
-                        url: "detail.php",
-                        type: "GET",
-                        data : {id_penyelenggara: m,},
-                        success: function (ajaxData){
-                            $("#ModalDetail").html(ajaxData);
-                            $("#ModalDetail").modal('show',{backdrop: 'true'});
-                        }
-                    });
+<script type="text/javascript">
+        $(document).ready(function (){
+            $(".btn-info").click(function (e){
+                var m = $(this).attr("id");
+                $.ajax({
+                    url: "detail.php",
+                    type: "GET",
+                    data : {id_penyelenggara: m,},
+                    success: function (ajaxData){
+                        $("#ModalDetail").html(ajaxData);
+                        $("#ModalDetail").modal('show',{backdrop: 'true'});
+                    }
                 });
             });
-        </script>
+        });
+    </script>
+
+
+
+
 
     <!-- JavaScript -->
     <script src="js/jquery-1.10.2.js"></script>
