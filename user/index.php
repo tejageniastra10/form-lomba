@@ -361,7 +361,7 @@ if ($_SESSION['id_level']!='2') {
             <div class="box-body box-profile">
               <img class="profile-user-img img-responsive img-circle" src="gambar/kim.png" alt="User profile picture">
 
-              <h3 class="profile-username text-center">Kim Arya</h3>
+              <h3 class="profile-username text-center"><?php echo $_SESSION['nama_user']; ?></h3>
 
               <p class="text-muted text-center">Teknik INformatika</p>
 
@@ -391,13 +391,20 @@ if ($_SESSION['id_level']!='2') {
             <div class="box-header with-border">
               <h3 class="box-title">Profil saya</h3>
             </div>
+            <?php 
+                            $username_user=$_SESSION['username_user'];
+                            $sql = mysqli_query($koneksi, "SELECT * FROM user WHERE username_user='$username_user'");
+                            $row = mysqli_fetch_assoc($sql);
+
+            
+            ?>
             <!-- /.box-header -->
             <div class="box-body">
               <strong><i class="fa fa-user margin-r-5"></i> Nama </strong>
               <p >
               </p>
               <p class="text-muted">
-                kim arya
+                <?php echo $row['nama_user'];  ?>
               </p>
 
               <hr>
@@ -406,7 +413,7 @@ if ($_SESSION['id_level']!='2') {
               <p >
               </p>
               <p class="text-muted">
-                kim
+                <?php echo $row['username_user'];  ?>
               </p>
 
               <hr>
@@ -414,19 +421,19 @@ if ($_SESSION['id_level']!='2') {
               <strong><i class="fa  fa-envelope-o margin-r-5"></i> Email</strong>
               <p >
               </p>
-              <p class="text-muted">kim@ikeh.com</p>
+              <p class="text-muted"><?php echo $row['email_user'];  ?></p>
 
               <hr>
 
               <strong><i class="fa fa-phone margin-r-5"></i> No.Telephone</strong>
               <p >
               </p>
-              <p class="text-muted">121212121</p>
+              <p class="text-muted"><?php echo $row['tlp_user'];  ?></p>
               <hr>
 
               <strong><i class="fa fa-map-marker margin-r-5"></i>Alamat</strong>
 
-              <p>jalan raya seoul no.12 korea selatan</p>
+              <p><?php echo $row['alamat_user'];  ?></p>
 
                <a href="#" class="btn btn-primary btn-block"><b>Edit Profil</b></a>
             </div>
