@@ -1,3 +1,18 @@
+<?php
+session_start();
+
+if(empty($_SESSION)){
+  header("Location: ../index.php");
+}
+
+if ($_SESSION['id_level']!='2') {
+  header("Location: ../index.php");
+}
+?>
+<?php
+  include("../koneksi.php");
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -181,7 +196,7 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               
-              <span class="hidden-xs">Kim Arya</span>
+              <span class="hidden-xs"><?php echo $_SESSION['nama_user'];  ?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -189,7 +204,7 @@
                 <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                 <p>
-                  Alexander Pierce - Web Developer
+                 <?php echo $_SESSION['nama_user'];  ?>
                   <small>Member since Nov. 2012</small>
                 </p>
               </li>
@@ -200,7 +215,7 @@
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="../logout.php" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -219,7 +234,7 @@
           <img src="gambar/kim.png" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Kim Arya</p>
+          <p><?php echo $_SESSION['nama_user'];  ?></p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
