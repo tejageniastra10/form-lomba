@@ -1,3 +1,12 @@
+<?php
+	include("koneksi.php");
+?>
+
+<?php
+session_start();
+
+
+?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -64,7 +73,23 @@
 					<ul class="nav navbar-nav navbar-right">
 						<li><a href="index.php"><span>Home <span class="border"></span></span></a></li>
 						<li class="active"><a href="instruksi.php"><span>Instruksi <span class="border"></span></span></a></li>
-						<li><a href="login.php"><span>Log In <span class="border"></span></span></a></li>
+						<li><a href="tentang.php"><span>Tentang <span class="border"></span></span></a></li>
+						
+						<?php
+						if(!empty($_SESSION)){ ?>
+							<li><a  href="user/index.php" id="myBtn"><span><?php echo $_SESSION['nama_user'];  ?> <span class="border"></span></span></a></li>
+								  
+							<?php	}
+						  ?>
+						  <?php
+
+						  if(empty($_SESSION)) { ?>
+						    	
+						    	<li><a  href="#" id="daftar"><span>Daftar  <span class="border"></span></span></a></li>
+								<li><a  href="#" id="myBtn"><span>Log In <span class="border"></span></span></a></li>
+
+						    <?php	
+						    }  ?>
 					</ul>
 				</div>
 			</div>

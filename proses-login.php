@@ -20,6 +20,7 @@
 						
 						$_SESSION['nama_user']=$row['nama_user'];
 						$_SESSION['username_user']=$row['username_user'];
+						$_SESSION['id_user']=$row['id_user'];
 						$_SESSION['id_level']='2';
 
 						header("Location: user/index.php");
