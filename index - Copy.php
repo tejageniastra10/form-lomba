@@ -401,7 +401,7 @@ session_start();
     <div class="modal-dialog">
     
       <div class="modal-content">
-        <div class="modal-header" style="padding:35px 50px;">
+        <div class="modal-header" style="background: #00cc00; padding:25px 30px;">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h5> Pendaftaran Penyelenggara</h5>
         </div>

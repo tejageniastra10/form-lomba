@@ -18,16 +18,28 @@
         
         <li class="treeview">
           <a href="#">
-            <i class="fa  fa-book"></i>
-            <span>Kegiatan Saya</span>
+            <i class="fa fa-users"></i>
+            <span>Penyelenggaraan</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="pages/charts/morris.html"><i class="fa fa-users"></i> Penyelenggaraan saya</a></li>
-            <li><a href="pages/charts/flot.html"><i class="fa fa-futbol-o"></i>Perlombaan Saya</a></li>
-            <li><a href="pages/charts/inline.html"><i class="fa  fa-history"></i> Riwayat Kegiatan</a></li>
+            <li><a href="status-penyelenggaraan.php"><i class="fa fa-hourglass-2"></i> Status Penyelenggaraan saya</a></li>
+            <li><a href="penyelenggara-saya.php"><i class="fa fa-bar-chart"></i>Penyelenggaraan Saya</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-futbol-o"></i>
+            <span>Lomba</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="status-lomba.php"><i class="fa fa-hourglass-1"></i> Status Lomba saya</a></li>
+            <li><a href="lomba-saya.php"><i class="fa fa-area-chart"></i>Lomba Saya</a></li>
           </ul>
         </li>
       </ul>
@@ -286,7 +298,7 @@
           
           
             
-              <button  style="background: #00cc00"  type="submit"  type="submit" name="edit-user" value="Simpan" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> simpan</button>
+              <button  style="background: #00cc00"   type="submit" name="edit-user" value="Simpan" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> simpan</button>
           </form>
         </div>     
       </div>
@@ -297,7 +309,7 @@
 
 
 
-<!---script daftar-->
+<!---script edit-->
 <script>
 $(document).ready(function(){
     $("#edit").click(function(){

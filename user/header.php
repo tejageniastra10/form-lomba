@@ -46,7 +46,7 @@ if ($_SESSION['id_level']!='2') {
   <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
-
+<link rel="stylesheet" href="css/bootstrapValidator.css"> 
 
 
  

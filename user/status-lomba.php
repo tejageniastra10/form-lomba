@@ -8,7 +8,7 @@
           </a>
           
         </li>
-        <li class="active treeview">
+        <li class="treeview">
           <a href="info-lomba.php">
             <i class="fa fa-bullhorn"></i>
             <span>Info Lomba</span>
@@ -16,7 +16,7 @@
           </a>
         </li>
         
-         <li class="treeview">
+        <li class=" treeview">
           <a href="#">
             <i class="fa fa-users"></i>
             <span>Penyelenggaraan</span>
@@ -25,11 +25,11 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="status-penyelenggaraan.php"><i class="fa fa-hourglass-2"></i> Status Penyelenggaraan saya</a></li>
+            <li class="active"><a href="status-penyelenggaraan.php"><i class="fa fa-hourglass-2"></i> Status Penyelenggaraan saya</a></li>
             <li><a href="penyelenggara-saya.php"><i class="fa fa-bar-chart"></i>Penyelenggaraan Saya</a></li>
           </ul>
         </li>
-        <li class="treeview">
+        <li class="active treeview">
           <a href="#">
             <i class="fa fa-futbol-o"></i>
             <span>Lomba</span>
@@ -38,11 +38,10 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="status-lomba.php"><i class="fa fa-hourglass-1"></i> Status Lomba saya</a></li>
-            <li><a href="lomba-saya.php"><i class="fa fa-area-chart"></i>Lomba Saya</a></li>
+            <li class="active"><a href="status-lomba.php"><i class="fa fa-hourglass-1"></i> Status Lomba saya</a></li>
+            <li ><a href="lomba-saya.php"><i class="fa fa-area-chart"></i>Lomba Saya</a></li>
           </ul>
         </li>
-   
       </ul>
     </section>
     <!-- /.sidebar -->
@@ -53,7 +52,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-       <center><b>INFO LOMBA</b></center> 
+       <center>INFO LOMBA</center> 
         
       </h1>
       <ol class="breadcrumb">
@@ -71,7 +70,7 @@
               <form class="form-inline" method="get">
                 <div class="form-group">
                   <select name="filter" class="form-control" onchange="form.submit()">
-                    <option value="0">Kategori Lomba</option>
+                    <option value="0">Filter Kategori Lomba</option>
                     <?php $filter = (isset($_GET['filter']) ? strtolower($_GET['filter']) : NULL);  ?>
                     <option value="1" <?php if($filter == '1'){ echo 'selected'; } ?>>Sepak Bola</option>
                     <option value="2" <?php if($filter == '2'){ echo 'selected'; } ?>>Futsal</option>
@@ -106,7 +105,7 @@
 
                     $no = 1;
                   while($row = mysqli_fetch_assoc($sql)){
-                      if ($row['status_penyelenggara']=='2') {
+                      if ($row['status_penyelenggara']=='1') {
                         echo '
                     <tr>
                       <td style="text-align: center">'.$no.'</td>
@@ -116,15 +115,12 @@
                       <td style="text-align: center">'.$row['tlp_penyelenggara'].'</td>
                       <td style="text-align: center">'.$row['jml_tim'].'</td>
                       <td style="text-align: center">
-                        <a href="#" id='.$row["id_penyelenggara"].' title="lihat Detail" class="btn btn-sm btn-info"><span aria-hidden="true"></span>Lihat</a>
-
-                        <a href="index.php?aksi=delete&id_penyelenggara='.$row['id_penyelenggara'].'" title="Daftar Perlombaan" onclick="return confirm(\'Anda yakin akan menghapus data '.$row['nama_penyelenggara'].'?\')" class="btn btn-sm btn-success"><span  aria-hidden="true">Daftar</span></a>
+                        <span class="label label-success">Belum Disetujui</span>
                       </td>
                     </tr>
                     ';
                     $no++;
                       }
-          
                   
                     
                   }
