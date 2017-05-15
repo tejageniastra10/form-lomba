@@ -402,6 +402,7 @@ session_start();
     </div>
   </div> 
 
+
   <!-- Modal daftar  -->
   <div class="modal fade" id="Modal-daftar" role="dialog">
     <div class="modal-dialog">
@@ -412,7 +413,7 @@ session_start();
           <h5> Pendaftaran user </h5>
         </div>
         <div class="modal-body" style="padding:40px 50px;">
-          <form id="form_tambah_user" class="form-horizontal" action="user/tambah-user.php" method="post" enctype="multipart/form-data">
+          <form id="form_tambah_user"  action="user/tambah-user.php" method="post" >
           <div class="form-group">
               <label ><span class="glyphicon glyphicon-home"></span>  Nama</label>
               <input type="text" class="form-control" name="nama_user" placeholder="Masukan Nama Penyelenggara">
@@ -445,7 +446,7 @@ session_start();
       		
 					
             
-              <button type="submit" href="index.php" type="submit" name="add" value="Simpan" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> daftar</button>
+              <button type="submit"   name="add" value="Simpan" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> daftar</button>
           </form>
         </div>     
       </div>
