@@ -413,7 +413,7 @@ session_start();
           <h5> Pendaftaran user </h5>
         </div>
         <div class="modal-body" style="padding:40px 50px;">
-          <form id="form_tambah_user"  action="user/tambah-user.php" method="post" >
+          <form role="form" id="form_tambah_user"  action="user/tambah-user.php" method="post" >
           <div class="form-group">
               <label ><span class="glyphicon glyphicon-home"></span>  Nama</label>
               <input type="text" class="form-control" name="nama_user" placeholder="Masukan Nama Penyelenggara">

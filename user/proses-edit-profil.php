@@ -21,12 +21,13 @@ include "../koneksi.php"; ?>
           $email_user             = $_POST['email_user'];
           $tlp_user               = $_POST['tlp_user'];
           $alamat_user            = $_POST['alamat_user'];
+          $password_user          = md5($_POST['password_user']); 
             
 
           
 
           
-            $update = mysqli_query($koneksi, "UPDATE user SET nama_user='$nama_user', email_user='$email_user', tlp_user='$tlp_user', alamat_user='$alamat_user' WHERE id_user='$id_user'") or die (mysqli_error());
+            $update = mysqli_query($koneksi, "UPDATE user SET nama_user='$nama_user', email_user='$email_user', tlp_user='$tlp_user', alamat_user='$alamat_user', password_user='$password_user' WHERE id_user='$id_user'") or die (mysqli_error());
 
           if($update)
           {
