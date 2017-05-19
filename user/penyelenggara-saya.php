@@ -88,15 +88,17 @@
                     <td>Waktu Mulai Lomba</td>
                     <td>Telphone Penyelenggara</td>
                     <td>Jumlah Tim Partisipan</td>
-                    <td>Pilihan</td>
+                    <td>Dashboard</td>
                 </thead>
                 <tbody>
               <?php
 
                   if($filter){
-                    $sql = mysqli_query($koneksi, "SELECT * FROM penyelenggara WHERE id_kategori='$filter'");
+                    $id_user=$_SESSION['id_user'];
+                    $sql = mysqli_query($koneksi, "SELECT * FROM penyelenggara WHERE id_kategori='$filter' AND id_user='$id_user'");
                   }else{
-                    $sql = mysqli_query($koneksi, "SELECT * FROM penyelenggara");
+                    $id_user=$_SESSION['id_user'];
+                    $sql = mysqli_query($koneksi, "SELECT * FROM penyelenggara WHERE id_user='$id_user'");
                   }
 
                   if(mysqli_num_rows($sql) == 0){
@@ -106,7 +108,7 @@
 
                     $no = 1;
                   while($row = mysqli_fetch_assoc($sql)){
-                      if ($row['status_penyelenggara']=='1') {
+                      if ($row['status_penyelenggara']=='3') {
                         echo '
                     <tr>
                       <td style="text-align: center">'.$no.'</td>
@@ -116,9 +118,7 @@
                       <td style="text-align: center">'.$row['tlp_penyelenggara'].'</td>
                       <td style="text-align: center">'.$row['jml_tim'].'</td>
                       <td style="text-align: center">
-                        <a href="#" id='.$row["id_penyelenggara"].' title="lihat Detail" class="btn btn-sm btn-info"><span aria-hidden="true"></span>Lihat</a>
-
-                        <a href="index.php?aksi=delete&id_penyelenggara='.$row['id_penyelenggara'].'" title="Daftar Perlombaan" onclick="return confirm(\'Anda yakin akan menghapus data '.$row['nama_penyelenggara'].'?\')" class="btn btn-sm btn-success"><span  aria-hidden="true">Daftar</span></a>
+                        <a href="#" class="btn btn-sm btn-success" ket='.$row["id_kategori"].'  data-id='.$row["id_penyelenggara"].'><span  aria-hidden="true"></span> Ke Dashboard </a>
                       </td>
                     </tr>
                     ';

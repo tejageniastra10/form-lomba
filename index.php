@@ -416,19 +416,18 @@ session_start();
           <form role="form" id="form_tambah_user"  action="user/tambah-user.php" method="post" >
           <div class="form-group">
               <label ><span class="glyphicon glyphicon-home"></span>  Nama</label>
-              <input type="text" class="form-control" name="nama_user" placeholder="Masukan Nama Penyelenggara">
-            </div>
-            <div class="form-group">
+              <input type="text" class="form-control" name="nama_user" placeholder="Masukan Nama 
+            "<div class="form-group">
               <label ><span class="glyphicon glyphicon-envelope"></span>  Email</label>
-              <input type="text" class="form-control" name="email_user" placeholder="masukan nama lomba">
+              <input type="text" class="form-control" name="email_user" placeholder="masukan email ">
             </div>
             <div class="form-group">
               <label ><span class="glyphicon glyphicon-phone-alt"></span>  No.telephone</label>
-              <input type="text" class="form-control" name="tlp_user" placeholder="masukan nama lomba">
+              <input type="text" class="form-control" name="tlp_user" placeholder="masukan no hp">
             </div>
             <div class="form-group">
               <label ><span class="glyphicon glyphicon-send"></span>  alamat</label>
-              <input type="text" class="form-control" name="alamat_user" placeholder="masukan lokasi lomba">
+              <input type="text" class="form-control" name="alamat_user" placeholder="masukan alamat">
             </div>
             
             
@@ -437,12 +436,15 @@ session_start();
             </div>
              <div  class="form-group">
               <label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>
-              <input type="text" class="form-control" name="username_user" placeholder="Enter username">
+              <input type="text" class="form-control" name="username_user" placeholder="masukan username">
             </div>
             <div class="form-group">
               <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
-              <input type="password" class="form-control" name="password_user" placeholder="Enter password">
+              <input type="password" class="form-control" name="password_user" placeholder="masukan password">
             </div>
+
+              <input type="hidden" name="foto" class="form-control" placeholder="foto" value="default.jpg" >
+           
       		
 					
             

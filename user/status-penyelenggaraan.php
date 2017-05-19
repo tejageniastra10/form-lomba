@@ -68,17 +68,14 @@
     <div id="page-wrapper"><br />
 
       
-              <form class="form-inline" method="get">
+             <form class="form-inline" method="get">
                 <div class="form-group">
                   <select name="filter" class="form-control" onchange="form.submit()">
-                    <option value="0">Kategori Status</option>
+                    <option value="0">Kategori Lomba</option>
                     <?php $filter = (isset($_GET['filter']) ? strtolower($_GET['filter']) : NULL);  ?>
-                    <option value="1" <?php if($filter == '1'){ echo 'selected'; } ?>>menunggu persetujuan</option>
-                    <option value="2" <?php if($filter == '2'){ echo 'selected'; } ?>>menunggu pembayaran</option>
-                    <option value="3" <?php if($filter == '3'){ echo 'selected'; } ?>>aktif</option>
-                    <option value="4" <?php if($filter == '4'){ echo 'selected'; } ?>>Ditolak</option>
-                    
-                    
+                    <option value="1" <?php if($filter == '1'){ echo 'selected'; } ?>>Sepak Bola</option>
+                    <option value="2" <?php if($filter == '2'){ echo 'selected'; } ?>>Futsal</option>
+                    <option value="3" <?php if($filter == '3'){ echo 'selected'; } ?>>Basket</option>
                   </select>
                 </div>
               </form><br />
@@ -98,7 +95,7 @@
 
                   if($filter){
                     $id_user=$_SESSION['id_user'];
-                    $sql = mysqli_query($koneksi, "SELECT * FROM penyelenggara WHERE id_user='$id_user' AND  status_penyelenggara='$filter' ");
+                    $sql = mysqli_query($koneksi, "SELECT * FROM penyelenggara WHERE id_user='$id_user' AND  id_kategori='$filter' ");
                   }else{
                     $id_user=$_SESSION['id_user'];
                     $sql = mysqli_query($koneksi, "SELECT * FROM penyelenggara where id_user='$id_user'");
@@ -111,7 +108,7 @@
 
                     $no = 1;
                   while($row = mysqli_fetch_assoc($sql)){
-                      if ($row['status_penyelenggara']=='1') {
+                      
                         echo '
                     <tr>
                       <td style="text-align: center">'.$no.'</td>
@@ -120,80 +117,40 @@
                       <td style="text-align: center">'.$row['waktu_awal_lomba'].'</td>
                       <td style="text-align: center">'.$row['tlp_penyelenggara'].'</td>
                       <td style="text-align: center">'.$row['jml_tim'].'</td>
-                      <td style="text-align: center">
-                        <span class="label label-warning">Belum Disetujui</span>
-                        
-                      </td>
-                    </tr>
                     ';
-                    
-                      }
-                      else if ($row['status_penyelenggara']=='2') {
-                        echo '
-                    <tr>
-                      <td style="text-align: center">'.$no.'</td>
-                      <td style="text-align: center">'.$row['nama_lomba'].'</td>
-                      <td style="text-align: center" >'.$row['lokasi_lomba'].'</td>
-                      <td style="text-align: center">'.$row['waktu_awal_lomba'].'</td>
-                      <td style="text-align: center">'.$row['tlp_penyelenggara'].'</td>
-                      <td style="text-align: center">'.$row['jml_tim'].'</td>
-                      <td style="text-align: center">
-                       <span  class="label label-primary">Belum Bayar</span>
-                        
-                      </td>
-                    </tr>
-                    ';
-                    
-                      }
-                      else if ($row['status_penyelenggara']=='3') {
-                        echo '
-                    <tr>
-                      <td style="text-align: center">'.$no.'</td>
-                      <td style="text-align: center">'.$row['nama_lomba'].'</td>
-                      <td style="text-align: center" >'.$row['lokasi_lomba'].'</td>
-                      <td style="text-align: center">'.$row['waktu_awal_lomba'].'</td>
-                      <td style="text-align: center">'.$row['tlp_penyelenggara'].'</td>
-                      <td style="text-align: center">'.$row['jml_tim'].'</td>
-                      <td style="text-align: center">
-                        <span class="label label-success"> Lomba Aktif</span>
-                        
-                      </td>
-                    </tr>
-                    ';
-                    
-                      }
-                        else {
-                        echo '
-                    <tr>
-                      <td style="text-align: center">'.$no.'</td>
-                      <td style="text-align: center">'.$row['nama_lomba'].'</td>
-                      <td style="text-align: center" >'.$row['lokasi_lomba'].'</td>
-                      <td style="text-align: center">'.$row['waktu_awal_lomba'].'</td>
-                      <td style="text-align: center">'.$row['tlp_penyelenggara'].'</td>
-                      <td style="text-align: center">'.$row['jml_tim'].'</td>
-                      <td style="text-align: center">
-                        <span class="label label-danger">Lomba Ditolak</span>
-                        
-                      </td>
-                    </tr>
-                    ';
-                    
-                      }
+                    if ($row['status_penyelenggara']=='1') {
+                      echo '<td style="text-align: center">
+                        <span class="label label-warning">ditangguhkan</span> 
+                      </td> </tr>';
 
-                      $no++;
-
-                  
+                    }
+                    elseif ($row['status_penyelenggara']=='2') {
+                      echo '<td style="text-align: center">
+                        <span class="label label-primary">Pembayaran</span> 
+                      </td> </tr>';
+                    } 
+                    elseif ($row['status_penyelenggara']=='3') {
+                      echo '<td style="text-align: center">
+                        <span class="label label-success">Akun Aktif</span> 
+                      </td> </tr>';
+                    } else {
+                      echo '<td style="text-align: center">
+                        <span class="label label-danger">Akun Ditolak</span> 
+                      </td> </tr>';
+                    }
                     
+                    
+                     $no++;                
                   }
                 }
                 ?>
               </tbody>
           </table>
-          <div class=" col-xs-3">
+          
+    </div><!-- /#page-wrapper -->
+    <div style="width: 20%">
           <button type="button" id="bayar"  class="btn btn-block btn-primary">Bayar Pendaftaran Lomba</button>
           </div>
-    </div><!-- /#page-wrapper -->
-
     </section>
 
     <!-- /.content -->

@@ -52,7 +52,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-       <center>INFO LOMBA</center> 
+       <center><b>LOMBA SAYA</b></center> 
         
       </h1>
       <ol class="breadcrumb">
@@ -82,43 +82,44 @@
               <table class="table table-bordered table-striped">
                 <thead style="text-align: center; background: black;color: white">
                     <td>No</td>
-                    <td>Nama Lomba</td>
-                    <td>Tempat Lomba</td>
-                    <td>Waktu Mulai Lomba</td>
-                    <td>Telphone Penyelenggara</td>
-                    <td>Jumlah Tim Partisipan</td>
-                    <td>Pilihan</td>
+                    <td>Nama Tim</td>
+                    <td>Alamat Tim</td>
+                    <td>Penanggung Jawab</td>
+                    <td>Email Tim </td>
+                    <td>No Telephone</td>
+                    <td>Jumlah Pemain</td>
+                    <td>Dashboad</td>
                 </thead>
                 <tbody>
               <?php
 
                   if($filter){
-                    $sql = mysqli_query($koneksi, "SELECT * FROM penyelenggara WHERE id_kategori='$filter'");
+                    $id_user=$_SESSION['id_user'];
+                    $sql = mysqli_query($koneksi, "SELECT * FROM tim WHERE id_kategori='$filter' AND id_user='$id_user'");
                   }else{
-                    $sql = mysqli_query($koneksi, "SELECT * FROM penyelenggara");
+                    $id_user=$_SESSION['id_user'];
+                    $sql = mysqli_query($koneksi, "SELECT * FROM tim where id_user='$id_user'");
                   }
 
                   if(mysqli_num_rows($sql) == 0){
-                    echo '<tr style="text-align:center;"><td colspan="7">Empty</td></tr>';
+                    echo '<tr style="text-align:center;"><td colspan="8">Empty</td></tr>';
                   }
                   else{
 
                     $no = 1;
                   while($row = mysqli_fetch_assoc($sql)){
-                      if ($row['status_penyelenggara']=='1') {
+                      if ($row['id_status']=='2') {
                         echo '
                     <tr>
                       <td style="text-align: center">'.$no.'</td>
-                      <td style="text-align: center">'.$row['nama_lomba'].'</td>
-                      <td style="text-align: center" >'.$row['lokasi_lomba'].'</td>
-                      <td style="text-align: center">'.$row['waktu_awal_lomba'].'</td>
-                      <td style="text-align: center">'.$row['tlp_penyelenggara'].'</td>
-                      <td style="text-align: center">'.$row['jml_tim'].'</td>
-                      <td style="text-align: center">
-                        <a href="#" id='.$row["id_penyelenggara"].' title="lihat Detail" class="btn btn-sm btn-info"><span aria-hidden="true"></span>Lihat</a>
-
-                        <a href="index.php?aksi=delete&id_penyelenggara='.$row['id_penyelenggara'].'" title="Daftar Perlombaan" onclick="return confirm(\'Anda yakin akan menghapus data '.$row['nama_penyelenggara'].'?\')" class="btn btn-sm btn-success"><span  aria-hidden="true">Daftar</span></a>
-                      </td>
+                      <td style="text-align: center">'.$row['nama_tim'].'</td>
+                      <td style="text-align: center" >'.$row['alamat_tim'].'</td>
+                      <td style="text-align: center">'.$row['penanggung_jawab'].'</td>
+                      <td style="text-align: center">'.$row['email_tim'].'</td>
+                      <td style="text-align: center">'.$row['tlp_tim'].'</td>
+                      <td style="text-align: center">'.$row['jml_pemain'].'</td>
+                      <td style="text-align: center">'.$row['id_status'].'</td>
+                      
                     </tr>
                     ';
                     $no++;
@@ -130,9 +131,7 @@
                 ?>
               </tbody>
           </table>
-          <div class=" col-xs-3">
-          <button type="button" id="daftar-penyelenggara"  class="btn btn-block btn-primary">Daftarkan Lomba</button>
-          </div>
+          
     </div><!-- /#page-wrapper -->
 
     </section>

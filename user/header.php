@@ -46,7 +46,7 @@ if ($_SESSION['id_level']!='2') {
   <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
-<link rel="stylesheet" href="css/bootstrapValidator.css"> 
+
 
 
  
@@ -96,7 +96,7 @@ if ($_SESSION['id_level']!='2') {
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="gambar/kim.png" class="img-circle" alt="User Image">
+          <img <?php echo 'src=foto/'.$_SESSION['foto'].' '?> style="height: 38px"  class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
           <p><?php echo $_SESSION['nama_user'];  ?></p>

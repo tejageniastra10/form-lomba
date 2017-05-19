@@ -82,47 +82,59 @@
               <table class="table table-bordered table-striped">
                 <thead style="text-align: center; background: black;color: white">
                     <td>No</td>
-                    <td>Nama Lomba</td>
-                    <td>Tempat Lomba</td>
-                    <td>Waktu Mulai Lomba</td>
-                    <td>Telphone Penyelenggara</td>
-                    <td>Jumlah Tim Partisipan</td>
-                    <td>Pilihan</td>
+                    <td>Nama Tim</td>
+                    <td>Alamat Tim</td>
+                    <td>Penanggung Jawab</td>
+                    <td>Email Tim </td>
+                    <td>No Telephone</td>
+                    <td>Jumlah Pemain</td>
+                    <td>Status</td>
                 </thead>
                 <tbody>
               <?php
 
                   if($filter){
-                    $sql = mysqli_query($koneksi, "SELECT * FROM penyelenggara WHERE id_kategori='$filter'");
+                    $id_user=$_SESSION['id_user'];
+                    $sql = mysqli_query($koneksi, "SELECT * FROM tim WHERE id_user='$id_user' AND id_kategori='$filter'");
                   }else{
-                    $sql = mysqli_query($koneksi, "SELECT * FROM penyelenggara");
+                    $id_user=$_SESSION['id_user'];
+                    $sql = mysqli_query($koneksi, "SELECT * FROM tim WHERE id_user='$id_user'");
                   }
 
                   if(mysqli_num_rows($sql) == 0){
-                    echo '<tr style="text-align:center;"><td colspan="7">Empty</td></tr>';
+                    echo '<tr style="text-align:center;"><td colspan="8">Empty</td></tr>';
                   }
                   else{
 
                     $no = 1;
                   while($row = mysqli_fetch_assoc($sql)){
-                      if ($row['status_penyelenggara']=='1') {
-                        echo '
+                      
+                       echo '
                     <tr>
                       <td style="text-align: center">'.$no.'</td>
-                      <td style="text-align: center">'.$row['nama_lomba'].'</td>
-                      <td style="text-align: center" >'.$row['lokasi_lomba'].'</td>
-                      <td style="text-align: center">'.$row['waktu_awal_lomba'].'</td>
-                      <td style="text-align: center">'.$row['tlp_penyelenggara'].'</td>
-                      <td style="text-align: center">'.$row['jml_tim'].'</td>
-                      <td style="text-align: center">
-                        <span class="label label-success">Belum Disetujui</span>
-                      </td>
-                    </tr>
+                      <td style="text-align: center">'.$row['nama_tim'].'</td>
+                      <td style="text-align: center" >'.$row['alamat_tim'].'</td>
+                      <td style="text-align: center">'.$row['penanggung_jawab'].'</td>
+                      <td style="text-align: center">'.$row['email_tim'].'</td>
+                      <td style="text-align: center">'.$row['tlp_tim'].'</td>
+                      <td style="text-align: center">'.$row['jml_pemain'].'</td>
                     ';
-                    $no++;
-                      }
-                  
-                    
+                    if ($row['id_status']=='1') {
+                      echo '<td style="text-align: center">
+                        <span class="label label-primary">Pembayaran</span> 
+                      </td> </tr>';
+
+                    }
+                    elseif ($row['id_status']=='2') {
+                      echo '<td style="text-align: center">
+                        <span class="label label-success">Akun Aktif</span> 
+                      </td> </tr>';
+                    }else {
+                      echo '<td style="text-align: center">
+                        <span class="label label-danger">Akun Ditolak</span> 
+                      </td> </tr>';
+                    }
+                    $no++;              
                   }
                 }
                 ?>

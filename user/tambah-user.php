@@ -12,17 +12,19 @@ include "../koneksi.php";
 					$password_user 					= md5($_POST['password_user']);	
 					$id_level						= $_POST['id_level'];		
 					
+		          $fotobaru               = $_POST['foto'];
+		          $path                   = "foto/".$fotobaru;
 					
 
 
-					
+				 	
 					$cek = mysqli_query($koneksi, "SELECT * FROM user WHERE username_user='$username_user'")or die (mysqli_error($koneksi));
 					if(mysqli_num_rows($cek) == 0)
 					{
-						$insert = mysqli_query($koneksi, "INSERT INTO user(nama_user, email_user, tlp_user, alamat_user,username_user,password_user,id_level) VALUES('$nama_user', '$email_user', '$tlp_user', '$alamat_user', '$username_user', '$password_user','$id_level')") or die(mysqli_error($koneksi));
+						$insert = mysqli_query($koneksi, "INSERT INTO user(nama_user, email_user, tlp_user, alamat_user,username_user,password_user,id_level,foto) VALUES('$nama_user', '$email_user', '$tlp_user', '$alamat_user', '$username_user', '$password_user','$id_level','$fotobaru')") or die(mysqli_error($koneksi));
 							if($insert)
 							{
-								header("location: ../index.php");
+								header("location: succeslogin.html");
 							}
 					}
 					else
@@ -36,6 +38,8 @@ include "../koneksi.php";
 				
 				
 				}
+
+			
 				
 			?>
 

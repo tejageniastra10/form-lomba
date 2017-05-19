@@ -131,11 +131,11 @@
           <!-- Profile Image -->
           <div class="box box-primary">
             <div class="box-body box-profile">
-              <img class="profile-user-img img-responsive img-circle" src="gambar/kim.png" alt="User profile picture">
+              <img class="profile-user-img img-responsive img-circle" <?php echo 'src=foto/'.$_SESSION['foto'].' '?> style="width:120px;height:120px" alt="User profile picture">
 
               <h3 class="profile-username text-center"><?php echo $_SESSION['nama_user']; ?></h3>
 
-              <p class="text-muted text-center">Teknik INformatika</p>
+              <p class="text-muted text-center">USER</p>
 
               <ul class="list-group list-group-unbordered">
                 <li class="list-group-item">
@@ -284,6 +284,10 @@
             <div class="form-group">
               <label ><span class="glyphicon glyphicon-send"></span>  alamat</label>
               <input type="text" class="form-control" name="alamat_user" value="<?php echo $row ['alamat_user']; ?>" placeholder="masukan lokasi lomba">
+            </div>
+            <div class="form-group">
+              <label ><span class="glyphicon glyphicon-picture"></span>  Foto</label>
+                <input type="file" name="foto" class="form-control" placeholder="foto" required>
             </div>
              <div  class="form-group">
               <label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>
