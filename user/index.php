@@ -60,6 +60,7 @@
         <li class="active">Dashboard</li>
       </ol>
     </section>
+<div id="loading"></div>
 
   
 
@@ -225,6 +226,10 @@
 
 <!-- jQuery -->
   <script src="js/jquery.min.js"></script>
+
+  <script type="text/javascript">
+  $(window).load(function() { $("#loading").fadeOut(2300); })
+</script>
 
   <?php
         $id_user = $_SESSION['id_user'];
