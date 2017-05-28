@@ -61,7 +61,7 @@ if ($_SESSION['id_level']!='2') {
             
             <div class="top-menu">
             	<ul class="nav pull-right top-menu">
-                    <li><a class="logout" href="../logout.php">Logout</a></li>
+                    <li><a class="logout" href="../user/index.php">kembali ke dashbord</a></li>
             	</ul>
             </div>
         </header>

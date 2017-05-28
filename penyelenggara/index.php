@@ -260,10 +260,7 @@
                                    <td><b>No HP</b> </td>
                                   <td><?php echo $row['tlp_penyelenggara']; ?></td>
                                 </tr>
-                                 <tr>
-                                   <td><b>Username</b> </td>
-                                  <td><?php echo $row['username_penyelenggara']; ?></td>
-                                </tr>
+                                 
                                 </tbody>
                             </table>
                          

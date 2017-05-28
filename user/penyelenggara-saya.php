@@ -82,12 +82,12 @@
 
               <table class="table table-bordered table-striped">
                 <thead style="text-align: center; background: black;color: white">
-                    <td>No</td>
-                    <td>Nama Lomba</td>
-                    <td>Tempat Lomba</td>
-                    <td>Waktu Mulai Lomba</td>
-                    <td>Telphone Penyelenggara</td>
-                    <td>Jumlah Tim Partisipan</td>
+                    <td style=" width: 50px">No</td>
+                    <td style=" width: 130px">Nama Lomba</td>
+                    <td style=" width: 250px">Tempat Lomba</td>
+                    <td style=" width: 150px">Waktu Mulai Lomba</td>
+                    <td style=" width: 200px">Telphone Penyelenggara</td>
+                    <td style=" width: 180px">Jumlah Tim Partisipan</td>
                     <td>Dashboard</td>
                 </thead>
                 <tbody>
@@ -109,6 +109,7 @@
                     $no = 1;
                   while($row = mysqli_fetch_assoc($sql)){
                       if ($row['status_penyelenggara']=='3') {
+
                         echo '
                     <tr>
                       <td style="text-align: center">'.$no.'</td>
@@ -118,7 +119,7 @@
                       <td style="text-align: center">'.$row['tlp_penyelenggara'].'</td>
                       <td style="text-align: center">'.$row['jml_tim'].'</td>
                       <td style="text-align: center">
-                        <a href="#" class="btn btn-sm btn-success" ket='.$row["id_kategori"].'  data-id='.$row["id_penyelenggara"].'><span  aria-hidden="true"></span> Ke Dashboard </a>
+                        <a href="session.php?id_penyelenggara='.$row['id_penyelenggara'].'" title="Menuju Dashbpard"  class="btn btn-sm btn-primary"><span  aria-hidden="true"></span> Ke Dashboard </a>
                       </td>
                     </tr>
                     ';

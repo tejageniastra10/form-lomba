@@ -417,7 +417,8 @@ session_start();
           <div class="form-group">
               <label ><span class="glyphicon glyphicon-home"></span>  Nama</label>
               <input type="text" class="form-control" name="nama_user" placeholder="Masukan Nama 
-            "<div class="form-group">
+            "></div>
+            <div class="form-group">
               <label ><span class="glyphicon glyphicon-envelope"></span>  Email</label>
               <input type="text" class="form-control" name="email_user" placeholder="masukan email ">
             </div>

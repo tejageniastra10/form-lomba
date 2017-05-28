@@ -82,12 +82,12 @@
 
               <table class="table table-bordered table-striped">
                 <thead style="text-align: center; background: #3c8dbc;color: white">
-                    <td>No</td>
-                    <td>Nama Lomba</td>
-                    <td>Tempat Lomba</td>
-                    <td>Waktu Mulai Lomba</td>
-                    <td>Telphone Penyelenggara</td>
-                    <td>Jumlah Tim Partisipan</td>
+                    <td style=" width: 50px">No</td>
+                    <td style=" width: 130px">Nama Lomba</td>
+                    <td style=" width: 250px">Tempat Lomba</td>
+                    <td style=" width: 150px">Waktu Mulai Lomba</td>
+                    <td style=" width: 200px">Telphone Penyelenggara</td>
+                    <td style=" width: 180px">Jumlah Tim Partisipan</td>
                     <td>Status</td>
                 </thead>
                 <tbody>

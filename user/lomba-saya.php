@@ -118,7 +118,9 @@
                       <td style="text-align: center">'.$row['email_tim'].'</td>
                       <td style="text-align: center">'.$row['tlp_tim'].'</td>
                       <td style="text-align: center">'.$row['jml_pemain'].'</td>
-                      <td style="text-align: center">'.$row['id_status'].'</td>
+                      <td style="text-align: center">
+                        <a href="session.php?id_tim='.$row['id_tim'].'" title="Menuju Dashbpard"  class="btn btn-sm btn-primary"><span  aria-hidden="true"></span> Ke Dashboard </a>
+                      </td>
                       
                     </tr>
                     ';

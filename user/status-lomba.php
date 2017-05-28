@@ -81,14 +81,14 @@
 
               <table class="table table-bordered table-striped">
                 <thead style="text-align: center; background: black;color: white">
-                    <td>No</td>
-                    <td>Nama Tim</td>
-                    <td>Alamat Tim</td>
-                    <td>Penanggung Jawab</td>
-                    <td>Email Tim </td>
-                    <td>No Telephone</td>
-                    <td>Jumlah Pemain</td>
-                    <td>Status</td>
+                    <td style=" width: 50px">No</td>
+                    <td style=" width: 120px">Nama Tim</td>
+                    <td style=" width: 200px">Alamat Tim</td>
+                    <td style=" width: 140px">Penanggung Jawab</td>
+                    <td style=" width: 150px">Email Tim </td>
+                    <td style=" width: 150px">No Telephone</td>
+                    <td style=" width: 150px">Jumlah Pemain</td>
+                    <td style=" width: 100px">Status</td>
                 </thead>
                 <tbody>
               <?php
