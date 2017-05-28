@@ -10,7 +10,7 @@
 
 					
 					$query = mysqli_query($koneksi, "SELECT * FROM user WHERE username_user='$username' AND password_user='$password' AND id_level='2' ");
-					if(mysqli_num_rows($query) == 0){
+										if(mysqli_num_rows($query) == 0){
 						 echo "<script>
 							alert('Username atau password salah !!!');
 							window.location.href='javascript:history.go(-1)';
@@ -23,6 +23,23 @@
 						$_SESSION['id_user']=$row['id_user'];
 						$_SESSION['foto']=$row['foto'];
 						$_SESSION['id_level']='2';
+						$id_user=$row['id_user'];
+
+					$jml_penyelenggara= mysqli_query($koneksi, "SELECT id_user FROM penyelenggara WHERE id_user='$id_user' " );
+					$jml_tim= mysqli_query($koneksi, "SELECT id_user FROM tim WHERE id_user='$id_user' " );
+							$i=1;
+							$_SESSION['jml_penyelenggara']= 0;
+							while($jml = mysqli_fetch_assoc($jml_penyelenggara)){
+								$_SESSION['jml_penyelenggara']= $i;
+								$i++;								
+							}
+							$j=1;
+							$_SESSION['jml_tim']= 0;
+							while($jml = mysqli_fetch_assoc($jml_tim)){
+								$_SESSION['jml_tim']= $j;
+								$j++;								
+							}
+
 
 
 						header("Location: user/index.php");

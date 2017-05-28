@@ -27,7 +27,7 @@
               <!-- sidebar menu start-->
               <ul class="sidebar-menu" id="nav-accordion">
               
-                  <p class="centered"><a href="profile.html">
+                  <p class="centered"><a href="#">
                             <?php 
                             $id_penyelenggara=$_SESSION['id_penyelenggara'];
                             $sql = mysqli_query($koneksi, "SELECT * FROM penyelenggara WHERE id_penyelenggara=$id_penyelenggara");
@@ -61,52 +61,9 @@
                           <i class="fa fa-cogs"></i>
                           <span>Components</span>
                       </a>
-                      <ul class="sub">
-                          <li><a  href="calendar.html">Calendar</a></li>
-                          <li><a  href="gallery.html">Gallery</a></li>
-                          <li><a  href="todo_list.html">Todo List</a></li>
-                      </ul>
+                     
                   </li>
-                  <li class="sub-menu">
-                      <a href="javascript:;" >
-                          <i class="fa fa-book"></i>
-                          <span>Extra Pages</span>
-                      </a>
-                      <ul class="sub">
-                          <li><a  href="blank.html">Blank Page</a></li>
-                          <li><a  href="login.html">Login</a></li>
-                          <li><a  href="lock_screen.html">Lock Screen</a></li>
-                      </ul>
-                  </li>
-                  <li class="sub-menu">
-                      <a href="javascript:;" >
-                          <i class="fa fa-tasks"></i>
-                          <span>Forms</span>
-                      </a>
-                      <ul class="sub">
-                          <li><a  href="form_component.html">Form Components</a></li>
-                      </ul>
-                  </li>
-                  <li class="sub-menu">
-                      <a href="javascript:;" >
-                          <i class="fa fa-th"></i>
-                          <span>Data Tables</span>
-                      </a>
-                      <ul class="sub">
-                          <li><a  href="basic_table.html">Basic Table</a></li>
-                          <li><a  href="responsive_table.html">Responsive Table</a></li>
-                      </ul>
-                  </li>
-                  <li class="sub-menu">
-                      <a href="javascript:;" >
-                          <i class=" fa fa-bar-chart-o"></i>
-                          <span>Charts</span>
-                      </a>
-                      <ul class="sub">
-                          <li><a  href="morris.html">Morris</a></li>
-                          <li><a  href="chartjs.html">Chartjs</a></li>
-                      </ul>
-                  </li>
+                  
 
               </ul>
               <!-- sidebar menu end-->
@@ -119,76 +76,7 @@
       <!--main content start-->
       <section id="main-content">
           <section class="wrapper">
-            <div class="panel-heading">
-              <h1 style="text-transform: uppercase;color: black;text-align: center;"> SISTEM MAGAGEMENT <?php echo $_SESSION['nama_lomba']; ?></h1>
-            </div>
-            <div  class="col-md-4 col-sm-4 mb">
-                          <div style="background: red" class="darkblue-panel pn">
-                            <div class="darkblue-header">
-                    <h3>PESAN</h3>
-                            </div>
-                            <h1 class="mt"><i class="fa fa-comment fa-2x"></i></h1>
-                
-                <footer>
-                  <div class="centered">
-                    <h2><i></i> 17</h2>
-                  </div>
-                </footer>
-                          </div><! -- /darkblue panel -->
-                        </div><!-- /col-md-4 -->
                     
-
-                    <div class="col-md-4 col-sm-4 mb">
-                          <div style="background: #ffd11a" class="darkblue-panel pn">
-                            <div class="darkblue-header">
-                    <h3>TIM TERDAFTAR</h3>
-                            </div>
-                            <h1 class="mt"><i class="fa fa-user fa-2x"></i></h1>
-               
-                <footer>
-                  <div class="centered">
-                  <?php
-                        $id_penyelenggara = $_SESSION['id_penyelenggara'];
-                            $sql = mysqli_query($koneksi, "SELECT * FROM tim where id_penyelenggara='$id_penyelenggara' ");        
-                              $i=0;
-
-                            while($row = mysqli_fetch_assoc($sql)){
-                             
-                              $i++;
-                            }
-                          
-                          ?>
-                    <h2><i></i><?php echo ''.$i.'';  ?></h2>
-                  </div>
-                </footer>
-                          </div><! -- /darkblue panel -->
-                        </div><!-- /col-md-4 -->
-                   
-
-
-                    <div  class="col-md-4 col-sm-4 mb">
-                <div  class="green-panel pn">
-                  <div style="background: #68dff0"  class="green-header">
-                    <h3 >SLOT KOSONG</h3>
-                  </div>
-                <canvas id="serverstatus03" height="110" width="110"></canvas>
-                <script>
-                  var doughnutData = [
-                      {
-                        value: 60,
-                        color:"#2b2b2b"
-                      },
-                      {
-                        value : 40,
-                        color : "#fffffd"
-                      }
-                    ];
-                    var myDoughnut = new Chart(document.getElementById("serverstatus03").getContext("2d")).Doughnut(doughnutData);
-                </script>
-                <h3><?php $slot=16-$i; echo ''.$slot.' slot tersisa';  ?></h3>
-                </div>
-              </div><! --/col-md-4 -->               
-            
 
         <div class="panel panel-info">
            <h1 style="text-transform: uppercase;color: white;text-align: center;">  XXXXXXXXX</h1>
@@ -306,21 +194,20 @@
           $waktu_akhir_lomba        = $_POST['waktu_akhir_lomba'];
           $email_penyelenggara      = $_POST['email_penyelenggara'];
           $tlp_penyelenggara        = $_POST['tlp_penyelenggara'];
-          $username_penyelenggara   = $_POST['username_penyelenggara'];
-          $pass_penyelenggara       = md5($_POST['password_penyelenggara']);
-          $password_penyelenggara     = $pass_penyelenggara;
-
+         
           
 
           
-            $update = mysqli_query($koneksi, "UPDATE penyelenggara SET nama_penyelenggara='$nama_penyelenggara', nama_lomba='$nama_lomba', lokasi_lomba='$lokasi_lomba', waktu_awal_lomba='$waktu_akhir_lomba', email_penyelenggara='$email_penyelenggara',tlp_penyelenggara='$tlp_penyelenggara', password_penyelenggara='$password_penyelenggara' WHERE id_penyelenggara='$id_penyelenggara'") or die (mysqli_error());
+
+          
+            $update = mysqli_query($koneksi, "UPDATE penyelenggara SET nama_penyelenggara='$nama_penyelenggara', nama_lomba='$nama_lomba', lokasi_lomba='$lokasi_lomba', waktu_awal_lomba='$waktu_akhir_lomba', email_penyelenggara='$email_penyelenggara',tlp_penyelenggara='$tlp_penyelenggara' WHERE id_penyelenggara='$id_penyelenggara'") or die (mysqli_error());
 
           if($update)
           {
-            session_destroy();
+            
             echo "<script>
-              alert('data berhasil di edit silakan log in kembali');
-              window.location.href='../index.php';
+              alert('data berhasil di edit ');
+              window.location.href='index.php';
               </script>";
 
                 }
@@ -373,15 +260,8 @@
               <label for="usrname"><span class="glyphicon glyphicon-phone-alt"></span> No. Telepon</label>
               <input type="text" class="form-control" value="<?php echo $row ['tlp_penyelenggara']; ?>" name="tlp_penyelenggara" placeholder="masukan no hp">
             </div>
-            <div class="form-group">
-              <label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>
-              <input type="text" class="form-control" value="<?php echo $row ['username_penyelenggara']; ?>" readonly>
-            </div>
-            <div class="form-group">
-              <label for="usrname"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
-              <input type="password" class="form-control"  name="password_penyelenggara" >
-            </div>
             
+           
            
             
             

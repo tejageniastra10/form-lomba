@@ -93,11 +93,12 @@
                 </thead>
                 <tbody>
               <?php
+                  $id_user=$_SESSION['id_user'];
 
                   if($filter){
-                    $sql = mysqli_query($koneksi, "SELECT * FROM penyelenggara WHERE id_kategori='$filter'");
+                    $sql = mysqli_query($koneksi, "SELECT * FROM penyelenggara WHERE id_kategori='$filter' and id_user!='$id_user' ");
                   }else{
-                    $sql = mysqli_query($koneksi, "SELECT * FROM penyelenggara");
+                    $sql = mysqli_query($koneksi, "SELECT * FROM penyelenggara WHERE id_user!='$id_user'");
                   }
 
                   if(mysqli_num_rows($sql) == 0){

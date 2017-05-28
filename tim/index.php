@@ -163,7 +163,7 @@ h1 span {
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="../logout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                            <a href="../user/index.php"><i class="fa fa-fw fa-power-off"></i> kembali</a>
                         </li>
                     </ul>
                 </li>

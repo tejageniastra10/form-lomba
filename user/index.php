@@ -61,69 +61,59 @@
       </ol>
     </section>
 
+  
+
+
     <!-- Main content -->
     <section class="content">
       <!-- Small boxes (Stat box) -->
       <div class="row">
-        <div class="col-lg-3 col-xs-6">
+        <div class="col-lg-4 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3>150</h3>
+              <h3> <?php echo $_SESSION['jml_penyelenggara']; ?> </h3>
 
               <p>Penyelenggaraan saya</p>
             </div>
             <div class="icon">
               <i class="fa fa-users"></i>
             </div>
-            <a href="#" class="small-box-footer">Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="penyelenggara-saya.php" class="small-box-footer">Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
+        <div class="col-lg-4 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3>53<sup style="font-size: 20px">%</sup></h3>
+              <h3> <?php echo $_SESSION['jml_tim'];  ?> </h3>
 
               <p>Lomba Saya</p>
             </div>
             <div class="icon">
               <i class="fa  fa-soccer-ball-o"></i>
             </div>
-            <a href="#" class="small-box-footer">Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="lomba-saya.php" class="small-box-footer">Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
+        <div class="col-lg-4 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3>44</h3>
+              <h3>Konfirmasi</h3>
 
-              <p>Konfirmasi kegiatan</p>
+              <p>Kegiatan</p>
             </div>
             <div class="icon">
               <i class="fa fa-refresh"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="status-penyelenggaraan.php" class="small-box-footer">Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-red">
-            <div class="inner">
-              <h3>65</h3>
-
-              <p>Konfirmasi Pembayaran</p>
-            </div>
-            <div class="icon">
-              <i class="fa fa-money"></i>
-            </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
+        
 
          <!-- Profile Image -->
           <div class="col-md-6">
@@ -131,27 +121,13 @@
           <!-- Profile Image -->
           <div class="box box-primary">
             <div class="box-body box-profile">
-              <img class="profile-user-img img-responsive img-circle" <?php echo 'src=foto/'.$_SESSION['foto'].' '?> style="width:120px;height:120px" alt="User profile picture">
+              <img class="profile-user-img img-responsive img-circle" <?php echo 'src=foto/'.$_SESSION['foto'].' '?> style="width:300px;height:300px" alt="User profile picture">
 
               <h3 class="profile-username text-center"><?php echo $_SESSION['nama_user']; ?></h3>
 
               <p class="text-muted text-center">USER</p>
 
-              <ul class="list-group list-group-unbordered">
-                <li class="list-group-item">
-                  <b>Penyelenggaraan saya</b><a class="pull-right">1,322</a>
-                </li>
-                <li class="list-group-item">
-                  <b>Perlombaan saya</b> <a class="pull-right">543</a>
-                </li>
-                <li class="list-group-item">
-                  <b>Menunggu konfirmasi kegiatan</b> <a class="pull-right">13,287</a>
-                </li>
-                <li class="list-group-item">
-                  <b>Menunggu konfirmasi pembayaran</b> <a class="pull-right">13,287</a>
-                </li>
-              </ul>
-
+              
             </div>
             <!-- /.box-body -->
           </div>
@@ -270,31 +246,31 @@
         <div class="modal-body" style="padding:40px 50px;">
           <form id="form_edit_user" class="form-horizontal" action="proses-edit-profil.php" method="post" enctype="multipart/form-data">
           <div class="form-group">
-              <label ><span class="glyphicon glyphicon-home"></span>  Nama</label>
+              <label > Nama</label>
               <input type="text" class="form-control" name="nama_user" value="<?php echo $row ['nama_user']; ?>" placeholder="Masukan Nama Penyelenggara">
             </div>
             <div class="form-group">
-              <label ><span class="glyphicon glyphicon-envelope"></span>  Email</label>
+              <label >  Email</label>
               <input type="text" class="form-control" name="email_user" value="<?php echo $row ['email_user']; ?>" placeholder="masukan nama lomba">
             </div>
             <div class="form-group">
-              <label ><span class="glyphicon glyphicon-phone-alt"></span>  No.telephone</label>
+              <label >  No.telephone</label>
               <input type="text" class="form-control" name="tlp_user" value="<?php echo $row ['tlp_user']; ?>" placeholder="masukan nama lomba">
             </div>
             <div class="form-group">
-              <label ><span class="glyphicon glyphicon-send"></span>  alamat</label>
+              <label >  alamat</label>
               <input type="text" class="form-control" name="alamat_user" value="<?php echo $row ['alamat_user']; ?>" placeholder="masukan lokasi lomba">
             </div>
             <div class="form-group">
-              <label ><span class="glyphicon glyphicon-picture"></span>  Foto</label>
+              <label >  Foto</label>
                 <input type="file" name="foto" class="form-control" placeholder="foto" required>
             </div>
              <div  class="form-group">
-              <label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>
+              <label for="usrname"> Username</label>
               <input type="text" class="form-control" name="username_user" value="<?php echo $row ['username_user']; ?>" placeholder="Enter username" readonly>
             </div>
             <div  class="form-group">
-              <label for="usrname"><span class="glyphicon glyphicon-user"></span> Password</label>
+              <label for="usrname"> Password</label>
               <input type="password" class="form-control" name="password_user"  placeholder="Enter password" >
             </div>
             

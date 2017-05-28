@@ -53,7 +53,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-       <center>INFO LOMBA</center> 
+       <center><b>DAFTAR LOMBA SAYA</b></center> 
         
       </h1>
       <ol class="breadcrumb">

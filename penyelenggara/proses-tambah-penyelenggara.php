@@ -16,6 +16,7 @@ include "../koneksi.php";
 					$jml_tim						= $_POST['jml_tim'];
 					$status_penyelenggara			= $_POST['status_penyelenggara'];
 					$id_user						= $_POST['id_user'];
+					$logo							= 'logo.png';
 
 					
 					
@@ -25,7 +26,7 @@ include "../koneksi.php";
 					$cek = mysqli_query($koneksi, "SELECT * FROM penyelenggara WHERE id_penyelenggara='$id_penyelenggara'")or die (mysqli_error($koneksi));
 					if(mysqli_num_rows($cek) == 0)
 					{
-						$insert = mysqli_query($koneksi, "INSERT INTO penyelenggara(id_penyelenggara, nama_penyelenggara, nama_lomba, lokasi_lomba,akhir_pendaftaran, waktu_awal_lomba,waktu_akhir_lomba,id_kategori, email_penyelenggara, tlp_penyelenggara,jml_tim, status_penyelenggara,id_user) VALUES('$id_penyelenggara','$nama_penyelenggara', '$nama_lomba', '$lokasi_lomba','$akhir_pendaftaran', '$waktu_awal_lomba', '$waktu_akhir_lomba', '$id_kategori', '$email_penyelenggara', '$tlp_penyelenggara','$jml_tim', '$status_penyelenggara','$id_user')") or die(mysqli_error($koneksi));
+						$insert = mysqli_query($koneksi, "INSERT INTO penyelenggara(id_penyelenggara, nama_penyelenggara, nama_lomba, lokasi_lomba,akhir_pendaftaran, waktu_awal_lomba,waktu_akhir_lomba,id_kategori, email_penyelenggara, tlp_penyelenggara,jml_tim, status_penyelenggara,id_user,logo) VALUES('$id_penyelenggara','$nama_penyelenggara', '$nama_lomba', '$lokasi_lomba','$akhir_pendaftaran', '$waktu_awal_lomba', '$waktu_akhir_lomba', '$id_kategori', '$email_penyelenggara', '$tlp_penyelenggara','$jml_tim', '$status_penyelenggara','$id_user','$logo')") or die(mysqli_error($koneksi));
 							if($insert)
 							{
 								header("location: ../user/index.php");

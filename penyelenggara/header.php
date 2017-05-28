@@ -56,7 +56,7 @@ if ($_SESSION['id_level']!='2') {
                   <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
               </div>
             <!--logo start-->
-            <a href="index.php" class="logo"><b>E-Sport</b></a>
+            <a href="index.php" class="logo"><b>Dashboard Penyelenggara</b></a>
             <!--logo end-->
             
             <div class="top-menu">
@@ -108,65 +108,8 @@ if ($_SESSION['id_level']!='2') {
 	
 	
 	
-	<script type="application/javascript">
-        $(document).ready(function () {
-            $("#date-popover").popover({html: true, trigger: "manual"});
-            $("#date-popover").hide();
-            $("#date-popover").click(function (e) {
-                $(this).hide();
-            });
-        
-            $("#my-calendar").zabuto_calendar({
-                action: function () {
-                    return myDateFunction(this.id, false);
-                },
-                action_nav: function () {
-                    return myNavFunction(this.id);
-                },
-                ajax: {
-                    url: "show_data.php?action=1",
-                    modal: true
-                },
-                legend: [
-                    {type: "text", label: "Special event", badge: "00"},
-                    {type: "block", label: "Regular event", }
-                ]
-            });
-        });
-        
-        
-        function myNavFunction(id) {
-            $("#date-popover").hide();
-            var nav = $("#" + id).data("navigation");
-            var to = $("#" + id).data("to");
-            console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
-        }
-    </script>
+	
   
-  <?php
-      if(isset($_GET['aksi']) == 'delete'){
-        $id_tim = $_GET['id_tim'];
-        $id_penyelenggara = $_SESSION['id_penyelenggara'];
-        $cek = mysqli_query($koneksi, "SELECT * FROM tim WHERE id_penyelenggara='$id_penyelenggara'") or die (mysqli_error($koneksi));
-        if(mysqli_num_rows($cek) == 0){
-          echo '<div class="alert alert-info alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> Data tidak ditemukan.</div>';
-        }else{
-          $delete = mysqli_query($koneksi, "DELETE FROM tim WHERE id_tim='$id_tim'");
-          if($delete){
-            ?>
-              <script type="text/javascript">
-                alert("Data Berhasil Dihapus");
-              </script>
-            <?php
-          }else{
-            ?>
-              <script type="text/javascript">
-                alert("Data Gagal Dihapus");
-              </script>
-            <?php
-          }
-        }
-      }
-      ?>
+ 
   </body>
 </html>

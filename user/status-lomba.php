@@ -52,7 +52,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-       <center>INFO LOMBA</center> 
+       <center><b>LOMBA YANG DIIKUTI</b></center> 
         
       </h1>
       <ol class="breadcrumb">
@@ -140,9 +140,7 @@
                 ?>
               </tbody>
           </table>
-          <div class=" col-xs-3">
-          <button type="button" id="daftar-penyelenggara"  class="btn btn-block btn-primary">Daftarkan Lomba</button>
-          </div>
+          
     </div><!-- /#page-wrapper -->
 
     </section>
