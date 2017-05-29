@@ -47,8 +47,8 @@
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           <ul class="nav navbar-nav side-nav">
             <li><a href="index.php"><i class="fa fa-dashboard"></i> Confirmasi Penyelenggara</a></li>
-            <li><a href="konfirmasi_pembayaran.php"><i class="fa fa-tachometer"></i> Confirmasi Pembayaran</a></li>
-            <li class="active"><a href="data_penyelenggara.php"><i class="fa fa-bar-chart-o"></i> Data Penyelenggara</a></li>
+             <li class="active"><a href="konfirmasi_pembayaran.php"><i class="fa fa-tachometer"></i> Confirmasi Pembayaran</a></li>
+            <li ><a href="data_penyelenggara.php"><i class="fa fa-bar-chart-o"></i> Data Penyelenggara</a></li>
             <li><a href="tables.html"><i class="fa fa-table"></i> Statistik</a></li>
             <li><a href="ivent.php"><i class="fa fa-edit"></i> Ivent</a></li>
           </ul>
@@ -99,10 +99,8 @@
             <td>No</td>
             <td>Nama Penyelenggara</td>
             <td>Nama Lomba</td>
-            <td>Lokasi</td>
-            <td>Waktu Awal</td>
-            <td>Waktu Akhir</td>
             <td>Email</td>
+            <td>Foto Slip Pembayaran</td>
             <td>Pilihan</td>
         </thead>
         <tbody>
@@ -115,19 +113,17 @@
           else{
             $no = 1;
           while($row = mysqli_fetch_assoc($sql)){
-            if ($row['status_penyelenggara']==3) {
+          if ($row['status_penyelenggara']==2) {
             echo '
             <tr>
               <td style="text-align: center">'.$no.'</td>
-              <td style="text-align: center">'.$row['nama_penyelenggara'].'</td>
+              <td>'.$row['nama_penyelenggara'].'</td>
               <td>'.$row['nama_lomba'].'</td>
-              <td style="text-align: center">'.$row['lokasi_lomba'].'</td>
-              <td style="text-align: center">'.$row['waktu_awal_lomba'].'</td>
-              <td style="text-align: center">'.$row['waktu_akhir_lomba'].'</td>
               <td style="text-align: center">'.$row['email_penyelenggara'].'</td>
+              <td style="text-align: center"><img src="../user/pembayaran/'.$row['pembayaran_penyelenggara'].'" style="width:75px; height:60px";/></td>
               <td style="text-align: center">
-                <a href="#" id=' .$row["id_penyelenggara"].' class="btn btn-sm btn-info"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
-                <a href="index.php?aksi=delete&id_penyelenggara='.$row['id_penyelenggara'].'" title="Hapus Data" onclick="return confirm(\'Anda yakin akan menghapus data '.$row['nama_penyelenggara'].'?\')" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+                <a href="index.php?aksi=delete&id_penyelenggara='.$row['id_penyelenggara'].'" title="Hapus Data" onclick="return confirm(\'Anda yakin akan menghapus data '.$row['nama_penyelenggara'].'?\')" class="btn btn-danger btn-sm" style="width:90px;">Delete</a>
+                  <a href="javascript:void(0)" class="btn btn-sm btn-success" id="konfirmasi_pembayaran" penyelenggaraId="'.$row['id_penyelenggara'].'" onclick="konfirmasi_pembayaran(this);" style="width:90px;">Confirmation</a>
               </td>
             </tr>
             ';
@@ -200,3 +196,24 @@
 
   </body>
 </html>
+
+<!-- Modal untuk Konfirmasi -->
+<script type="text/javascript">
+function konfirmasi_pembayaran(e) {
+  var id_penyelenggara = $(e).attr("penyelenggaraId");
+  $.ajax({
+    url:'proses_konfirmasi_pembayaran.php',
+    type:'post',
+    data:'id='+id_penyelenggara,
+    success:function (data) {
+      var dataKonf = jQuery.parseJSON(data);
+      if (dataKonf.isSuccess) {
+        $("#page-wrapper").load(document.URL + ' #page-wrapper');
+      }
+      else{
+        alert('gagal update db');
+      }
+    }
+  });
+}
+</script>
