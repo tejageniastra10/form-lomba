@@ -119,7 +119,7 @@
                       <td style="text-align: center">'.$row['tlp_penyelenggara'].'</td>
                       <td style="text-align: center">'.$row['jml_tim'].'</td>
                       <td style="text-align: center">
-                        <a href="session.php?id_penyelenggara='.$row['id_penyelenggara'].'" title="Menuju Dashbpard"  class="btn btn-sm btn-primary"><span  aria-hidden="true"></span> Ke Dashboard </a>
+                        <a href="session.php?id_penyelenggara='.$row['id_penyelenggara'].'" target="_blank" title="Menuju Dashbpard"  class="btn btn-sm btn-primary"><span  aria-hidden="true"></span> Ke Dashboard </a>
                       </td>
                     </tr>
                     ';
@@ -132,9 +132,7 @@
                 ?>
               </tbody>
           </table>
-          <div class=" col-xs-3">
-          <button type="button" id="daftar-penyelenggara"  class="btn btn-block btn-primary">Daftarkan Lomba</button>
-          </div>
+          
     </div><!-- /#page-wrapper -->
 
     </section>
@@ -144,83 +142,7 @@
 
  
 
-  <div class="container">
-     <!-- Modal daftar penyelenggara -->
-      <div class="modal fade" id="Modal-penelenggara" role="dialog">
-        <div class="modal-dialog">
-        
-          <div class="modal-content">
-            <div class="modal-header" style="background: #0086b3; padding:15px 20px;">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h2 style="color: white" ><center><b>Daftar Penyelenggara</b></center></h2>
-            </div>
-            <div class="modal-body" style="padding:40px 50px;">
-              <form id="form_tambah_penyelenggara" class="form-horizontal" action="../penyelenggara/proses-tambah-penyelenggara.php" method="post" enctype="multipart/form-data">
-              <div class="form-group">
-                  <label ><span class="glyphicon glyphicon-home"></span>  Nama Penyelenggara</label>
-                  <input type="text" class="form-control" name="nama_penyelenggara" placeholder="Masukan Nama Penyelenggara">
-                </div>
-                <div class="form-group">
-                  <label ><span class="glyphicon glyphicon-file"></span>  Nama Lomba</label>
-                  <input type="text" class="form-control" name="nama_lomba" placeholder="masukan nama lomba">
-                </div>
-                <div class="form-group">
-                  <label ><span class="glyphicon glyphicon-send"></span>  lokasi Lomba</label>
-                  <input type="text" class="form-control" name="lokasi_lomba" placeholder="masukan lokasi lomba">
-                </div>
-                <div class="form-group">
-                  <label ><span class="glyphicon glyphicon-calendar"></span>  Akhir Pendaftaran</label>
-                  <input type="date" class="form-control" name="akhir_pendaftaran" placeholder="masukan waktu" required>
-                </div>
-                <div class="form-group">
-                  <label ><span class="glyphicon glyphicon-calendar"></span>  Waktu Awal Lomba</label>
-                  <input type="date" class="form-control" name="waktu_awal_lomba" placeholder="masukan waktu" required>
-                </div>
-                <div class="form-group">
-                  <label ><span class="glyphicon glyphicon-calendar"></span>  Waktu Akhir Lomba</label>
-                  <input type="date" class="form-control" name="waktu_akhir_lomba" placeholder="masukan waktu" required>
-                </div>
-                <div class="form-group">
-                <label ><span class="glyphicon glyphicon-list"></span>  Kategori Lomba</label>
-                        <select name="id_kategori" class="form-control" required>
-                        <option value="1">Sepak Bola</option>
-                        <option value="2">Futsal</option>
-                        <option value="3">Basket</option>
-                        </select>  
-                </div>
-                <div class="form-group">
-                  <label ><span class="glyphicon glyphicon-envelope"></span> Email</label>
-                  <input type="text" class="form-control"  name="email_penyelenggara" placeholder="Enter email">
-                </div>
-                <div class="form-group">
-                  <label for="usrname"><span class="glyphicon glyphicon-phone-alt"></span> No. Telepon</label>
-                  <input type="text" class="form-control" name="tlp_penyelenggara" placeholder="masukan no hp">
-                </div>
-                <div class="form-group">
-                  <label ><span class="glyphicon glyphicon-user"></span> Jumlah Tim</label>
-                  <input type="text" class="form-control" name="jml_tim" placeholder="masukkan jumlah tim">
-                </div>
-                
-                
-                <div class="form-group">
-                  
-                  <input  name="status_penyelenggara" value="0" type="hidden">
-                </div>
-                <div class="form-group">
-                  
-                  <input  name="id_user" value="<?php echo $_SESSION['id_user']; ?> " type="hidden">
-                </div>
-                
-                
-              
-                
-                  <button type="submit" href="index.php" type="submit" name="add" value="Simpan" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> daftar</button>
-              </form>
-            </div>     
-          </div>
-        </div>
-      </div> 
-      </div>
+ 
 
 
       <!-- jQuery -->

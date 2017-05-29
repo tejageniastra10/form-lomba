@@ -228,7 +228,7 @@
   <script src="js/jquery.min.js"></script>
 
   <script type="text/javascript">
-  $(window).load(function() { $("#loading").fadeOut(2300); })
+  $(window).load(function() { $("#loading").fadeOut(3000); })
 </script>
 
   <?php

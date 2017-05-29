@@ -160,31 +160,31 @@
             <div class="modal-body" style="padding:40px 50px;">
               <form id="form_tambah_penyelenggara" class="form-horizontal" action="../penyelenggara/proses-tambah-penyelenggara.php" method="post" enctype="multipart/form-data">
               <div class="form-group">
-                  <label ><span class="glyphicon glyphicon-home"></span>  Nama Penyelenggara</label>
+                  <label > Nama Penyelenggara</label>
                   <input type="text" class="form-control" name="nama_penyelenggara" placeholder="Masukan Nama Penyelenggara">
                 </div>
                 <div class="form-group">
-                  <label ><span class="glyphicon glyphicon-file"></span>  Nama Lomba</label>
+                  <label > Nama Lomba</label>
                   <input type="text" class="form-control" name="nama_lomba" placeholder="masukan nama lomba">
                 </div>
                 <div class="form-group">
-                  <label ><span class="glyphicon glyphicon-send"></span>  lokasi Lomba</label>
+                  <label > lokasi Lomba</label>
                   <input type="text" class="form-control" name="lokasi_lomba" placeholder="masukan lokasi lomba">
                 </div>
                 <div class="form-group">
-                  <label ><span class="glyphicon glyphicon-calendar"></span>  Akhir Pendaftaran</label>
+                  <label > Akhir Pendaftaran</label>
                   <input type="date" class="form-control" name="akhir_pendaftaran" placeholder="masukan waktu" required>
                 </div>
                 <div class="form-group">
-                  <label ><span class="glyphicon glyphicon-calendar"></span>  Waktu Awal Lomba</label>
+                  <label > Waktu Awal Lomba</label>
                   <input type="date" class="form-control" name="waktu_awal_lomba" placeholder="masukan waktu" required>
                 </div>
                 <div class="form-group">
-                  <label ><span class="glyphicon glyphicon-calendar"></span>  Waktu Akhir Lomba</label>
+                  <label > Waktu Akhir Lomba</label>
                   <input type="date" class="form-control" name="waktu_akhir_lomba" placeholder="masukan waktu" required>
                 </div>
                 <div class="form-group">
-                <label ><span class="glyphicon glyphicon-list"></span>  Kategori Lomba</label>
+                <label > Kategori Lomba</label>
                         <select name="id_kategori" class="form-control" required>
                         <option value="1">Sepak Bola</option>
                         <option value="2">Futsal</option>
@@ -192,7 +192,7 @@
                         </select>  
                 </div>
                 <div class="form-group">
-                  <label ><span class="glyphicon glyphicon-envelope"></span> Email</label>
+                  <label > Email</label>
                   <input type="text" class="form-control"  name="email_penyelenggara" placeholder="Enter email">
                 </div>
                 <div class="form-group">
@@ -200,9 +200,13 @@
                   <input type="text" class="form-control" name="tlp_penyelenggara" placeholder="masukan no hp">
                 </div>
                 <div class="form-group">
-                  <label ><span class="glyphicon glyphicon-user"></span> Jumlah Tim</label>
+                  <label >Jumlah Tim</label>
                   <input type="text" class="form-control" name="jml_tim" placeholder="masukkan jumlah tim">
                 </div>
+                <div class="form-group">
+              <label><span ></span> Foto Copy KTP</label>
+              <input type="file" name="fc_ktp" class="form-control" placeholder="foto" required>
+            </div>  
                 
                 
                 <div class="form-group">
