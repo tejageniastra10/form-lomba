@@ -118,7 +118,8 @@
                       <td style="text-align: center">'.$row['tlp_penyelenggara'].'</td>
                       <td style="text-align: center">'.$row['jml_tim'].'</td>
                       <td style="text-align: center">
-                        <a href="#" id='.$row["id_penyelenggara"].'  title="lihat Detail" class="btn btn-sm btn-info"><span aria-hidden="true"></span>Lihat</a>
+                        
+                        <a href="#" class="btn btn-sm btn-info"   data-id='.$row["id_penyelenggara"].'><span  aria-hidden="true"></span> detail </a>
                   
                         <a href="#" class="btn btn-sm btn-warning" ket='.$row["id_kategori"].'  data-id='.$row["id_penyelenggara"].'><span  aria-hidden="true"></span> Daftar </a>
                       </td>
@@ -249,6 +250,37 @@
                         success: function (ajaxData){
                             
                             $("#Modal-tim").modal('show');
+                        }
+                    });
+                });
+            });
+        </script>
+
+<div class="modal fade" id="ModalDetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-warning">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Edit Anggota</h4>
+      </div>
+      <div class="modal-body">
+      </div>
+    </div>
+  </div>
+</div>
+
+ <!---script lihat detail-->
+       <script type="text/javascript">
+            $(document).ready(function (){
+                $(".btn-info").click(function (e){
+                    var m = $(this).attr("data-id");
+                    $.ajax({
+                        url: "detailpenyelenggara.php",
+                        type: "GET",
+                        data : {id_penyelenggara: m,},
+                        success: function (ajaxData){
+                            $("#ModalDetail").html(ajaxData);
+                            $("#ModalDetail").modal('show',{backdrop: 'true'});
                         }
                     });
                 });
