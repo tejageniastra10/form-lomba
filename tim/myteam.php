@@ -34,7 +34,7 @@
                         </h1>
                         <ol class="breadcrumb">
                             <li>
-                                <i class="fa fa-dashboard"></i>  <a href="index.php"><?php echo $_SESSION['nama_lomba']; ?> | <?php echo $_SESSION['nama_tim']; ?> </a>
+                                <i class="fa fa-dashboard"></i>  <?php echo $_SESSION['nama_tim']; ?> </a>
                             </li>
                             <li class="active">
                                 <i class="fa fa-plus"></i> Tambah Pemain Tim
