@@ -39,11 +39,12 @@
               <label for="usrname"><span class="glyphicon glyphicon-user"></span> Jumlah Pemain</label>
               <input type="text" class="form-control" name="jml_pemain" placeholder="masukan jumlah tim">
             </div>
-            <div class="form-group">
+            
               <input type="hidden" class="form-control" name="id_status" value="1">
-            </div>
-            <div class="form-group">
               <input type="hidden" class="form-control" name="id_user" value="<?php echo $_SESSION['id_user'];?>">
+                      <div class="form-group">
+               <label> Foto Copy KTP Penanggung jawab</label>
+               <input type="file" name="ktp_tim" class="form-control" placeholder="foto" required>
             </div>
             
             
