@@ -14,7 +14,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Peserta | List Pemain</title>
+    <title> <?php echo $_SESSION['nama_lomba_diikuti']; ?> | <?php echo $_SESSION['nama_tim']; ?> </title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
