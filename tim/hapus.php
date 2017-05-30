@@ -1,7 +1,11 @@
 <?php
+	include("session.php");
+?>
+<?php
 if($_POST['HAPUS']=='hapus')
+{
 	require_once("../koneksi.php");
-	$id_pemain = $_POST["id_pemain"];
+	$id_pemain= $_POST['id_pemain'];
 	
 	if($id_pemain != "")
 	{  // Jika Request ID tidak = kosong maka lakukan proses
@@ -12,4 +16,5 @@ if($_POST['HAPUS']=='hapus')
         	header("location:myteam.php");    // Tampilkan Pesan
     	}
 	}
+}
 ?>

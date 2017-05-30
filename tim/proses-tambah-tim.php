@@ -15,8 +15,6 @@ include "../koneksi.php";
 					$id_user						= $_POST['id_user'];
 
 					
-
-					
 					$cek = mysqli_query($koneksi, "SELECT * FROM tim WHERE nama_tim='$nama_tim'")or die (mysqli_error($koneksi));
 					if(mysqli_num_rows($cek) == 0)
 					{
