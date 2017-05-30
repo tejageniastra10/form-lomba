@@ -160,9 +160,6 @@ h1 span {
                         <li>
                             <a href="index.php"><i class="fa fa-fw fa-user"></i> Homepage</a>
                         </li>
-                        <li>
-                            <a href="../petunjuk.php"><i class="fa fa-fw fa-info"></i> Petunjuk</a>
-                        </li>
                         <li class="divider"></li>
                         <li>
                             <a href="../logout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
@@ -179,17 +176,11 @@ h1 span {
                      <li>
                         <a href="pengumuman_peserta.php"><i class="fa fa-fw fa-list"></i> Pengumuman</a>
                     </li>
-                    <li  class="active">
-                        <a href="list.php"><i class="fa fa-fw fa-list"></i> Tim Terdaftar</a>
-                    </li>
                     <li>
                         <a href="myteam.php"><i class="fa fa-fw fa-plus"></i> Pemain</a>
                     </li>
-                     <li>
-                        <a href="pembayaran_peserta.php"><i class="fa fa-fw fa-plus"></i> Pembayaran</a>
-                    </li>
                     <li>
-                        <a href="jadwal.php"><i class="fa fa-fw fa-calendar"></i> Hasil Undian dan Jadwal</a>
+                        <a href="jadwal.php"><i class="fa fa-fw fa-calendar"></i> Jadwal</a>
                     </li>
                     <li>
                         <a href="statistik_peserta.php"><i class="fa fa-fw fa-calendar"></i> Statistik</a>
