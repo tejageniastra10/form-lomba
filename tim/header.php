@@ -146,7 +146,7 @@ h1 span {
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-               <a class="navbar-brand" href="index.php"> <?php echo $_SESSION['nama_lomba']; ?> | <?php echo $_SESSION['nama_tim']; ?>  </a>
+               <a class="navbar-brand" href="index.php"> <?php echo $_SESSION['nama_lomba_diikuti']; ?> | <?php echo $_SESSION['nama_tim']; ?>  </a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">

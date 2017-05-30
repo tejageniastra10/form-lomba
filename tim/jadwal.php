@@ -15,7 +15,7 @@
                         <a href="jadwal.php"><i class="fa fa-fw fa-calendar"></i> Jadwal</a>
                     </li>
                     <li>
-                        <a href="statistik_peserta.php"><i class="fa fa-fw fa-calendar"></i> Statistik</a>
+                        <a href="statisti_peserta.php"><i class="fa fa-fw fa-calendar"></i> Statistik</a>
                     </li>
                 </ul>
             </div>
