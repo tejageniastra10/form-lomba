@@ -55,7 +55,7 @@ if ($_SESSION['id_level']!='2') {
   width: 100%;
   height: 100%;
   z-index: 9999;
-  background: url(foto/loading.gif) 50% 50% no-repeat #f2f2f9;
+  background: url(foto/loading.gif) 50% 50% no-repeat #ecf0f1;
 }
 </style>
 

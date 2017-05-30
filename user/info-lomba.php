@@ -197,7 +197,7 @@
                   <input type="text" class="form-control"  name="email_penyelenggara" placeholder="Enter email">
                 </div>
                 <div class="form-group">
-                  <label for="usrname"><span class="glyphicon glyphicon-phone-alt"></span> No. Telepon</label>
+                  <label for="usrname"> No. Telepon</label>
                   <input type="text" class="form-control" name="tlp_penyelenggara" placeholder="masukan no hp">
                 </div>
                 <div class="form-group">
