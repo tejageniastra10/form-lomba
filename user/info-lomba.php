@@ -137,7 +137,7 @@
               </tbody>
           </table>
           <div class=" col-xs-3">
-          <button type="button" id="daftar-penyelenggara"  class="btn btn-block btn-primary">Daftarkan Lomba</button>
+          <button type="button" id="daftar-penyelenggara"  class="btn btn-block btn-primary">Daftarkan Penyelenggara</button>
           </div>
     </div><!-- /#page-wrapper -->
 
@@ -160,7 +160,7 @@
             </div>
             <div class="modal-body" style="padding:40px 50px;">
               <form id="form_tambah_penyelenggara" class="form-horizontal" action="../penyelenggara/proses-tambah-penyelenggara.php" method="post" enctype="multipart/form-data">
-              <div class="form-group">
+                <div class="form-group">
                   <label > Nama Penyelenggara</label>
                   <input type="text" class="form-control" name="nama_penyelenggara" placeholder="Masukan Nama Penyelenggara">
                 </div>
@@ -205,10 +205,13 @@
                   <input type="text" class="form-control" name="jml_tim" placeholder="masukkan jumlah tim">
                 </div>
                 <div class="form-group">
-              <label><span ></span> Foto Copy KTP</label>
-              <input type="file" name="fc_ktp" class="form-control" placeholder="foto" required>
-            </div>  
-                
+                   <label><span ></span> Foto Copy KTP Penyelenggara</label>
+                   <input type="file" name="fc_ktp" class="form-control" placeholder="foto" required>
+                </div>  
+                 <div class="form-group">
+                  <label >Detail Penyelenggara</label>
+                  <textarea class="form-control" name="detail_penyelenggara" placeholder="masukkan detail penyelenggara"></textarea> 
+                </div>
                 
                 <div class="form-group">
                   
@@ -275,7 +278,7 @@
                 $(".btn-info").click(function (e){
                     var m = $(this).attr("data-id");
                     $.ajax({
-                        url: "detailpenyelenggara.php",
+                        url: "modal/detailpenyelenggara.php",
                         type: "GET",
                         data : {id_penyelenggara: m,},
                         success: function (ajaxData){
@@ -495,22 +498,7 @@
 
 
 
-<!-- Bootstrap 3.3.6 -->
-<script src="bootstrap/js/bootstrap.min.js"></script>
-
-<!-- Slimscroll -->
-<script src="plugins/slimScroll/jquery.slimscroll.min.js"></script>
-<!-- FastClick -->
-<script src="plugins/fastclick/fastclick.js"></script>
-<!-- AdminLTE App -->
-<script src="dist/js/app.min.js"></script>
-
-  <!-- /.content-wrapper -->
-  <footer class="main-footer">
-    
-    <strong>Copyright &copy; 2017 <a href="#">Aliansi Team</a>.</strong> All rights
-    reserved.
-  </footer>
+<?php include("scrip/footer.php")  ?>
 
 
 
