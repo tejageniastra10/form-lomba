@@ -126,12 +126,6 @@ session_start();
 				<div id="fh5co-navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav navbar-right">
 						<li class="active"><a href="index.php"><span>Home <span class="border"></span></span></a></li>
-						<li class="utama"><a href="instruksi.php">Instruksi</a>
-						<ul>
-						<li><a href="instruksi_penyelenggara.php">Penyelenggara</li>
-						<li><a href="instruksi_Peserta.php">Peserta</a></li>
-						</ul>
-						</li>
 						<li><a href="tentang.php"><span>Tentang <span class="border"></span></span></a></li>
 
 						<?php

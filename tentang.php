@@ -85,25 +85,9 @@ session_start();
 				</div>
 				<div id="fh5co-navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="index.php"><span>Home <span class="border"></span></span></a></li>
-						<li class="active"><a href="instruksi.php"><span>Instruksi <span class="border"></span></span></a></li>
-						<li><a href="tentang.php"><span>Tentang <span class="border"></span></span></a></li>
+						<li ><a href="index.php"><span>Home <span class="border"></span></span></a></li>
+						<li class="active"><a href="tentang.php"><span>Tentang <span class="border"></span></span></a></li>
 						
-						<?php
-						if(!empty($_SESSION)){ ?>
-							<li><a  href="user/index.php" id="myBtn"><span><?php echo $_SESSION['nama_user'];  ?> <span class="border"></span></span></a></li>
-								  
-							<?php	}
-						  ?>
-						  <?php
-
-						  if(empty($_SESSION)) { ?>
-						    	
-						    	<li><a  href="#" id="daftar"><span>Daftar  <span class="border"></span></span></a></li>
-								<li><a  href="#" id="myBtn"><span>Log In <span class="border"></span></span></a></li>
-
-						    <?php	
-						    }  ?>
 					</ul>
 				</div>
 			</div>
