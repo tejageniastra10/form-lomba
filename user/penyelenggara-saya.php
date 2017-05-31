@@ -67,7 +67,22 @@
       
     <div id="page-wrapper"><br />
 
-      
+             
+            <?php if (!isset($_GET['order'])) {
+                  $kolom = 'id_penyelenggara';
+                  $order = 'asc';
+                  }
+                  else if($_GET['order']=='desc')
+                  {
+                    $kolom = 'nama_lomba';
+                    $order = 'desc';
+                    } 
+                  else if($_GET['order']=='asc')
+                  {
+                    $kolom = 'nama_lomba';
+                    $order = 'asc';
+                    } ?>
+
               <form class="form-inline" method="get">
                 <div class="form-group">
                   <select name="filter" class="form-control" onchange="form.submit()">
@@ -83,7 +98,23 @@
               <table class="table table-bordered table-striped">
                 <thead style="text-align: center; background: black;color: white">
                     <td style=" width: 50px">No</td>
-                    <td style=" width: 130px">Nama Lomba</td>
+                    <td style=" width: 130px">Nama Lomba
+                    <?php
+                        if(!isset($_GET['order']) || $_GET['order']=='desc' )
+                          {?>
+                            <a class="pull-right" href="penyelenggara-saya.php?order=asc">
+                              <span class="glyphicon glyphicon-triangle-top" aria-hidden="true">
+                              </span></a>
+                        <?php
+                          }
+                          else if($_GET['order']=='asc')
+                            {?>
+                            <a class="pull-right" href="penyelenggara-saya.php?order=desc">
+                              <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true">
+                            </a></span>
+                            <?php
+                            }
+                            ?></td>
                     <td style=" width: 250px">Tempat Lomba</td>
                     <td style=" width: 150px">Waktu Mulai Lomba</td>
                     <td style=" width: 200px">Telphone Penyelenggara</td>
@@ -95,10 +126,10 @@
 
                   if($filter){
                     $id_user=$_SESSION['id_user'];
-                    $sql = mysqli_query($koneksi, "SELECT * FROM penyelenggara WHERE id_kategori='$filter' AND id_user='$id_user'");
+                    $sql = mysqli_query($koneksi, "SELECT * FROM penyelenggara WHERE id_kategori='$filter' AND id_user='$id_user'  ORDER BY $kolom $order");
                   }else{
                     $id_user=$_SESSION['id_user'];
-                    $sql = mysqli_query($koneksi, "SELECT * FROM penyelenggara WHERE id_user='$id_user'");
+                    $sql = mysqli_query($koneksi, "SELECT * FROM penyelenggara WHERE id_user='$id_user'  ORDER BY $kolom $order");
                   }
 
                   if(mysqli_num_rows($sql) == 0){

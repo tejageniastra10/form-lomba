@@ -43,7 +43,7 @@
             </div> 
               <div class="form-group">
               <label > Detail</label>
-              <textarea class="form-control" readonly><?php echo $row1['detail_penyelenggara']; ?></textarea>
+              <textarea rows="6" class="form-control" readonly><?php echo $row1['detail_penyelenggara']; ?></textarea>
             </div>             
           </form>
         </div>     

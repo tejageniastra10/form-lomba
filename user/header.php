@@ -63,6 +63,26 @@ if ($_SESSION['id_level']!='2') {
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 
+            <?php 
+                      $id_user= $_SESSION['id_user'];
+                      $jml_penyelenggara= mysqli_query($koneksi, "SELECT id_user FROM penyelenggara WHERE id_user='$id_user' and status_penyelenggara='3' " );
+                      $jml_tim= mysqli_query($koneksi, "SELECT id_user FROM tim WHERE id_user='$id_user' and id_status='2' " );
+                          $i=1;
+                          $_SESSION['jml_penyelenggara']= 0;
+                          while($jml = mysqli_fetch_assoc($jml_penyelenggara)){
+                            $_SESSION['jml_penyelenggara']= $i;
+                            $i++;               
+                          }
+                          $j=1;
+                          $_SESSION['jml_tim']= 0;
+                          while($jml = mysqli_fetch_assoc($jml_tim)){
+                            $_SESSION['jml_tim']= $j;
+                            $j++;               
+                          }
+
+
+            ?>
+
 <div class="wrapper">
 
   <header class="main-header">

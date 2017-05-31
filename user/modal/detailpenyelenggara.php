@@ -51,7 +51,7 @@
             </div>
              <div class="form-group">
               <label > Detail Lomba</label>
-              <textarea class="form-control" readonly><?php echo $row['detail_penyelenggara']; ?></textarea>
+              <textarea rows="6" class="form-control" readonly><?php echo $row['detail_penyelenggara']; ?></textarea>
             </div>
 
             

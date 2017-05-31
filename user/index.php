@@ -268,7 +268,7 @@
             </div>
             <div class="form-group">
               <label >  Foto</label>
-                <input type="file" name="foto" class="form-control" placeholder="foto" required>
+                <input type="file" name="foto" class="form-control" placeholder="foto" >
             </div>
              <div  class="form-group">
               <label for="usrname"> Username</label>
