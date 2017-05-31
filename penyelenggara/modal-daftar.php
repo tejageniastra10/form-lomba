@@ -9,12 +9,11 @@
             </div>
         <div class="modal-body" style="padding:40px 50px;">
           <form id="form_tambah_tim" class="form-horizontal" action="../tim/proses-tambah-tim.php" method="post" enctype="multipart/form-data">
-          <div class="form-group">
+          
               <input type="hidden" class="form-control" name="id_penyelenggara" id="penyelenggara">
-            </div>
-            <div class="form-group">
+            
               <input type="hidden" class="form-control" name="kategori" id="id_kategori">
-            </div>
+        
           <div class="form-group">
               <label ><span class="glyphicon glyphicon-home"></span>  Nama Tim Peserta</label>
               <input type="text" class="form-control" name="nama_tim" placeholder="Masukan Nama Tim Peserta">

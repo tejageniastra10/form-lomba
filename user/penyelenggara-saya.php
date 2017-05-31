@@ -96,21 +96,21 @@
               </form><br />
 
               <table class="table table-bordered table-striped">
-                <thead style="text-align: center; background: black;color: white">
+                <thead style="text-align: center; background: #3c8dbc;color: white">
                     <td style=" width: 50px">No</td>
                     <td style=" width: 130px">Nama Lomba
                     <?php
                         if(!isset($_GET['order']) || $_GET['order']=='desc' )
                           {?>
                             <a class="pull-right" href="penyelenggara-saya.php?order=asc">
-                              <span class="glyphicon glyphicon-triangle-top" aria-hidden="true">
+                              <span style="color: white" class="glyphicon glyphicon-triangle-top" aria-hidden="true">
                               </span></a>
                         <?php
                           }
                           else if($_GET['order']=='asc')
                             {?>
                             <a class="pull-right" href="penyelenggara-saya.php?order=desc">
-                              <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true">
+                              <span style="color: white" class="glyphicon glyphicon-triangle-bottom" aria-hidden="true">
                             </a></span>
                             <?php
                             }

@@ -1,6 +1,5 @@
 <?php include("header.php")  ?>
-
-      <ul class="sidebar-menu">
+   <ul class="sidebar-menu">
         <li class="header">MENU</li>
         <li class="treeview">
           <a href="index.php">
@@ -54,129 +53,98 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-       <center><b>INFO LOMBA</b></center> 
-        
+        INFO LOMBA
+        <small>lomba yang tersedia</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="index.php"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Info Lomba</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        <li><a href="#">Info Lomba</a></li>
+       
       </ol>
     </section>
 
     <!-- Main content -->
     <section class="content">
-      
-    <div id="page-wrapper"><br />
-
-            <?php if (!isset($_GET['order'])) {
-                  $kolom = 'id_penyelenggara';
-                  $order = 'asc';
-                  }
-                  else if($_GET['order']=='desc')
-                  {
-                    $kolom = 'nama_lomba';
-                    $order = 'desc';
-                    } 
-                  else if($_GET['order']=='asc')
-                  {
-                    $kolom = 'nama_lomba';
-                    $order = 'asc';
-                    } ?>
-
-      
-              <form class="form-inline" method="get">
-                <div class="form-group">
-                  <select name="filter" class="form-control" onchange="form.submit()">
-                    <option value="0">Kategori Lomba</option>
-                    <?php $filter = (isset($_GET['filter']) ? strtolower($_GET['filter']) : NULL);  ?>
-                    <option value="1" <?php if($filter == '1'){ echo 'selected'; } ?>>Sepak Bola</option>
-                    <option value="2" <?php if($filter == '2'){ echo 'selected'; } ?>>Futsal</option>
-                    <option value="3" <?php if($filter == '3'){ echo 'selected'; } ?>>Basket</option>
-                  </select>
-                </div>
-              </form><br />
-
-              <table class="table table-bordered table-striped">
-                <thead style="text-align: center; background: black;color: white">
-                    <td style=" width: 50px">No</td>
-                    <td style=" width: 130px">Nama Lomba
-                    <?php
-                        if(!isset($_GET['order']) || $_GET['order']=='desc' )
-                          {?>
-                            <a class="pull-right" href="info-lomba.php?order=asc">
-                              <span class="glyphicon glyphicon-triangle-top" aria-hidden="true">
-                              </span></a>
-                        <?php
-                          }
-                          else if($_GET['order']=='asc')
-                            {?>
-                            <a class="pull-right" href="info-lomba.php?order=desc">
-                              <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true">
-                            </a></span>
-                            <?php
-                            }
-                            ?></td>
-                    <td style=" width: 250px">Tempat Lomba</td>
-                    <td style=" width: 150px">Waktu Mulai Lomba</td>
-                    <td style=" width: 200px">Telphone Penyelenggara</td>
-                    <td style=" width: 180px">Jumlah Tim Partisipan</td>
-                    <td>Pilihan</td>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead style="text-align: center; background: #3c8dbc ;color: white">
+                <tr>
+                  <th>No</th>
+                  <th>Kategori Lomba</th>
+                  <th>Nama Lomba</th>
+                  <th>Tempat Lomba</th>
+                  <th>Tlp Penyelenggara</th>
+                  <th>Jumlah Tim Partisipan</th>
+                  <th>Pilih</th>
+                </tr>
                 </thead>
                 <tbody>
-              <?php
-                  $id_user=$_SESSION['id_user'];
-
-                  if($filter){
-                    $sql = mysqli_query($koneksi, "SELECT * FROM penyelenggara WHERE id_kategori='$filter' and id_user!='$id_user' ORDER BY $kolom $order ");
-                  }else{
-                    $sql = mysqli_query($koneksi, "SELECT * FROM penyelenggara WHERE id_user!='$id_user' ORDER BY $kolom $order");
-                  }
-
-                  if(mysqli_num_rows($sql) == 0){
-                    echo '<tr style="text-align:center;"><td colspan="7">Empty</td></tr>';
-                  }
-                  else{
-
-                    $no = 1;
+                <?php
+                $sql = mysqli_query($koneksi, "SELECT * FROM penyelenggara WHERE id_user!='$id_user' ");
+                 $no = 1;
                   while($row = mysqli_fetch_assoc($sql)){
-                      if ($row['status_penyelenggara']=='3') {
-                        echo '
-                    <tr>
-                      <td style="text-align: center">'.$no.'</td>
-                      <td style="text-align: center">'.$row['nama_lomba'].'</td>
-                      <td style="text-align: center" >'.$row['lokasi_lomba'].'</td>
-                      <td style="text-align: center">'.$row['waktu_awal_lomba'].'</td>
-                      <td style="text-align: center">'.$row['tlp_penyelenggara'].'</td>
-                      <td style="text-align: center">'.$row['jml_tim'].'</td>
+                    if ($row['status_penyelenggara']=='3') {
+                  ?>
+                  <tr>
+                      <td style="text-align: center"><?php echo $no?></td>
+                      <td style="text-align: center"><?php 
+
+                            if ($row['id_kategori']=='1') {
+                            echo "Sepak Bola";
+                            }
+                            elseif ($row['id_kategori']=='2') {
+                            echo "Futsal";
+                             } 
+                            else {
+                                echo "Basket";
+                    }?></td>
+                      <td style="text-align: center"><?php echo $row['nama_lomba']; ?></td>
+                      <td style="text-align: center" > <?php echo $row['lokasi_lomba']; ?></td>
+                      <td style="text-align: center"><?php echo $row['tlp_penyelenggara']; ?></td>
+                      <td style="text-align: center"><?php echo $row['jml_tim'] ; ?></td>
                       <td style="text-align: center">
                         
-                        <a href="#" class="btn btn-sm btn-info"   data-id='.$row["id_penyelenggara"].'><span  aria-hidden="true"></span> detail </a>
+                        <a href="#" class="btn btn-sm btn-info"   data-id='<?php echo $row["id_penyelenggara"]; ?>'><span  aria-hidden="true"></span> detail </a>
                   
-                        <a href="#" class="btn btn-sm btn-warning" ket='.$row["id_kategori"].'  data-id='.$row["id_penyelenggara"].'><span  aria-hidden="true"></span> Daftar </a>
+                        <a href="#" class="btn btn-sm btn-warning" ket='<?php echo $row["id_kategori"]; ?>'  data-id='<?php echo $row["id_penyelenggara"]; ?>'><span  aria-hidden="true"></span> Daftar </a>
                       </td>
-                    </tr>
-                    ';
-                    $no++;
+                </tr>
+                <?php                     
+                $no++;
                       }
+                      }
+                  ?>
+                
+                </tbody>
+              </table>
 
-          
-                  
-                    
-                  }
-                }
-                ?>
-              </tbody>
-          </table>
           <div class=" col-xs-3">
           <button type="button" id="daftar-penyelenggara"  class="btn btn-block btn-primary">Daftarkan Penyelenggara</button>
           </div>
-    </div><!-- /#page-wrapper -->
+            </div>
+            <!-- /.box-body -->
 
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
     </section>
-
     <!-- /.content -->
   </div>
-
+  <!-- /.content-wrapper -->
+  
+  <footer class="main-footer">
+    
+    <strong>Copyright &copy; 2017 <a href="#">Aliansi Team</a>.</strong> All rights
+    reserved.
+  </footer>
  
 
   <div class="container">
@@ -528,10 +496,25 @@
 
 
 
+<!-- DataTables -->
+<script src="plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="plugins/datatables/dataTables.bootstrap.min.js"></script>
+<!-- SlimScroll -->
+<script src="plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<!-- FastClick -->
+<script src="plugins/fastclick/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="dist/js/app.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="dist/js/demo.js"></script>
+<!-- page script -->
 
-<?php include("scrip/footer.php")  ?>
 
-
-
+<script>
+  $(function () {
+    $("#example1").DataTable();
+    
+  });
+</script>
 </body>
 </html>
