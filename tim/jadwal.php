@@ -8,6 +8,9 @@
                      <li>
                         <a href="pengumuman_peserta.php"><i class="fa fa-fw fa-list"></i> Pengumuman</a>
                     </li>
+                    <li>
+                        <a href="list.php"><i class="fa fa-fw fa-list"></i> Daftar Tim</a>
+                    </li>
                     <li >
                         <a href="myteam.php"><i class="fa fa-fw fa-plus"></i> Pemain</a>
                     </li>
@@ -49,8 +52,8 @@
 
                 <!--isi-->
     <?php
-        require_once("../koneksi.php");
-        $result = mysqli_query($koneksi, "SELECT id_tim FROM jadwal");
+        $sql = "SELECT id_tim FROM tim";
+        $result = mysqli_query($koneksi, $sql);
         $jumlah = mysqli_num_rows($result);
 
     if($jumlah!=16)

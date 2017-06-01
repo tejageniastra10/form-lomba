@@ -8,6 +8,9 @@
                         <a href="pengumuman_peserta.php"><i class="fa fa-fw fa-list"></i> Pengumuman</a>
                     </li>
                     <li>
+                        <a href="list.php"><i class="fa fa-fw fa-list"></i> Daftar Tim</a>
+                    </li>
+                    <li>
                         <a href="myteam.php"><i class="fa fa-fw fa-plus"></i> Pemain</a>
                     </li>
                     <li>
