@@ -21,7 +21,7 @@ if ($_SESSION['id_level']!='2') {
     <meta name="author" content="Dashboard">
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
-    <title>Dashboard E-Sport</title>
+    <title>Dashboard Penyelenggara</title>
 
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
@@ -34,11 +34,22 @@ if ($_SESSION['id_level']!='2') {
     <!-- Custom styles for this template -->
     <link href="assets/css/style.css" rel="stylesheet">
     <link href="assets/css/style-responsive.css" rel="stylesheet">
-
+    <script src="assets/js/jquery-1.8.3.min.js"></script>
     <script src="assets/js/chart-master/Chart.js"></script>
     
     
-  
+  <style >
+  #loading {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background: url(logo/gears.gif) 50% 50% no-repeat #ecf0f1;
+}
+</style>
+
 </head>
 
   <body>
@@ -46,45 +57,26 @@ if ($_SESSION['id_level']!='2') {
   <section id="container" >
     
       <!--header start-->
-      <header class="header black-bg">
+      <header style="background-color: black" class="header black-bg">
               <div class="sidebar-toggle-box">
                   <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
               </div>
-            <!--logo start-->
-            <a href="index.php" class="logo"><b>Dashboard Penyelenggara</b></a>
-            <!--logo end-->
+           
             
             <div class="top-menu">
             	<ul class="nav pull-right top-menu">
-                    <li><a class="logout" href="../user/index.php">kembali ke dashbord</a></li>
+                    <li><a style="color: white" class="logout" href="../user/index.php">kembali ke dashbord</a></li>
             	</ul>
             </div>
         </header>
-      <!--header end-->
-      
-      <!-- **********************************************************************************************************************************************************
-      MAIN SIDEBAR MENU
-      *********************************************************************************************************************************************************** -->
-      
-      <!--sidebar end-->
-      
-      
-      <!--footer start-->
-      <footer class="site-footer">
-          <div class="text-center">
-              2017- aliansi
-              <a href="index.php#" class="go-top">
-                  <i class="fa fa-angle-up"></i>
-              </a>
-          </div>
-      </footer>
-      <!--footer end-->
+     
+     
   </section>
 
     <!-- js placed at the end of the document so the pages load faster -->
-    <script src="assets/js/jquery.js"></script>
-    <script src="assets/js/jquery-1.8.3.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
+   
+   
+   
     <script class="include" type="text/javascript" src="assets/js/jquery.dcjqaccordion.2.7.js"></script>
     <script src="assets/js/jquery.scrollTo.min.js"></script>
     <script src="assets/js/jquery.nicescroll.js" type="text/javascript"></script>

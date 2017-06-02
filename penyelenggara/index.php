@@ -7,13 +7,7 @@
 <html lang="en">
   <head>
 
-<style>
-  h3{
-    color: white;
-  }
 
-</style> 
-    
     
   </head>
 
@@ -57,9 +51,9 @@
                   </li>
 
                   <li class="sub-menu">
-                      <a href="javascript:;" >
-                          <i class="fa fa-cogs"></i>
-                          <span>Components</span>
+                      <a href="pengumuman.php" >
+                          <i class="fa fa-bullhorn"></i>
+                          <span>Pengumuman</span>
                       </a>
                      
                   </li>
@@ -69,17 +63,15 @@
               <!-- sidebar menu end-->
           </div>
       </aside>
-      <!-- **********************************************************************************************************************************************************
-      MAIN CONTENT
-      *********************************************************************************************************************************************************** -->
-      
+    
+      <div id="loading"></div>
       <!--main content start-->
       <section id="main-content">
           <section class="wrapper">
                     
-
+        <h3>PROFIL</h3>
         <div class="panel panel-info">
-           <h1 style="text-transform: uppercase;color: white;text-align: center;">  XXXXXXXXX</h1>
+           
             <div class="panel-body">
               <div class="row">
                 <div class="col-md-4 col-lg-4 " align="center"> 
@@ -93,18 +85,7 @@
             ?>  
                 </div>
                 
-                <!--<div class="col-xs-10 col-sm-10 hidden-md hidden-lg"> <br>
-                  <dl>
-                    <dt>DEPARTMENT:</dt>
-                    <dd>Administrator</dd>
-                    <dt>HIRE DATE</dt>
-                    <dd>11/12/2013</dd>
-                    <dt>DATE OF BIRTH</dt>
-                       <dd>11/12/2013</dd>
-                    <dt>GENDER</dt>
-                    <dd>Male</dd>
-                  </dl>
-                </div>-->
+              
         <?php
           $id_penyelenggara = $_SESSION['id_penyelenggara'];
           $sql = mysqli_query($koneksi, "SELECT * FROM penyelenggara where id_penyelenggara='$id_penyelenggara' ");
@@ -328,7 +309,7 @@
                             $sql = mysqli_query($koneksi, "SELECT * FROM penyelenggara WHERE id_penyelenggara=$id_penyelenggara");
                             $row = mysqli_fetch_assoc($sql);
 
-            echo '<img src=logo/'.$row['logo'].' width="500px" height="430px">';
+            echo '<img src=logo/'.$row['logo'].' width="470px" height="430px">';
             ?>  
               <input type="file" name="logo" class="form-control" >
               <button type="submit" href="index.php" type="submit" name="ganti_logo" value="Simpan" class="btn btn-success btn-block"> ganti</button>
@@ -457,8 +438,10 @@ $(document).ready(function(){
                     });
                 });
         </script>
-
-	
+<script src="js/jquery.min.js"></script>
+	 <script type="text/javascript">
+  $(window).load(function() { $("#loading").fadeOut(2000); })
+</script>
 	
   </body>
 </html>
