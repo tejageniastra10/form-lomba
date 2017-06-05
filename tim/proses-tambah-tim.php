@@ -28,8 +28,11 @@ include "../koneksi.php";
 						$insert = mysqli_query($koneksi, "INSERT INTO tim(id_penyelenggara,id_kategori,nama_tim, alamat_tim, penanggung_jawab,email_tim, tlp_tim, jml_pemain, id_status,id_user,ktp_tim) VALUES('$id_penyelenggara','$id_kategori','$nama_tim', '$alamat_tim', '$penanggung_jawab', '$email_tim', '$tlp_tim', '$jml_pemain', '$id_status', '$id_user','$fotobaru')") or die(mysqli_error($koneksi));
 							if($insert)
 							{	
-								echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Pendaftaran berhasil</div>';
-								header("location: ../user/index.php");
+								echo "<script>
+					              alert('pendaftaran berhasil');
+					              window.location.href='../user/status-lomba.php';
+					              </script>";
+								
 							}
 					}
 					else
@@ -40,6 +43,10 @@ include "../koneksi.php";
 				}
 			
 				
+				}
+				else
+				{
+					echo "string";
 				}
 			?>
 
