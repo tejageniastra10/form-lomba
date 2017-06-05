@@ -26,6 +26,7 @@ if(mysqli_num_rows($loginadmin) == 0){
 	}else{
 		session_start(); // memulai fungsi session
  		$_SESSION['username'] = $username;
+ 		$_SESSION['nama_user']= $username;
 
 	//redirect ke halaman index
 	header('location:Admin/index.php');

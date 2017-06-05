@@ -55,7 +55,7 @@
        
       </ol>
     </section>
-<div id="loading"></div> 
+
     <!-- Main content -->
     <section class="content">
       <div class="row">
@@ -64,6 +64,10 @@
             
             <!-- /.box-header -->
             <div class="box-body">
+
+             <?php
+        if(!isset($_GET["view"]))
+            {?>
               <table id="example1" class="table table-bordered table-striped">
                 <thead style="text-align: center; background: #615eb2 ;color: white">
                 <tr style="text-align: center;" >
@@ -95,7 +99,7 @@
 
                               <a href="tim-peserta.php?aksi=delete&id_tim='.$row['id_tim'].'" title="Hapus Data" onclick="return confirm(\'Anda yakin akan menghapus data '.$row['nama_tim'].'?\')" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
 
-                              <a href="javascript:void(0)" class="btn btn-sm btn-success" id="konfirmasi_tim" timId="'.$row['id_tim'].'" title="Lihat Data Pemain"><span class="fa fa-users" aria-hidden="true"></span></a>
+                              <a href="tim-peserta.php?view='.$row['id_tim'].'" class="btn btn-sm btn-success"  title="Lihat Data Pemain"><span class="fa fa-users" aria-hidden="true"></span></a>
                             </td>
                           </tr>
                           ';
@@ -106,6 +110,53 @@
                 
                 </tbody>
               </table>
+          <?php } 
+                  else
+                      {
+                $view=$_GET["view"];
+                $sql  = mysqli_query($koneksi, "SELECT nama_tim FROM tim WHERE id_tim = '$view'");
+                    $result = mysqli_fetch_array($sql);
+                    ?>
+                    <h3 style="text-transform: uppercase;" align="center"><?php echo "TIM :",$result['nama_tim']; ?></h3>
+              <div style="left :40px"  class="col-lg-11">
+                <table class="table table-bordered table-striped">
+                <thead style="text-align: center; background: #615eb2 ;color: white">
+                    <td style=" width: 50px">No</td>
+                    <td style=" width: 250px" >Nama</td>
+                    <td style=" width: 150px">Usia</td>
+                    <td >Alamat</td>
+                    <td style=" width: 150px">FC KTP</td>
+                </thead>
+                <tbody>
+                <?php
+                  $view=$_GET["view"];
+                    $sql = mysqli_query($koneksi, "SELECT * FROM pemain WHERE id_tim='$view'");
+                  if(mysqli_num_rows($sql) == 0){
+                    echo '<tr style="text-align:center;"><td colspan="5">Empty</td></tr>';
+                  }
+                  else{
+
+                  $no = 1;
+                  while($row = mysqli_fetch_assoc($sql)){
+                      
+                       echo '
+                    <tr>
+                      <td style="text-align: center">'.$no.'</td>
+                      <td style="text-align:center;">'.$row['nama_pemain'].'</td>
+                      <td style="text-align:center;">'.$row['usia_pemain'].'</td>
+                      <td style="text-align:center;">'.$row['alamat_pemain'].'</td>
+                      <td style="text-align: center"> <a href="#" class="btn btn-sm btn-info"  ><span  aria-hidden="true"></span> Lihat </a> </td> 
+
+                    </tr>';
+                      $no++;
+                  }
+                }
+               
+                ?>
+              </tbody>
+          </table>
+        </div>
+        <?php  } ?>
 
          
             </div>
@@ -186,8 +237,6 @@
 </script>
 
 
- <script type="text/javascript">
-  $(window).load(function() { $("#loading").fadeOut(700); })
-</script>
+
 </body>
 </html>

@@ -67,45 +67,39 @@
           <div  class="box">
             
             <!-- /.box-header -->
-            <div   class="box-body">
+            <div class="box-body">
              
-              <table id="ajax-konfirmasi" class="table table-bordered table-striped">
-               
-                 
-                <thead  style="text-align: center; background: #615eb2 ;color: white">
-                
-                <tr  style="text-align: center;" >
-                  <th style="width: 20px">No</th>
-                  <th>Nama Tim</th>
-                  <th>Alamat Tim</th>
-                  <th>Penanggung jawab</th>
-                  <th style="width: 160px">Email</th>
-                  <th>No HP</th>
-                  <th>Pilih</th>
-                </tr>
-                </thead>
-                <tbody >
-                
-                
-          
-                <?php
-                $sql = mysqli_query($koneksi, "SELECT * FROM tim where id_penyelenggara='$id_penyelenggara' and id_status='1' ");
-                 $i = 1;
-                
-                    
-                 
-                  while($row = mysqli_fetch_assoc($sql)){
-                    
-                echo '
-                          <tr  >
-                          
+                 <table id="ajax-konfirmasi"  class="table ">
+                      <thead style="text-align: center; background: #615eb2 ;color: white">
+                          <td>No</td>
+                          <td>Nama Tim</td>
+                          <td>Alamat Tim</td>
+                          <td>Penanggung jawab</td>
+                          <td>Email</td>
+                          <td>No HP</td>
+                          <td>Pilihan</td>
+                      </thead>
+                      <tbody>
+                      <script src="../user/js/bootstrap.min.js"></script>
+                    <?php
+                    $id_penyelenggara = $_SESSION['id_penyelenggara'];
+                        $sql = mysqli_query($koneksi, "SELECT * FROM tim where id_penyelenggara='$id_penyelenggara' and id_status='1' ");
+
+                        if(mysqli_num_rows($sql) == 0){
+                          echo '<tr style="text-align:center;"><td colspan="7">Empty</td></tr>';
+                        }
+                        else{
+                          $i=1;
+                        while($row = mysqli_fetch_assoc($sql)){
+                          echo '
+                          <tr >
                             
-                            <td >'.$i.'</td>
-                            <td >'.$row['nama_tim'].'</td>
-                            <td >'.$row['alamat_tim'].'</td>
-                            <td >'.$row['penanggung_jawab'].'</td>
-                            <td >'.$row['email_tim'].'</td>
-                            <td >'.$row['tlp_tim'].'</td>
+                            <td style="text-align: center">'.$i.'</td>
+                            <td style="text-align: center">'.$row['nama_tim'].'</td>
+                            <td style="text-align: center">'.$row['alamat_tim'].'</td>
+                            <td style="text-align: center">'.$row['penanggung_jawab'].'</td>
+                            <td style="text-align: center">'.$row['email_tim'].'</td>
+                            <td style="text-align: center">'.$row['tlp_tim'].'</td>
                             <td style="text-align: center">
 
                               <a href="konfirmasi-tim.php?aksi=delete&id_tim='.$row['id_tim'].'" title="Hapus Data" onclick="return confirm(\'Anda yakin akan menghapus data '.$row['nama_tim'].'?\')" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
@@ -114,13 +108,12 @@
                             </td>
                           </tr>
                           ';
-                          $i++; 
+                          $i++;
                         }
-
-                  ?>
-                         
-                </tbody>
-              </table>
+                      }
+                      ?>
+                    </tbody>
+                </table>
 
               </div>
             </div>
@@ -216,13 +209,7 @@ function konfirmasi_tim(e) {
 }
 </script>
 
- <script>
-  $(function () {
-    $("#ajax-konfirmasi").DataTable();
-    
-  });
-</script>
-
+ 
 
 
  <script type="text/javascript">

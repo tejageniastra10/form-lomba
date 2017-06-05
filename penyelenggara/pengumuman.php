@@ -66,7 +66,7 @@
       <div style="left :70px"  class="col-lg-10">
       
               <table class="table table-bordered table-striped">
-                <thead style="text-align: center; background: black;color: white">
+                <thead style="text-align: center; background: #615eb2 ;color: white">
                     <td style=" width: 50px">No</td>
                     <td style=" width: 200px" >Tanggal Pengumuman</td>
                     <td >Judul pengumuman</td>
