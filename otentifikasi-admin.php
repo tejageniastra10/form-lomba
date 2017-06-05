@@ -1,14 +1,14 @@
 <?php
 include 'koneksi.php';
-/*function antiinjection($data){
+//function antiinjection($data){
 	//$filter_sql = mysql_real_escape_string(stripslashes(strip_tags(htmlspecialchars($data,ENT_QUOTES))));
 	//return $filter_sql;
-} */
-session_start();
+//}
+
 
 //tangkap data dari form login
 $username = $_POST['username'];
-$password = md5($_POST['password']);
+$password = $_POST['password'];
 
 //untuk mencegah sql injection
 //$username = antiinjection($username);
@@ -24,11 +24,8 @@ if(mysqli_num_rows($loginadmin) == 0){
 							window.location.href='javascript:history.go(-1)';
 							</script>";
 	}else{
-	//kalau user dan password sudah terdaftar di database
-	//buat session dengan username dengan isi nama user yang login
-	$_SESSION['id_level'] = '1';
-	//$_SESSION['password'] = $q['password'];
-	$_SESSION['nama_user']	  = $q['nama_user'];
+		session_start(); // memulai fungsi session
+ 		$_SESSION['username'] = $username;
 
 	//redirect ke halaman index
 	header('location:Admin/index.php');

@@ -1,205 +1,325 @@
 <?php
   include("../koneksi.php");
 ?>
+
+<?php
+ session_start();
+ if (empty($_SESSION['username'])) {
+    header("location:../login-admin.php"); // jika belum login, maka dikembalikan ke file form_login.php
+ }
+ else {
+ ?>
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+        <!-- bootstrap 3.0.2 -->
+        <link href="assets/template/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <!-- font Awesome -->
+        <link href="assets/template/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <!-- Ionicons -->
+        <link href="assets/template/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+        <!-- DATA TABLES -->
+        <link href="assets/template/css/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
+        <!-- Theme style -->
+        <link href="assets/template/css/AdminLTE.css" rel="stylesheet" type="text/css" />
 
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+          <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body class="skin-black">
+        <!-- header logo: style can be found in header.less -->
+        <header class="header">
+            <a href="../../index.html" class="logo">
+                Admin
+            </a>
+            <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top" role="navigation" style="background-color: #20B2AA !important;">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <div class="navbar-right" style="background-color: #20B2AA !important;">
+                    <ul class="nav navbar-nav">
+                        <!-- Notifications: style can be found in dropdown.less -->
+                        <li class="dropdown notifications-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-warning"></i>
+                                <span class="label label-warning">10</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="header">You have 10 notifications</li>
+                                <li>
+                                    <!-- inner menu: contains the actual data -->
+                                    <ul class="menu">
+                                        <li>
+                                            <a href="#">
+                                                <i class="ion ion-ios7-people info"></i> 5 new members joined today
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-warning danger"></i> Very long description here that may not fit into the page and may cause design problems
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-users warning"></i> 5 new members joined
+                                            </a>
+                                        </li>
 
-    <title>Projek web a</title>
+                                        <li>
+                                            <a href="#">
+                                                <i class="ion ion-ios7-cart success"></i> 25 sales made
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="ion ion-ios7-person danger"></i> You changed your username
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="footer"><a href="#">View all</a></li>
+                            </ul>
+                        </li>
+                       
+                        <!-- User Account: style can be found in dropdown.less -->
+                        <li class="dropdown user user-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="glyphicon glyphicon-user"></i>
+                                <span><?php echo $_SESSION['username'] ?> <i class="caret"></i></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <!-- User image -->
+                                <li class="user-header bg-light-blue">
+                                    <img src="assets/template/img/avatar3.png" class="img-circle" alt="User Image" />
+                                    <p>
+                                        Jane Doe - Web Developer
+                                        <small>Member since Nov. 2012</small>
+                                    </p>
+                                </li>
+                                <!-- Menu Footer-->
+                                <li class="user-footer">
+                                    <div class="pull-left">
+                                        <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                    </div>
+                                    <div class="pull-right">
+                                        <a href="logout.php" class="btn btn-default btn-flat">Sign out</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <div class="wrapper row-offcanvas row-offcanvas-left">
+            <!-- Left side column. contains the logo and sidebar -->
+            <aside class="left-side sidebar-offcanvas">                
+                <!-- sidebar: style can be found in sidebar.less -->
+                <section class="sidebar">
+                    <!-- Sidebar user panel -->
+                    <div class="user-panel">
+                        <div class="pull-left image">
+                            <img src="assets/template/img/avatar3.png" class="img-circle" alt="User Image" />
+                        </div>
+                        <div class="pull-left info">
+                            <p>Hello, <?php echo $_SESSION['username'] ?> </p>
 
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.css" rel="stylesheet">
+                            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                        </div>
+                    </div>
+                    <!-- search form -->
+                    <form action="#" method="get" class="sidebar-form">
+                        <div class="input-group">
+                            <input type="text" name="q" class="form-control" placeholder="Search..."/>
+                            <span class="input-group-btn">
+                                <button type='submit' name='seach' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
+                            </span>
+                        </div>
+                    </form>
+                    <!-- /.search form -->
+                    <!-- sidebar menu: : style can be found in sidebar.less -->
+                    <ul class="sidebar-menu">
+                        <li>
+                            <a href="index.php">
+                                <i class="fa fa-dashboard"></i> <span>Konfirmasi Penyelenggara</span>
+                            </a>
+                        </li>
+                        
+                         <li class="active">
+                            <a href="konfirmasi_pembayaran.php">
+                                <i class="fa fa-dashboard"></i> <span>Konfirmasi Pembayaran</span>
+                            </a>
+                        </li>
 
-    <!-- Add custom CSS here -->
-    <link href="css/sb-admin.css" rel="stylesheet">
-    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
-    <!-- Page Specific CSS -->
-    <link rel="stylesheet" href="http://cdn.oesmith.co.uk/morris-0.4.3.min.css">
+                        <li>
+                            <a href="data_penyelenggara.php">
+                                <i class="fa fa-dashboard"></i> <span>Data penyelenggara</span>
+                            </a>
+                        </li>
 
-  </head>
+                        <li>
+                            <a href="data_user.php">
+                                <i class="fa fa-dashboard"></i> <span>Data User</span>
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+                <!-- /.sidebar -->
+            </aside>
 
-  <body>
 
-    <div id="wrapper">
 
-      <!-- Sidebar -->
-      <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="index.html">SPOTS TURNAMENT</a>
+
+
+            <!-- Right side column. Contains the navbar and content of the page -->
+            <aside class="right-side">                
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1>
+                        Data Penyelenggara
+                        <small>Konfirmasi Penyelenggara</small>
+                    </h1>
+                </section>
+
+                <!-- Main content -->
+               
+                <section class="content">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box">
+                               <br />
+                                <div class="box-body table-responsive">
+                                 <div id="wrapper">
+                                    <table id="example1" class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr style="background-color: #20B2AA; color: #fff;">
+                                                <th style="width: 30px; text-align: center;">No</th>
+                                                <th style="text-align: center;">Nama Penyelenggara</th>
+                                                <th style="width: 200px; text-align: center;">Nama Lomba</th>
+                                                <th style="width: 200px; text-align: center;">E-Mail</th>
+                                                <th style="width: 150px; text-align: center;">Foto Slip Pembayaran</th>
+                                                <th style="width: 100px; text-align: center;">Pilihan</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                         <?php
+                                              $sql = mysqli_query($koneksi, "SELECT * FROM penyelenggara");
+
+                                                $no = 1;
+
+                                              while($row = mysqli_fetch_assoc($sql)){
+                                                if ($row['status_penyelenggara']==2) { ?>
+                                            <tr>
+                                                <td style="text-align: center;"><?php echo $no ?></td>
+                                                <td><?php echo $row['nama_penyelenggara'] ?></td>
+                                                <td style="text-align: center;"><?php echo $row['nama_lomba'] ?></td>
+                                                <td style="text-align: center;"><?php echo $row['email_penyelenggara'] ?></td>
+                                                <td style="text-align: center;"><img src="../user/pembayaran/<?php echo $row['pembayaran_penyelenggara'] ?>" style="width:75px; height:60px";/></td>
+                                                <td style="text-align: center;">
+
+                                                   <a href="javascript:void(0)" class="btn btn-sm btn-info" id="konfirmasi" penyelenggaraId="<?php echo $row['id_penyelenggara'] ?>" onclick="konfirmasi(this);" style="width:40px; height: 34px;"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></a>
+                                                    <button type="button" class="btn btn-danger hapus-record" data-nama="<?=$row['nama_penyelenggara'];?>" data-id_penyelenggara="<?=$row['id_penyelenggara'];?>" aria-label="Left Align">
+                                                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                                    </button>
+                                                </td>
+                                                
+                                            </tr>
+
+                                            <?php
+                                                
+                                            }
+                                        }
+
+                                            ?>
+                                            
+                                        </tbody>
+                                    </table>
+                                </div><!-- /.box-body -->
+                            </div><!-- /.box -->
+                        </div>
+                    </div>
+                     </div>
+                </section><!-- /.content -->
+               
+            </aside><!-- /.right-side -->
+        </div><!-- ./wrapper -->
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+       
+        <!-- Modal hapus -->
+        <div class="modal fade" id="hapus" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header bg-danger">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Hapus Penyelenggara</h4>
+              </div>
+              <div class="modal-body">
+              </div>
+            </div>
+          </div>
         </div>
 
-        <!-- pilihan menu -->
-        <div class="collapse navbar-collapse navbar-ex1-collapse">
-          <ul class="nav navbar-nav side-nav">
-            <li><a href="index.php"><i class="fa fa-dashboard"></i> Confirmasi Penyelenggara</a></li>
-             <li class="active"><a href="konfirmasi_pembayaran.php"><i class="fa fa-tachometer"></i> Confirmasi Pembayaran</a></li>
-            <li ><a href="data_penyelenggara.php"><i class="fa fa-bar-chart-o"></i> Data Penyelenggara</a></li>
-            <li><a href="tables.html"><i class="fa fa-table"></i> Statistik</a></li>
-            <li><a href="ivent.php"><i class="fa fa-edit"></i> Ivent</a></li>
-          </ul>
-
-          <ul class="nav navbar-nav navbar-right navbar-user">
-            <li class="dropdown user-dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Rudi Astawan <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="#"><i class="fa fa-user"></i> Profile</a></li>
-                <li class="divider"></li>
-                <li><a href="#"><i class="fa fa-power-off"></i> Log Out</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div><!-- /.navbar-collapse -->
-      </nav>
-
-      <?php
-      if(isset($_GET['aksi']) == 'delete'){
-        $id_penyelenggara = $_GET['id_penyelenggara'];
-        $cek = mysqli_query($koneksi, "SELECT * FROM penyelenggara WHERE id_penyelenggara='$id_penyelenggara'") or die (mysqli_error($koneksi));
-        if(mysqli_num_rows($cek) == 0){
-          echo '<div class="alert alert-info alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> Data tidak ditemukan.</div>';
-        }else{
-          $delete = mysqli_query($koneksi, "DELETE FROM penyelenggara WHERE id_penyelenggara='$id_penyelenggara'");
-          if($delete){
-            ?>
-              <script type="text/javascript">
-                alert("Data Berhasil Dihapus");
-              </script>
-            <?php
-          }else{
-            ?>
-              <script type="text/javascript">
-                alert("Data Gagal Dihapus");
-              </script>
-            <?php
-          }
-        }
-      }
-      ?>
-
-      <div id="page-wrapper"><br />
-      <h2>Data Penyelenggara</h2><br />
-
-      <table class="table table-bordered table-striped">
-        <thead style="text-align: center">
-            <td>No</td>
-            <td>Nama Penyelenggara</td>
-            <td>Nama Lomba</td>
-            <td>Email</td>
-            <td>Foto Slip Pembayaran</td>
-            <td>Pilihan</td>
-        </thead>
-        <tbody>
-      <?php
-          $sql = mysqli_query($koneksi, "SELECT * FROM penyelenggara");
-
-          if(mysqli_num_rows($sql) == 0){
-            echo '<tr style="text-align:center;"><td colspan="7">Empty</td></tr>';
-          }
-          else{
-            $no = 1;
-          while($row = mysqli_fetch_assoc($sql)){
-          if ($row['status_penyelenggara']==2) {
-            echo '
-            <tr>
-              <td style="text-align: center">'.$no.'</td>
-              <td>'.$row['nama_penyelenggara'].'</td>
-              <td>'.$row['nama_lomba'].'</td>
-              <td style="text-align: center">'.$row['email_penyelenggara'].'</td>
-              <td style="text-align: center"><img src="../user/pembayaran/'.$row['pembayaran_penyelenggara'].'" style="width:75px; height:60px";/></td>
-              <td style="text-align: center">
-                <a href="index.php?aksi=delete&id_penyelenggara='.$row['id_penyelenggara'].'" title="Hapus Data" onclick="return confirm(\'Anda yakin akan menghapus data '.$row['nama_penyelenggara'].'?\')" class="btn btn-danger btn-sm" style="width:90px;">Delete</a>
-                  <a href="javascript:void(0)" class="btn btn-sm btn-success" id="konfirmasi_pembayaran" penyelenggaraId="'.$row['id_penyelenggara'].'" onclick="konfirmasi_pembayaran(this);" style="width:90px;">Confirmation</a>
-              </td>
-            </tr>
-            ';
-            $no++;
-          }
-          }
-        }
-        ?>
-      </tbody>
-  </table>
-
-  <div id="convert">
-    <div class="table-responsive">
-      <div id="live_data">
-        <form action="excel.php" method="post">
-          <input type="submit" name="export_excel" class="btn btn-success" value="Export to Excel" />
-        </form>
-      </div>
-    </div>
-  </div>
-
-      </div><!-- /#page-wrapper -->
-
-    </div><!-- /#wrapper -->
-
-     <div class="modal fade" id="ModalDetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header bg-warning">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Edit Anggota</h4>
-      </div>
-      <div class="modal-body">
-      </div>
-    </div>
-  </div>
-</div>
-
-<script type="text/javascript">
-        $(document).ready(function (){
-            $(".btn-info").click(function (e){
-                var m = $(this).attr("id");
-                $.ajax({
-                    url: "detail.php",
-                    type: "GET",
-                    data : {id_penyelenggara: m,},
-                    success: function (ajaxData){
-                        $("#ModalDetail").html(ajaxData);
-                        $("#ModalDetail").modal('show',{backdrop: 'true'});
-                    }
+        <!--AJAX hapus-->
+        <script>
+            $(function(){
+                $(document).on('click','.hapus-record',function(e){
+                    $("#hapus").modal('show');
+                    $.post('modaldelete.php',
+                        { nama_penyelenggara:$(this).attr('data-nama'),
+                          id_penyelenggara:$(this).attr('data-id_penyelenggara')}, 
+                        function(html){
+                            $(".modal-body").html(html);
+                        }   
+                    );
                 });
             });
-        });
-    </script>
+        </script>
 
 
+         
+        <!-- Bootstrap -->
+        <script src="assets/template/js/bootstrap.min.js" type="text/javascript"></script>
+        <!-- DATA TABES SCRIPT -->
+        <script src="assets/template/js/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
+        <script src="assets/template/js/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
+        <!-- AdminLTE App -->
+        <script src="assets/template/js/AdminLTE/app.js" type="text/javascript"></script>
 
+        <!-- page script -->
+        <script type="text/javascript">
+            $(function() {
+                $("#example1").dataTable();
+                $('#example2').dataTable({
+                    "bPaginate": true,
+                    "bLengthChange": false,
+                    "bFilter": false,
+                    "bSort": true,
+                    "bInfo": true,
+                    "bAutoWidth": false
+                });
+            });
+        </script>
 
-
-    <!-- JavaScript -->
-    <script src="js/jquery-1.10.2.js"></script>
-    <script src="js/bootstrap.js"></script>
-
-    <!-- Page Specific Plugins -->
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-    <script src="http://cdn.oesmith.co.uk/morris-0.4.3.min.js"></script>
-    <script src="js/morris/chart-data-morris.js"></script>
-    <script src="js/tablesorter/jquery.tablesorter.js"></script>
-    <script src="js/tablesorter/tables.js"></script>
-
-  </body>
+    </body>
 </html>
+
+
 
 <!-- Modal untuk Konfirmasi -->
 <script type="text/javascript">
-function konfirmasi_pembayaran(e) {
+function konfirmasi(e) {
   var id_penyelenggara = $(e).attr("penyelenggaraId");
   $.ajax({
     url:'proses_konfirmasi_pembayaran.php',
@@ -208,7 +328,7 @@ function konfirmasi_pembayaran(e) {
     success:function (data) {
       var dataKonf = jQuery.parseJSON(data);
       if (dataKonf.isSuccess) {
-        $("#page-wrapper").load(document.URL + ' #page-wrapper');
+        $("#example1").load(document.URL + ' #example1');
       }
       else{
         alert('gagal update db');
@@ -217,3 +337,5 @@ function konfirmasi_pembayaran(e) {
   });
 }
 </script>
+
+<?php } ?>
