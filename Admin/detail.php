@@ -10,7 +10,7 @@
     <div class="modal-content">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
-            <h4 class="modal-title" id="myModalLabel">Detail Mahasiswa</h4>
+            <h4 class="modal-title" id="myModalLabel">Detail Penyelenggara</h4>
         </div>
         <div class="modal-body">
             <form class="form-horizontal" name="modal-popup" enctype="multipart/form-data" method="POST">            
@@ -77,20 +77,6 @@
                                 <label class="col-lg-6 control-label">No Telepon</label>
                                 <div class="col-lg-5">
                                     <input style="width: 200px;"  class="form-control" type="text" name="no_tlp" value="<?php echo $row['tlp_penyelenggara']; ?>" readonly/>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-lg-6 control-label">Username</label>
-                                <div class="col-lg-5">
-                                    <input style="width: 200px;"  class="form-control" type="text" name="no_tlp" value="<?php echo $row['username_penyelenggara']; ?>" readonly/>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-lg-6 control-label">Password</label>
-                                <div class="col-lg-5">
-                                    <input style="width: 200px;"  class="form-control" type="text" name="no_tlp" value="<?php echo $row['password_penyelenggara']; ?>" readonly/>
                                 </div>
                             </div>
 
