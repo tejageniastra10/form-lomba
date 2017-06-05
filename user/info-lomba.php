@@ -158,7 +158,7 @@
               <h2 style="color: white" ><center><b>Daftar Penyelenggara</b></center></h2>
             </div>
             <div class="modal-body" style="padding:40px 50px;">
-              <form id="form_tambah_penyelenggara" class="form-horizontal" action="../penyelenggara/proses-tambah-penyelenggara.php" method="post" enctype="multipart/form-data">
+              <form id="form_tambah_penyelenggara" class="form-horizontal" action="../penyelenggara/proses/proses-tambah-penyelenggara.php" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                   <label > Nama Penyelenggara</label>
                   <input type="text" class="form-control" name="nama_penyelenggara" placeholder="Masukan Nama Penyelenggara">
