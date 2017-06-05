@@ -31,10 +31,35 @@
                         <h1 class="page-header">
                            Pengumuman 
                         </h1>
-                       
+                       <?php
+                        $id_penyelenggara = $_SESSION['id_penyelenggara_tim'];
+                        $result = mysqli_query($koneksi, "SELECT * FROM pengumuman WHERE id_penyelenggara='$id_penyelenggara'");
+                        while($data = mysqli_fetch_array($result)){ 
+                    ?>
+
+
+                         <div class="row">
+                            <div class="col-md-9">
+
+                              <small class="post-date">Posted on: <?php echo $data['tgl_pengumuman']; ?> in <strong><?php echo $_SESSION['nama_penyelenggara']; ?></strong></small><br>
+                             <?php echo word_limiter($data['isi_pengumuman'],100); ?>
+                              <br><br>
+                              <p>
+                            <?php
+                              echo '
+                                
+
+                                    <a href="view_pengumuman.php" title="View Detail Pengumuman" class="btn btn-sm btn-primary"><span  aria-hidden="true"></span> Detail </a>
+                            ';
+                             ?>
+                            </div>
+                          </div>
+                    <?php
+                        }
+                    ?>
                     </div>
                 </div>
-                </div>
+             </div>
   
 
 
