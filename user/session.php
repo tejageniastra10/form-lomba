@@ -21,6 +21,7 @@ if(isset($_GET['id_tim']))
 		$row1 = mysqli_fetch_assoc($sql1);
 		$_SESSION['id_tim']=$id_tim;
 		$_SESSION['nama_tim']=$row['nama_tim'];
+		$_SESSION['nama_penyelenggara']=$row1['nama_penyelenggara'];
 		$_SESSION['nama_lomba_diikuti']=$row1['nama_lomba'];
 		$_SESSION['id_penyelenggara_tim']=$row1['id_penyelenggara'];
 		header("Location: ../tim/index.php");	
