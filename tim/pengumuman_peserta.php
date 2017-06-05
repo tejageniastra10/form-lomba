@@ -31,36 +31,47 @@
                         <h1 class="page-header">
                            Pengumuman 
                         </h1>
-                       <?php
+                       
+                    </div>
+                </div>
+             </div>
+              </div>
+
+  <?php
                         $id_penyelenggara = $_SESSION['id_penyelenggara_tim'];
                         $result = mysqli_query($koneksi, "SELECT * FROM pengumuman WHERE id_penyelenggara='$id_penyelenggara'");
                         while($data = mysqli_fetch_array($result)){ 
                     ?>
-
-
+                        <div id="page-wrapper">
+            <div class="container-fluid">
                          <div class="row">
                             <div class="col-md-9">
-
+                            <h3>
+                                <?php echo $data['judul_pengumuman']; ?>
+                             </h3>
                               <small class="post-date">Posted on: <?php echo $data['tgl_pengumuman']; ?> in <strong><?php echo $_SESSION['nama_penyelenggara']; ?></strong></small><br>
-                             <?php echo word_limiter($data['isi_pengumuman'],100); ?>
-                              <br><br>
+                             <h4>
+                             <?php echo $data['isi_pengumuman']; ?>
+                              </h4>
+                              
+                              <br>
                               <p>
-                            <?php
-                              echo '
-                                
-
-                                    <a href="view_pengumuman.php" title="View Detail Pengumuman" class="btn btn-sm btn-primary"><span  aria-hidden="true"></span> Detail </a>
-                            ';
-                             ?>
+                              <form action="view_pengumuman.php" method="post">
+                              <input type="hidden" name="id_pengumuman" value="<?php echo $data['id_pengumuman'];?>">
+                                    <button  class="btn btn-primary" type="subbmit" name="view" value="simpan">Lihat
+                                        
+                                    </button>
+                              </form>
+                                </p>
+                           
                             </div>
                           </div>
+                          <hr>
                     <?php
                         }
                     ?>
-                    </div>
-                </div>
-             </div>
-  
+                  </div>
+              </div>
 
 
 
