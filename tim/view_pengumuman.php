@@ -81,9 +81,9 @@
               <p class="text-muted"><?php echo $data['isi_pengumuman'];  ?></p>
 
               <hr>
-              <button href="../penyelenggara/file_pengumuman/<?php echo $data['file_pengumuman'];?>">
+              <a href="../penyelenggara/file_pengumuman/<?php echo $data['file_pengumuman'];?>" target="_blank">
                 Lihat Dokumen 
-              </button>
+              </a>
             </div>
             <!-- /.box-body -->
          <?php } ?>

@@ -35,15 +35,14 @@
                     </div>
                 </div>
              </div>
-              </div>
 
   <?php
                         $id_penyelenggara = $_SESSION['id_penyelenggara_tim'];
-                        $result = mysqli_query($koneksi, "SELECT * FROM pengumuman WHERE id_penyelenggara='$id_penyelenggara'");
+                        $result = mysqli_query($koneksi, "SELECT * FROM pengumuman WHERE id_penyelenggara='$id_penyelenggara' order by id_pengumuman DESC " );
                         while($data = mysqli_fetch_array($result)){ 
                     ?>
-                        <div id="page-wrapper">
-            <div class="container-fluid">
+
+
                          <div class="row">
                             <div class="col-md-9">
                             <h3>
@@ -70,8 +69,7 @@
                     <?php
                         }
                     ?>
-                  </div>
-              </div>
+                    </div>
 
 
 
