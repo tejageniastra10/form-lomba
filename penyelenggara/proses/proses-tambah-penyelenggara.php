@@ -1,9 +1,11 @@
+<link rel="stylesheet" type="text/css" href="../../user/sweetalert-master/dist/sweetalert.css">
+<script type="text/javascript" src="../../user/sweetalert-master/dist/sweetalert.min.js"></script>
 <?php
 
 include "../../koneksi.php";
 				if(isset($_POST['add']))
 				{
-					$id_penyelenggara				= $_POST['id_penyelenggara'];
+					
 					$nama_penyelenggara  			= $_POST['nama_penyelenggara'];
 					$nama_lomba			 			= $_POST['nama_lomba'];
 					$lokasi_lomba	 				= $_POST['lokasi_lomba'];
@@ -27,23 +29,25 @@ include "../../koneksi.php";
 
 
 					if(move_uploaded_file($tmp, $path)){
-					$cek = mysqli_query($koneksi, "SELECT * FROM penyelenggara WHERE id_penyelenggara='$id_penyelenggara'")or die (mysqli_error($koneksi));
-					if(mysqli_num_rows($cek) == 0)
-					{
-						$insert = mysqli_query($koneksi, "INSERT INTO penyelenggara(id_penyelenggara, nama_penyelenggara, nama_lomba, lokasi_lomba,akhir_pendaftaran, waktu_awal_lomba,waktu_akhir_lomba,id_kategori, email_penyelenggara, tlp_penyelenggara,jml_tim, status_penyelenggara,id_user,logo,fc_ktp,detail_penyelenggara) VALUES('$id_penyelenggara','$nama_penyelenggara', '$nama_lomba', '$lokasi_lomba','$akhir_pendaftaran', '$waktu_awal_lomba', '$waktu_akhir_lomba', '$id_kategori', '$email_penyelenggara', '$tlp_penyelenggara','$jml_tim', '$status_penyelenggara','$id_user','$logo','$fotobaru','$detail_penyelenggara')") or die(mysqli_error($koneksi));
+					
+						$insert = mysqli_query($koneksi, "INSERT INTO penyelenggara( nama_penyelenggara, nama_lomba, lokasi_lomba,akhir_pendaftaran, waktu_awal_lomba,waktu_akhir_lomba,id_kategori, email_penyelenggara, tlp_penyelenggara,jml_tim, status_penyelenggara,id_user,logo,fc_ktp,detail_penyelenggara) VALUES('$nama_penyelenggara', '$nama_lomba', '$lokasi_lomba','$akhir_pendaftaran', '$waktu_awal_lomba', '$waktu_akhir_lomba', '$id_kategori', '$email_penyelenggara', '$tlp_penyelenggara','$jml_tim', '$status_penyelenggara','$id_user','$logo','$fotobaru','$detail_penyelenggara')") or die(mysqli_error($koneksi));
 							if($insert)
 							{
-								header("location: ../../user/index.php");
-							}
-					}
-					else
-					{
-						echo "<script>
-							alert('terjadi kesalahan');
-							window.location.href='javascript:history.go(-1)';
-							</script>";
+								
+								echo '<script>
+						              setTimeout(function() {
+						                  swal({
+						                      title: "Data Terhapus!",
+						                      
+						                      type: "success"
+						                  }, function() {
+						                      window.location = " ../../user/index.php";
+						                  });
+						              });
+						          </script>';
 
-					}
+							}
+					
 				
 				}
 				}

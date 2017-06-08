@@ -85,12 +85,18 @@
                 </thead>
                 <tbody>
                 <?php
-                $sql = mysqli_query($koneksi, "SELECT * FROM penyelenggara WHERE id_user!='$id_user' ");
+                $id_user = $_SESSION['id_user'];
+                $sql = mysqli_query($koneksi, "SELECT * FROM penyelenggara WHERE id_user!='$id_user'");
                  $no = 1;
                   while($row = mysqli_fetch_assoc($sql)){
+                  $id_penyelenggara=$row['id_penyelenggara'];
+                  $id_user= $_SESSION['id_user'];
+                  $cek = mysqli_query($koneksi, "SELECT * FROM tim WHERE $id_user='$id_user' and id_penyelenggara='$id_penyelenggara'")or die (mysqli_error($koneksi));
+                  if(mysqli_num_rows($cek) == 0)
+                      {
                     if ($row['status_penyelenggara']=='3') {
-                  ?>
-                  <tr>
+                         ?>
+                      <tr>
                       <td style="text-align: center"><?php echo $no?></td>
                       <td style="text-align: center"><?php 
 
@@ -117,7 +123,8 @@
                 <?php                     
                 $no++;
                       }
-                      }
+                    }
+                  }
                   ?>
                 
                 </tbody>
@@ -236,27 +243,7 @@
       <!-- jQuery -->
         <script src="js/jquery.min.js"></script>
 
-  <!---script daftar peserta-->
-        <script type="text/javascript">
-            $(document).ready(function (){
-                $(".btn-warning").click(function (e){
-                    var m = $(this).attr("data-id");
-                    var n = $(this).attr("ket");
-                    $('#penyelenggara').val(m);
-                    $('#id_kategori').val(n);
-
-                    $.ajax({
-                        url: "modal/modal-daftar.php",
-                        type: "GET",
-                        data : {id_penyelenggara: m,},
-                        success: function (ajaxData){
-                            
-                            $("#Modal-tim").modal('show');
-                        }
-                    });
-                });
-            });
-        </script>
+  
 
 <div class="modal fade" id="ModalDetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
@@ -298,6 +285,44 @@
           });
       });
       </script>
+
+
+      
+      <script>
+        jQuery(document).ready(function($){
+            $('.btn-warning').on('click',function(){
+               var getLink = $(this).attr('href');
+               var m = $(this).attr("data-id");
+               var n = $(this).attr("ket");
+               $('#penyelenggara').val(m);
+               $('#id_kategori').val(n);
+
+                swal({
+                        title: 'Apakah Anda Ingin Daftar?',
+                        html: true,
+                        confirmButtonColor: 'green',
+                        showCancelButton: true,
+                        },function(){
+                        
+                        
+                        $.ajax({
+                            url: "modal/modal-daftar.php",
+                            type: "GET",
+                            data : {id_penyelenggara: m,},
+                            success: function (ajaxData){
+                                
+                                $("#Modal-tim").modal('show');
+                            }
+                        });
+                    });
+                return false;
+            });
+        });
+    </script>
+
+<?php include("alret-logout.php")  ?>
+
+
                
               <script src="js/bootstrap.min.js"></script>
 

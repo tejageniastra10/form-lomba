@@ -64,58 +64,58 @@
     <!-- Main content -->
     <section class="content">
       
-    <div id="page-wrapper"><br />
-
-      
-              <form class="form-inline" method="get">
-                <div class="form-group">
-                  <select name="filter" class="form-control" onchange="form.submit()">
-                    <option value="0">Filter Kategori Lomba</option>
-                    <?php $filter = (isset($_GET['filter']) ? strtolower($_GET['filter']) : NULL);  ?>
-                    <option value="1" <?php if($filter == '1'){ echo 'selected'; } ?>>Sepak Bola</option>
-                    <option value="2" <?php if($filter == '2'){ echo 'selected'; } ?>>Futsal</option>
-                    <option value="3" <?php if($filter == '3'){ echo 'selected'; } ?>>Basket</option>
-                  </select>
-                </div>
-              </form><br />
-
-              <table class="table table-bordered table-striped">
+    <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            
+            <!-- /.box-header -->
+            <div class="box-body">
+              
+              <table id="example1" class="table table-bordered table-striped">
                 <thead style="text-align: center; background: black;color: white">
-                    <td style=" width: 50px">No</td>
-                    <td style=" width: 120px">Nama Tim</td>
-                    <td style=" width: 200px">Alamat Tim</td>
-                    <td style=" width: 140px">Penanggung Jawab</td>
-                    <td style=" width: 150px">No Telephone</td>
-                    <td style=" width: 150px">Jumlah Pemain</td>
-                    <td style=" width: 100px">Status</td>
-                    <td style=" width: 100px">Detail</td>
+                    <th >No</th>
+                    <th>Nama Lomba</th>
+                    <th>Kategori</th>
+                    <th >Nama Tim</th>
+                    <th >Alamat Tim</th>
+                    <th >Penanggung Jawab</th>
+                    <th >Jumlah Pemain</th>
+                    <th >Status</th>
+                    <th >Detail Lomba</th>
                 </thead>
                 <tbody>
               <?php
 
-                  if($filter){
-                    $id_user=$_SESSION['id_user'];
-                    $sql = mysqli_query($koneksi, "SELECT * FROM tim WHERE id_user='$id_user' AND id_kategori='$filter'");
-                  }else{
+                 
                     $id_user=$_SESSION['id_user'];
                     $sql = mysqli_query($koneksi, "SELECT * FROM tim WHERE id_user='$id_user'");
-                  }
+                 
 
-                  if(mysqli_num_rows($sql) == 0){
-                    echo '<tr style="text-align:center;"><td colspan="8">Empty</td></tr>';
-                  }
-                  else{
-
+                  
                     $no = 1;
                   while($row = mysqli_fetch_assoc($sql)){
+                    $id_penyelenggara=$row['id_penyelenggara'];
+                    $sql1= mysqli_query($koneksi,"SELECT nama_lomba FROM penyelenggara WHERE id_penyelenggara ='$id_penyelenggara'");
+                    $row1 = mysqli_fetch_assoc($sql1);
+
+                    if ($row['id_kategori']=='1'){
+                            $Kategori='Sepak Bola';
+                            }
+                          if ($row['id_kategori']=='2') {
+                            $Kategori='Basket';
+                            } 
+                          if ($row['id_kategori']=='3'){
+                              $Kategori='Futsal'; 
+                            }
                       
                        echo '
                     <tr>
                       <td style="text-align: center">'.$no.'</td>
+                      <td style="text-align: center"> '.$row1['nama_lomba'].'</td>
+                      <td style="text-align: center"> '.$Kategori.'</td>
                       <td style="text-align: center">'.$row['nama_tim'].'</td>
                       <td style="text-align: center" >'.$row['alamat_tim'].'</td>
                       <td style="text-align: center">'.$row['penanggung_jawab'].'</td>
-                      <td style="text-align: center">'.$row['tlp_tim'].'</td>
                       <td style="text-align: center">'.$row['jml_pemain'].'</td>
 
                     ';
@@ -136,11 +136,16 @@
                     }
                     $no++;
                     echo '<td style="text-align: center"> <a href="#" class="btn btn-sm btn-info"   data-id='.$row["id_tim"].'><span  aria-hidden="true"></span> detail </a> </td> </tr>';
-                  }
+ 
                 }
                 ?>
               </tbody>
           </table>
+          </div>
+        </div>
+      </div>
+      </div>
+
           
     </div><!-- /#page-wrapper -->
 
@@ -273,7 +278,8 @@
                 });
             });
         </script>
-               
+
+<?php include("alret-logout.php")  ?>             
               <script src="js/bootstrap.min.js"></script>
 
               <script src="js/bootstrapValidator.js"></script>
@@ -374,7 +380,12 @@
               </script>
 
 
-
+<script>
+  $(function () {
+    $("#example1").DataTable();
+    
+  });
+</script>
 
  <?php include("scrip/footer.php")  ?>
 

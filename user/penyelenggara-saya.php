@@ -64,91 +64,52 @@
 
     <!-- Main content -->
     <section class="content">
-      
-    <div id="page-wrapper"><br />
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+              <div class="box-body">
 
-             
-            <?php if (!isset($_GET['order'])) {
-                  $kolom = 'id_penyelenggara';
-                  $order = 'asc';
-                  }
-                  else if($_GET['order']=='desc')
-                  {
-                    $kolom = 'nama_lomba';
-                    $order = 'desc';
-                    } 
-                  else if($_GET['order']=='asc')
-                  {
-                    $kolom = 'nama_lomba';
-                    $order = 'asc';
-                    } ?>
-
-              <form class="form-inline" method="get">
-                <div class="form-group">
-                  <select name="filter" class="form-control" onchange="form.submit()">
-                    <option value="0">Filter Kategori Lomba</option>
-                    <?php $filter = (isset($_GET['filter']) ? strtolower($_GET['filter']) : NULL);  ?>
-                    <option value="1" <?php if($filter == '1'){ echo 'selected'; } ?>>Sepak Bola</option>
-                    <option value="2" <?php if($filter == '2'){ echo 'selected'; } ?>>Futsal</option>
-                    <option value="3" <?php if($filter == '3'){ echo 'selected'; } ?>>Basket</option>
-                  </select>
-                </div>
-              </form><br />
-
-              <table class="table table-bordered table-striped">
+              <table id="example1" class="table table-bordered table-striped">
                 <thead style="text-align: center; background: #3c8dbc;color: white">
-                    <td style=" width: 50px">No</td>
-                    <td style=" width: 130px">Nama Lomba
-                    <?php
-                        if(!isset($_GET['order']) || $_GET['order']=='desc' )
-                          {?>
-                            <a class="pull-right" href="penyelenggara-saya.php?order=asc">
-                              <span style="color: white" class="glyphicon glyphicon-triangle-top" aria-hidden="true">
-                              </span></a>
-                        <?php
-                          }
-                          else if($_GET['order']=='asc')
-                            {?>
-                            <a class="pull-right" href="penyelenggara-saya.php?order=desc">
-                              <span style="color: white" class="glyphicon glyphicon-triangle-bottom" aria-hidden="true">
-                            </a></span>
-                            <?php
-                            }
-                            ?></td>
-                    <td style=" width: 250px">Tempat Lomba</td>
-                    <td style=" width: 150px">Waktu Mulai Lomba</td>
-                    <td style=" width: 200px">Telphone Penyelenggara</td>
-                    <td style=" width: 180px">Jumlah Tim Partisipan</td>
+                    <td style="width: 50px">No</td>
+                    <td >Kategori lomba</td>
+                    <td >Nama Lomba</td>
+                    <td >Tempat Lomba</td>
+                    <td >Waktu Mulai Lomba</td>
+                    <td >Telphone Penyelenggara</td>
                     <td>Dashboard</td>
                 </thead>
                 <tbody>
               <?php
 
-                  if($filter){
+                 
                     $id_user=$_SESSION['id_user'];
-                    $sql = mysqli_query($koneksi, "SELECT * FROM penyelenggara WHERE id_kategori='$filter' AND id_user='$id_user'  ORDER BY $kolom $order");
-                  }else{
-                    $id_user=$_SESSION['id_user'];
-                    $sql = mysqli_query($koneksi, "SELECT * FROM penyelenggara WHERE id_user='$id_user'  ORDER BY $kolom $order");
-                  }
+                    $sql = mysqli_query($koneksi, "SELECT * FROM penyelenggara WHERE id_user='$id_user' ");
 
-                  if(mysqli_num_rows($sql) == 0){
-                    echo '<tr style="text-align:center;"><td colspan="7">Empty</td></tr>';
-                  }
-                  else{
 
                     $no = 1;
                   while($row = mysqli_fetch_assoc($sql)){
                       if ($row['status_penyelenggara']=='3') {
 
+                          if ($row['id_kategori']=='1'){
+                            $Kategori='Sepak Bola';
+                      }
+                          if ($row['id_kategori']=='2') {
+                            $Kategori='Basket';
+                       } 
+                      if ($row['id_kategori']=='3'){
+                           $Kategori='Futsal'; 
+                      }
+
+
                         echo '
                     <tr>
                       <td style="text-align: center">'.$no.'</td>
+                      <td style="text-align: center"> '.$Kategori.'</td>
                       <td style="text-align: center">'.$row['nama_lomba'].'</td>
                       <td style="text-align: center" >'.$row['lokasi_lomba'].'</td>
                       <td style="text-align: center">'.$row['waktu_awal_lomba'].'</td>
                       <td style="text-align: center">'.$row['tlp_penyelenggara'].'</td>
-                      <td style="text-align: center">'.$row['jml_tim'].'</td>
                       <td style="text-align: center">
                         <a href="session.php?id_penyelenggara='.$row['id_penyelenggara'].'" target="_blank" title="Menuju Dashbpard"  class="btn btn-sm btn-primary"><span  aria-hidden="true"></span> Ke Dashboard </a>
                       </td>
@@ -156,16 +117,15 @@
                     ';
                     $no++;
                       }
-                  
-                    
-                  }
+                 
                 }
                 ?>
-              </tbody>
-          </table>
-          
-    </div><!-- /#page-wrapper -->
-
+                    </tbody>
+                </table>
+             </div>
+            </div>
+          </div>
+        </div>
     </section>
 
     <!-- /.content -->
@@ -285,9 +245,14 @@
                           });
                       });
               </script>
-
-
-
+              
+<?php include("alret-logout.php")  ?>
+<script>
+  $(function () {
+    $("#example1").DataTable();
+    
+  });
+</script>
 
  <?php include("scrip/footer.php")  ?>
 

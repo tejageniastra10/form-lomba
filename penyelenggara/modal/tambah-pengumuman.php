@@ -29,7 +29,7 @@
              <div class="form-group">    
                 <button type="submit" style="width: 100px"  name="add-pengumuman" value="Simpan" class="btn btn-success btn-block"></span> simpan</button>
             </div>
-            <a href="file_pengumuman/05062017BAB 6.pdf">PHP download file</a>
+           
                   
               </form>
             </div>     

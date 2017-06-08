@@ -242,7 +242,7 @@
       <!---script daftar penyelenggara-->
         <script src="js/bootstrap.min.js"></script>
 
-      
+ <?php include("alret-logout.php")  ?>     
 
       <!---script bayar -->
 

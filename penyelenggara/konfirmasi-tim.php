@@ -143,7 +143,12 @@
         <script src="../user/js/jquery.min.js"></script>
         <script src="../user/js/bootstrap.min.js"></script>
 
-<div id="loading"></div>
+
+<link rel="stylesheet" type="text/css" href="../user/sweetalert-master/dist/sweetalert.css">
+<script type="text/javascript" src="../user/sweetalert-master/dist/sweetalert.min.js"></script>
+      
+
+
 <!-- proses hapus  -->
     <?php
       if(isset($_GET['aksi']) == 'delete'){
@@ -158,10 +163,18 @@
           $delete = mysqli_query($koneksi, "DELETE FROM tim WHERE id_tim='$id_tim'");
           if($delete){
 
-           echo "<script>
-              
-              window.location.href='konfirmasi-tim.php';
-              </script>";
+                     echo '<script>
+              setTimeout(function() {
+                  swal({
+                      title: "Data Terhapus!",
+                      
+                      type: "success"
+                  }, function() {
+                      window.location = "konfirmasi-tim.php";
+                  });
+              });
+          </script>';
+
           }else{
             echo "<script>
               
@@ -188,7 +201,8 @@
 
 
 
-<!-- Modal untuk Konfirmasi -->
+
+  <!-- Modal untuk Konfirmasi -->
 <script type="text/javascript">
 function konfirmasi_tim(e) {
   var id_tim = $(e).attr("timId");
@@ -209,7 +223,6 @@ function konfirmasi_tim(e) {
 }
 </script>
 
- 
 
 
  <script type="text/javascript">
