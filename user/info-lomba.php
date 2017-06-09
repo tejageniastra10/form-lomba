@@ -79,7 +79,7 @@
                   <th>Nama Lomba</th>
                   <th>Tempat Lomba</th>
                   <th>Tlp Penyelenggara</th>
-                  <th>Jumlah Tim Partisipan</th>
+                  <th style="width: 150px">Jumlah Tim Partisipan</th>
                   <th>Pilih</th>
                 </tr>
                 </thead>
@@ -98,7 +98,7 @@
                          ?>
                       <tr>
                       <td style="text-align: center"><?php echo $no?></td>
-                      <td style="text-align: center"><?php 
+                      <td ><?php 
 
                             if ($row['id_kategori']=='1') {
                             echo "Sepak Bola";
@@ -109,9 +109,9 @@
                             else {
                                 echo "Basket";
                     }?></td>
-                      <td style="text-align: center"><?php echo $row['nama_lomba']; ?></td>
-                      <td style="text-align: center" > <?php echo $row['lokasi_lomba']; ?></td>
-                      <td style="text-align: center"><?php echo $row['tlp_penyelenggara']; ?></td>
+                      <td><?php echo $row['nama_lomba']; ?></td>
+                      <td > <?php echo $row['lokasi_lomba']; ?></td>
+                      <td ><?php echo $row['tlp_penyelenggara']; ?></td>
                       <td style="text-align: center"><?php echo $row['jml_tim'] ; ?></td>
                       <td style="text-align: center">
                         

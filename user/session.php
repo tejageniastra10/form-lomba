@@ -9,6 +9,7 @@ if(isset($_GET['id_penyelenggara']))
 		$row = mysqli_fetch_assoc($sql);
 		$_SESSION['id_penyelenggara']=$id_penyelenggara;
 		$_SESSION['nama_lomba']=$row['nama_lomba'];
+		$_SESSION['status_penyelenggara']=$row['status_penyelenggara'];
 		header("Location: ../penyelenggara/index.php");	
 }
 if(isset($_GET['id_tim']))
