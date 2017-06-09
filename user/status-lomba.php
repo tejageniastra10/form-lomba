@@ -131,7 +131,7 @@
                       </td> ';
                     }else {
                       echo '<td style="text-align: center">
-                        <span class="label label-danger">Akun Ditolak</span> 
+                        <span class="label label-danger">Akun Nonaktif</span> 
                       </td> ';
                     }
                     $no++;

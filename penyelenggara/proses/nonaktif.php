@@ -11,6 +11,7 @@ if ($_SESSION['status_penyelenggara']=='4') {
 
 $id_penyelenggara = $_SESSION['id_penyelenggara'];
 $nonaktif = mysqli_query($koneksi," UPDATE penyelenggara set status_penyelenggara='4' WHERE id_penyelenggara='$id_penyelenggara' ") or die (mysqli_error());
+mysqli_query($koneksi," UPDATE tim set id_status='3' WHERE id_penyelenggara='$id_penyelenggara' ") or die (mysqli_error());
 $_SESSION['status_penyelenggara']='4';
 if ($nonaktif) {
 	echo '<script>
