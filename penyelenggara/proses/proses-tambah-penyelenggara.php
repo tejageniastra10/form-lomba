@@ -37,11 +37,11 @@ include "../../koneksi.php";
 								echo '<script>
 						              setTimeout(function() {
 						                  swal({
-						                      title: "Data Terhapus!",
+						                      title: "Berhasil Mendaftar!",
 						                      
 						                      type: "success"
 						                  }, function() {
-						                      window.location = " ../../user/index.php";
+						                      window.location = " ../../user/status-penyelenggaraan.php";
 						                  });
 						              });
 						          </script>';

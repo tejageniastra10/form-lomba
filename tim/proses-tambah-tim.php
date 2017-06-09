@@ -1,3 +1,5 @@
+<link rel="stylesheet" type="text/css" href="../user/sweetalert-master/dist/sweetalert.css">
+<script type="text/javascript" src="../user/sweetalert-master/dist/sweetalert.min.js"></script>
 <?php
 
 include "../koneksi.php";
@@ -28,10 +30,19 @@ include "../koneksi.php";
 						$insert = mysqli_query($koneksi, "INSERT INTO tim(id_penyelenggara,id_kategori,nama_tim, alamat_tim, penanggung_jawab,email_tim, tlp_tim, jml_pemain, id_status,id_user,ktp_tim) VALUES('$id_penyelenggara','$id_kategori','$nama_tim', '$alamat_tim', '$penanggung_jawab', '$email_tim', '$tlp_tim', '$jml_pemain', '$id_status', '$id_user','$fotobaru')") or die(mysqli_error($koneksi));
 							if($insert)
 							{	
-								echo "<script>
-					              alert('pendaftaran berhasil');
-					              window.location.href='../user/status-lomba.php';
-					              </script>";
+								echo '<script>
+						              setTimeout(function() {
+						                  swal({
+						                      title: "Berhasil Mendaftar!",
+						                      
+						                      type: "success"
+						                  }, function() {
+						                      window.location = " ../user/status-lomba.php";
+						                  });
+						              });
+						          </script>';
+
+								
 								
 							}
 					}
@@ -44,9 +55,6 @@ include "../koneksi.php";
 			
 				
 				}
-				else
-				{
-					echo "string";
-				}
+				
 			?>
 

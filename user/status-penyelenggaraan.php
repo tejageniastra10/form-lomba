@@ -187,7 +187,7 @@
   </div>
 
  
-<!-- Modal log in -->
+<!-- Modal bayar pendaftaran -->
   <div class="modal fade" id="modal-bayar" role="dialog">
     <div class="modal-dialog">
     
@@ -197,7 +197,7 @@
           <h2 style="color: white" ><center><b>Bayar Pendaftaran Lomba</b></center></h2>
         </div>
         <div class="modal-body" style="padding:40px 50px;">
-          <form role="form" action="proses-bayar.php" method="post">
+          <form role="form" action="proses/proses-bayar.php" method="post">
           <div class="form-group">
             <label >Nama Lomba</label>
             <select name="id_penyelenggara" class="form-control" required>
@@ -206,7 +206,7 @@
             $sql = mysqli_query($koneksi, "SELECT * FROM penyelenggara WHERE id_user='$id_user' AND  status_penyelenggara='2'");
             if(mysqli_num_rows($sql) == 0)
             {
-              echo '<tr><td colspan="8">Data Tidak Ditemukan.</td></tr>';
+              echo 'Data Tidak Ditemukan';
             }
             else
             {

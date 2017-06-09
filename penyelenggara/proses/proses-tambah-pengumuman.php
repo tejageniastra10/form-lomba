@@ -1,40 +1,6 @@
-<?php
-$target_dir = "../file_pengumuman/image/";
-$target_file = $target_dir . date('dmY_His') . '_'. basename($_FILES["UploadFile"]["name"]);
-$target_dir2 = "../file_pengumuman/document/";
-$target_file2 = $target_dir2 . date('dmY_His') . '_'. basename($_FILES["UploadFile2"]["name"]);
-$uploadOk = 1;
-$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
- 
-if ($_FILES["UploadFile"]["size"] > 3000000  ) {
-    echo "Maaf, ukuran file terlalu besar.";
-    $uploadOk = 0;
-}
-else if ($_FILES["UploadFile2"]["size"] > 3000000  ) {
-    echo "Maaf, ukuran file terlalu besar.";
-    $uploadOk = 0;
-}
 
-
-
- else if($imageFileType != "JPG" && $imageFileType != "PNG" && $imageFileType != "png" && $imageFileType != "gif" && $imageFileType != "jpg" && $_FILES['UploadFile2']['type'] != "application/pdf" && $_FILES['UploadFile2']['type'] != "application/msword"){
-    echo "File Tidak Sesuai Format. format : gambar (png,jpg,gif), dokumen (doc,pdf)";
-    $uploadOk = 0;
- 
-
-} else {
-	echo "File :";?><br><?php 
-    move_uploaded_file($_FILES["UploadFile"]["tmp_name"], $target_file);
-    echo " ".basename( $_FILES["UploadFile"]["name"]);
-     ?><br><?php  
-    move_uploaded_file($_FILES["UploadFile2"]["tmp_name"], $target_file2);
-        echo " ".basename( $_FILES["UploadFile2"]["name"]) ;
-       ?><br><?php   echo " berhasil di upload.";
-    
-}
-
-?>
-
+<link rel="stylesheet" type="text/css" href="../../user/sweetalert-master/dist/sweetalert.css">
+<script type="text/javascript" src="../../user/sweetalert-master/dist/sweetalert.min.js"></script>
 
 <?php
 
@@ -52,17 +18,45 @@ include "../../koneksi.php";
                     $path = "../file_pengumuman/".$filebaru;
                     
 
-
-                    if(move_uploaded_file($tmp, $path)){
-                   
-                        $insert = mysqli_query($koneksi, "INSERT INTO pengumuman(id_penyelenggara,judul_pengumuman,isi_pengumuman,tgl_pengumuman,file_pengumuman) VALUES('$id_penyelenggara','$judul_pengumuman','$isi_pengumuman','$tgl_pengumuman','$filebaru')") or die(mysqli_error($koneksi));
+                    if ($file_pengumuman=='') {
+                      $insert = mysqli_query($koneksi, "INSERT INTO pengumuman(id_penyelenggara,judul_pengumuman,isi_pengumuman,tgl_pengumuman) VALUES('$id_penyelenggara','$judul_pengumuman','$isi_pengumuman','$tgl_pengumuman')") or die(mysqli_error($koneksi));
                             if($insert)
                             {
-                                header("location: ../pengumuman.php");
+                                 echo '<script>
+                                      setTimeout(function() {
+                                          swal({
+                                              title: "Pengumuman Berhasi Ditambah!",
+                                              
+                                              type: "success"
+                                          }, function() {
+                                              window.location = "../pengumuman.php";
+                                          });
+                                      });
+                                  </script>';
                             }
                    
+                    }
+                    else{
+                    move_uploaded_file($tmp, $path);
+                    $insert = mysqli_query($koneksi, "INSERT INTO pengumuman(id_penyelenggara,judul_pengumuman,isi_pengumuman,tgl_pengumuman,file_pengumuman) VALUES('$id_penyelenggara','$judul_pengumuman','$isi_pengumuman','$tgl_pengumuman','$filebaru')") or die(mysqli_error($koneksi));
+                            if($insert)
+                            {
+                                 echo '<script>
+                                      setTimeout(function() {
+                                          swal({
+                                              title: "Pengumuman Berhasi Ditambah!",
+                                              
+                                              type: "success"
+                                          }, function() {
+                                              window.location = "../pengumuman.php";
+                                          });
+                                      });
+                                  </script>';
+                            }
+                        }
+                   
                     
-                }
+            
                 }
             ?>
 

@@ -298,7 +298,7 @@
                $('#id_kategori').val(n);
 
                 swal({
-                        title: 'Apakah Anda Ingin Daftar?',
+                        title: 'Anda Yakin Ingin Daftar?',
                         html: true,
                         confirmButtonColor: 'green',
                         showCancelButton: true,
