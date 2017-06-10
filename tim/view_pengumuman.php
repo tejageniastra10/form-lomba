@@ -38,7 +38,7 @@
           <div class="col-md-6">
             <div class="box box-primary">
               <div class="box-header with-border">
-                <h3 class="box-title">PENGUMUMAN</h3>
+                
               </div>
 
               <?php
@@ -55,36 +55,36 @@
 
             
               ?>
-              <!-- /.box-header -->
-              <div class="box-body">
-               <strong> Judul </strong>
-                <p >
-                </p>
-                <p class="text-muted">
-                 <?php echo $data['judul_pengumuman'];  ?>
-                </p>
+              <div class="panel panel-primary"  style="width: 1000px !important;">
+              <div class="panel-heading">
+                <h3 class="panel-title"><center><h3 class="box-title">PENGUMUMAN</h3></center></h3><hr />
+                 <strong> Judul : </strong><?php echo $data['judul_pengumuman'];  ?><br />
+                 <strong> Tanggal : </strong><?php echo $data['tgl_pengumuman'];  ?>
+        
+                
+              </div>
+              <div class="panel-body" style="text-align: justify;">
+                <p class="text-muted"><?php echo $data['isi_pengumuman'];  ?></p>
+              </div>
 
-                <hr>
-
-                <strong> Alamat  </strong>
-                <p >
-                </p>
-                <p class="text-muted">
-                  <?php echo $data['tgl_pengumuman'];  ?>
-                </p>
-
-              <hr>
-
-              <strong> Isi Pengumuman</strong>
-              <p >
-              </p>
-              <p class="text-muted"><?php echo $data['isi_pengumuman'];  ?></p>
-
-              <hr>
-              <a href="../penyelenggara/file_pengumuman/<?php echo $data['file_pengumuman'];?>" target="_blank">
+              <div class="panel-footer panel-primary"><a href="../penyelenggara/file_pengumuman/<?php echo $data['file_pengumuman'];?>" target="_blank">
                 Lihat Dokumen 
-              </a>
+              </a></div>
             </div>
+         
+              
+
+              
+
+                
+
+         
+
+              
+
+             
+             
+          
             <!-- /.box-body -->
          <?php } ?>
                 

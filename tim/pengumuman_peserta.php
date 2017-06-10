@@ -24,9 +24,14 @@
             </div>
             </nav>
 
-            <div id="page-wrapper">
-            <div class="container-fluid">
+            <br />
+            <div id="page-wrapper" style="width: 1050px !important;">
+            <div class="container">
                 <div class="row">
+
+                  <div class="card">
+ 
+
                     <div class="col-lg-12">
                         <h1 class="page-header">
                            Pengumuman 
@@ -34,42 +39,54 @@
                        
                     </div>
                 </div>
-             </div>
+             </div><br>
 
-  <?php
-                        $id_penyelenggara = $_SESSION['id_penyelenggara_tim'];
-                        $result = mysqli_query($koneksi, "SELECT * FROM pengumuman WHERE id_penyelenggara='$id_penyelenggara' order by id_pengumuman DESC " );
-                        while($data = mysqli_fetch_array($result)){ 
-                    ?>
+            <?php
+              $id_penyelenggara = $_SESSION['id_penyelenggara_tim'];
+              $result = mysqli_query($koneksi, "SELECT * FROM pengumuman WHERE id_penyelenggara='$id_penyelenggara' order by id_pengumuman DESC " );
+              while($data = mysqli_fetch_array($result)){ 
+            ?>
 
+                              <div class="panel panel-primary" style="width: 1000px !important">
 
-                         <div class="row">
-                            <div class="col-md-9">
-                            <h3>
-                                <?php echo $data['judul_pengumuman']; ?>
-                             </h3>
-                              <small class="post-date">Posted on: <?php echo $data['tgl_pengumuman']; ?> in <strong><?php echo $_SESSION['nama_penyelenggara']; ?></strong></small><br>
-                             <h4>
-                             <?php echo $data['isi_pengumuman']; ?>
-                              </h4>
-                              
-                              <br>
-                              <p>
-                              <form action="view_pengumuman.php" method="post">
+                              <div class="panel-heading"> <h3><?php echo $data['judul_pengumuman']; ?></h3>
+                                <small class="post-date">Posted on: <?php echo $data['tgl_pengumuman']; ?></small>
+                              </div>
+                              <div class="panel-body">
+                                <ul class="list-group">
+                                  <li class="list-group-item"> <h6 style="text-align: justify;">
+                                       <?php echo $data['isi_pengumuman']; ?>
+                                        </h6></li>
+                                  <li class="list-group-item"><form action="view_pengumuman.php" method="post" >
                               <input type="hidden" name="id_pengumuman" value="<?php echo $data['id_pengumuman'];?>">
                                     <button  class="btn btn-primary" type="subbmit" name="view" value="simpan">Lihat
                                         
                                     </button>
-                              </form>
-                                </p>
-                           
+                              </form></li>
+                                  
+                                </ul>
+                               
+                              </div>
                             </div>
-                          </div>
-                          <hr>
+                              
+                                   
+                            
+                              
+                              
+
+                              <br><br>
+                               
+                           
+                           
+                        
                     <?php
                         }
                     ?>
+
+
+
                     </div>
+                </div>
 
 
 
