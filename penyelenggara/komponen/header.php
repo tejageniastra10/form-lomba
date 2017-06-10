@@ -9,6 +9,9 @@ if(empty($_SESSION)){
 if ($_SESSION['id_level']!='2') {
   header("Location: ../index.php");
 }
+if ($_SESSION['status_penyelenggara']=='4') {
+  header("Location: ../user/index.php");
+}
 
 ?>
 <?php

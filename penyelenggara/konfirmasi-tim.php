@@ -102,7 +102,7 @@
                             <td style="text-align: center">'.$row['tlp_tim'].'</td>
                             <td style="text-align: center">
 
-                              <a href="konfirmasi-tim.php?aksi=delete&id_tim='.$row['id_tim'].'" title="Hapus Data" onclick="return confirm(\'Anda yakin akan menghapus data '.$row['nama_tim'].'?\')" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+                              <a  title="Hapus Data" timId="'.$row['id_tim'].'"  class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
 
                               <a href="javascript:void(0)" class="btn btn-sm btn-success" id="konfirmasi_tim" timId="'.$row['id_tim'].'" onclick="konfirmasi_tim(this);" ><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></a>
                             </td>
@@ -143,7 +143,35 @@
         <script src="../user/js/jquery.min.js"></script>
         <script src="../user/js/bootstrap.min.js"></script>
 
-<div id="loading"></div>
+
+        <link rel="stylesheet" type="text/css" href="../user/sweetalert-master/dist/sweetalert.css">
+        <script type="text/javascript" src="../user/sweetalert-master/dist/sweetalert.min.js"></script>
+
+        <!---script alret logout href="konfirmasi-tim.php?aksi=delete&id_tim='.$row['id_tim'].'"-->
+                <script>
+                jQuery(document).ready(function($){
+                    $('.btn-danger').on('click',function(){
+                       var getLink = $(this).attr('href');
+                      var n = $(this).attr("timId");
+
+                        swal({
+                                title: "Apakah Anda Yakin Ingin Menghapus data?",
+                                
+                                type: "warning",
+                                showCancelButton: true,
+                                confirmButtonColor: "#DD6B55",
+                                confirmButtonText: "Ya",
+                                closeOnConfirm: false
+                                },function(){
+                                   window.location="konfirmasi-tim.php?aksi=delete&id_tim="+n;
+                            });
+                        return false;
+                    });
+                });
+            </script>
+              
+
+
 <!-- proses hapus  -->
     <?php
       if(isset($_GET['aksi']) == 'delete'){
@@ -158,10 +186,18 @@
           $delete = mysqli_query($koneksi, "DELETE FROM tim WHERE id_tim='$id_tim'");
           if($delete){
 
-           echo "<script>
-              
-              window.location.href='konfirmasi-tim.php';
-              </script>";
+                     echo '<script>
+              setTimeout(function() {
+                  swal({
+                      title: "Data Terhapus!",
+                      
+                      type: "success"
+                  }, function() {
+                      window.location = "konfirmasi-tim.php";
+                  });
+              });
+          </script>';
+
           }else{
             echo "<script>
               
@@ -188,7 +224,8 @@
 
 
 
-<!-- Modal untuk Konfirmasi -->
+
+  <!-- Modal untuk Konfirmasi -->
 <script type="text/javascript">
 function konfirmasi_tim(e) {
   var id_tim = $(e).attr("timId");
@@ -209,7 +246,6 @@ function konfirmasi_tim(e) {
 }
 </script>
 
- 
 
 
  <script type="text/javascript">
