@@ -145,7 +145,7 @@
                       <td style="text-align:center;">'.$row['nama_pemain'].'</td>
                       <td style="text-align:center;">'.$row['usia_pemain'].'</td>
                       <td style="text-align:center;">'.$row['alamat_pemain'].'</td>
-                      <td style="text-align: center"> <a href="#" class="btn btn-sm btn-info"  ><span  aria-hidden="true"></span> Lihat </a> </td> 
+                      <td style="text-align: center"> <a href="#" class="btn btn-sm btn-info" data-foto_pemain='.$row["foto_pemain"].' data-id_pemain='.$row["id_pemain"].' ><span  aria-hidden="true"></span> Lihat </a> </td> 
 
                     </tr>';
                       $no++;
@@ -181,7 +181,7 @@
 
       <!-- jQuery -->
         <script src="../user/js/jquery.min.js"></script>
-        <script src="../user/js/bootstrap.min.js"></script>
+    
 
         <link rel="stylesheet" type="text/css" href="../user/sweetalert-master/dist/sweetalert.css">
         <script type="text/javascript" src="../user/sweetalert-master/dist/sweetalert.min.js"></script>
@@ -216,9 +216,19 @@
         if(mysqli_num_rows($cek) == 0){
           echo "<script>
               
-              window.location.href='konfirmasi-tim.php';
+              window.location.href='tim-peserta.php';
               </script>";
         }else{
+          $jml_tim = mysqli_query($koneksi, "SELECT * FROM tim WHERE id_penyelenggara='$id_penyelenggara' AND id_status='2'")or die (mysqli_error($koneksi));
+          $tim_terdaftar=0;
+          while($jml= mysqli_fetch_assoc($jml_tim)){
+          $tim_terdaftar=$tim_terdaftar+1;
+            }
+          $tim_terdaftar = $tim_terdaftar-1;
+          mysqli_query($koneksi, "UPDATE penyelenggara SET tim_terdaftar='$tim_terdaftar' WHERE id_penyelenggara='$id_penyelenggara'") or die (mysqli_error());
+
+
+
           $delete = mysqli_query($koneksi, "DELETE FROM tim WHERE id_tim='$id_tim'");
           if($delete){
 
@@ -229,7 +239,7 @@
                       
                       type: "success"
                   }, function() {
-                      window.location = "konfirmasi-tim.php";
+                      window.location = "tim-peserta.php";
                   });
               });
           </script>';
@@ -237,14 +247,48 @@
           }else{
             echo "<script>
               
-              window.location.href='konfirmasi-tim.php';
+              window.location.href='tim-peserta.php';
               </script>";
           }
         }
       }
       ?>
-       
 
+
+
+    <script src="../user/js/bootstrap.min.js"></script>
+
+
+<div class="modal fade" id="ModalDetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-warning">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">KTP PEMAIN </h4>
+      </div>
+      <div class="modal-body">
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+        $(function(){
+            $(document).on('click','.btn-info',function(e){
+                $("#ModalDetail").modal('show');
+                $.post('modal/detailktp.php',
+                    {  
+                      id_pemain:$(this).attr('data-id_pemain'),
+                      foto_pemain:$(this).attr('data-foto_pemain'),
+                      
+                    }, 
+                    function(html){
+                        $(".modal-body").html(html);
+                    }   
+                );
+            });
+        });
+    </script>
+ <!---script lihat detail-->
 
 <!-- DataTables -->
 <script src="../user/plugins/datatables/jquery.dataTables.min.js"></script>
@@ -261,12 +305,6 @@
 
 
 
-<script>
-  $(function () {
-    $("#example1").DataTable();
-    
-  });
-</script>
 
 
 

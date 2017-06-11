@@ -14,9 +14,6 @@
                         <a href="myteam.php"><i class="fa fa-fw fa-plus"></i> Pemain</a>
                     </li>
                     <li>
-                        <a href="jadwal.php"><i class="fa fa-fw fa-calendar"></i> Jadwal</a>
-                    </li>
-                    <li>
                         <a href="statisti_peserta.php"><i class="fa fa-fw fa-calendar"></i> Statistik</a>
                     </li>
                 </ul>

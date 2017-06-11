@@ -80,7 +80,7 @@
                           <td>Pilihan</td>
                       </thead>
                       <tbody>
-                      <script src="../user/js/bootstrap.min.js"></script>
+                     
                     <?php
                     $id_penyelenggara = $_SESSION['id_penyelenggara'];
                         $sql = mysqli_query($koneksi, "SELECT * FROM tim where id_penyelenggara='$id_penyelenggara' and id_status='1' ");
@@ -102,7 +102,7 @@
                             <td style="text-align: center">'.$row['tlp_tim'].'</td>
                             <td style="text-align: center">
 
-                              <a  title="Hapus Data" timId="'.$row['id_tim'].'"  class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+                              <a  title="Hapus Data" timId="'.$row['id_tim'].'" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
 
                               <a href="javascript:void(0)" class="btn btn-sm btn-success" id="konfirmasi_tim" timId="'.$row['id_tim'].'" onclick="konfirmasi_tim(this);" ><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></a>
                             </td>
@@ -147,7 +147,7 @@
         <link rel="stylesheet" type="text/css" href="../user/sweetalert-master/dist/sweetalert.css">
         <script type="text/javascript" src="../user/sweetalert-master/dist/sweetalert.min.js"></script>
 
-        <!---script alret logout href="konfirmasi-tim.php?aksi=delete&id_tim='.$row['id_tim'].'"-->
+        <!---hapus tim-->
                 <script>
                 jQuery(document).ready(function($){
                     $('.btn-danger').on('click',function(){
@@ -208,6 +208,27 @@
       }
       ?>
 
+  <!-- Modal untuk Konfirmasi -->
+<script type="text/javascript">
+function konfirmasi_tim(e) {
+  var id_tim = $(e).attr("timId");
+
+  $.ajax({
+    url: "konfirmasi_tim.php",
+    type:'post',
+    data:'id='+id_tim,
+    success:function (data) {
+      var dataKonf = jQuery.parseJSON(data);
+      if (dataKonf.isSuccess) {
+        $("#ajax-konfirmasi").load(document.URL + ' #ajax-konfirmasi');
+      }
+      else{
+        alert('gagal update db');
+      }
+    }
+  });
+}
+</script>
 
 <!-- DataTables -->
 <script src="../user/plugins/datatables/jquery.dataTables.min.js"></script>
@@ -225,26 +246,6 @@
 
 
 
-  <!-- Modal untuk Konfirmasi -->
-<script type="text/javascript">
-function konfirmasi_tim(e) {
-  var id_tim = $(e).attr("timId");
-  $.ajax({
-    url: "konfirmasi_tim.php",
-    type:'post',
-    data:'id='+id_tim,
-    success:function (data) {
-      var dataKonf = jQuery.parseJSON(data);
-      if (dataKonf.isSuccess) {
-        $("#ajax-konfirmasi").load(document.URL + ' #ajax-konfirmasi');
-      }
-      else{
-        alert('gagal update db');
-      }
-    }
-  });
-}
-</script>
 
 
 

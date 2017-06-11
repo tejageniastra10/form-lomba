@@ -14,9 +14,6 @@
                     <li >
                         <a href="myteam.php"><i class="fa fa-fw fa-plus"></i> Pemain</a>
                     </li>
-                    <li>
-                        <a href="jadwal.php"><i class="fa fa-fw fa-calendar"></i> Jadwal</a>
-                    </li>
                     <li class="active">
                         <a href="statisti_peserta.php"><i class="fa fa-fw fa-calendar"></i> Statistik</a>
                     </li>
@@ -72,8 +69,7 @@
                 $id_penyelenggara = $_SESSION['id_penyelenggara_tim'];
                 $sql = mysqli_query($koneksi, "SELECT * FROM statistik where id_penyelenggara='$id_penyelenggara'order by id DESC");
                  $i = 1;
-                  while($row = mysqli_fetch_assoc($sql)){
-              
+                while($row = mysqli_fetch_assoc($sql)){
                 echo '
                           <tr>
                             

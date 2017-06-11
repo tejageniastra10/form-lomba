@@ -9,12 +9,12 @@
               <form id="form_tambah_penyelenggara" class="form-horizontal" action="../penyelenggara/proses/proses-tambah-pengumuman.php" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                   <label > Judul Pengumuman</label>
-                  <input type="text" class="form-control" name="judul_pengumuman" placeholder="Masukan judul pengumuman">
+                  <input type="text" class="form-control" name="judul_pengumuman" placeholder="Masukan judul pengumuman" required>
                 </div>
               
               <div class="form-group">
                 <label > Isi Pengumuman</label>
-                <textarea rows="6" class="form-control" name="isi_pengumuman" placeholder="Masukan isi Pengumuman"></textarea>
+                <textarea rows="6" class="form-control" name="isi_pengumuman" placeholder="Masukan isi Pengumuman" required></textarea>
               </div>
               <div class="form-group">
               <label > Upload Dokumen</label>
