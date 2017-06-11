@@ -216,9 +216,19 @@
         if(mysqli_num_rows($cek) == 0){
           echo "<script>
               
-              window.location.href='konfirmasi-tim.php';
+              window.location.href='tim-peserta.php';
               </script>";
         }else{
+          $jml_tim = mysqli_query($koneksi, "SELECT * FROM tim WHERE id_penyelenggara='$id_penyelenggara' AND id_status='2'")or die (mysqli_error($koneksi));
+          $tim_terdaftar=0;
+          while($jml= mysqli_fetch_assoc($jml_tim)){
+          $tim_terdaftar=$tim_terdaftar+1;
+            }
+          $tim_terdaftar = $tim_terdaftar-1;
+          mysqli_query($koneksi, "UPDATE penyelenggara SET tim_terdaftar='$tim_terdaftar' WHERE id_penyelenggara='$id_penyelenggara'") or die (mysqli_error());
+
+
+
           $delete = mysqli_query($koneksi, "DELETE FROM tim WHERE id_tim='$id_tim'");
           if($delete){
 
@@ -229,7 +239,7 @@
                       
                       type: "success"
                   }, function() {
-                      window.location = "konfirmasi-tim.php";
+                      window.location = "tim-peserta.php";
                   });
               });
           </script>';
@@ -237,7 +247,7 @@
           }else{
             echo "<script>
               
-              window.location.href='konfirmasi-tim.php';
+              window.location.href='tim-peserta.php';
               </script>";
           }
         }

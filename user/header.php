@@ -69,6 +69,7 @@ if ($_SESSION['id_level']!='2') {
                       $id_user= $_SESSION['id_user'];
                       $jml_penyelenggara= mysqli_query($koneksi, "SELECT id_user FROM penyelenggara WHERE id_user='$id_user' and status_penyelenggara='3' " );
                       $jml_tim= mysqli_query($koneksi, "SELECT id_user FROM tim WHERE id_user='$id_user' and id_status='2' " );
+                      $menunggu_konfirmasi= mysqli_query($koneksi,"SELECT id_user FROM penyelenggara WHERE status_penyelenggara!='3' AND status_penyelenggara!='4' ");
                           $i=1;
                           $_SESSION['jml_penyelenggara']= 0;
                           while($jml = mysqli_fetch_assoc($jml_penyelenggara)){
@@ -80,6 +81,12 @@ if ($_SESSION['id_level']!='2') {
                           while($jml = mysqli_fetch_assoc($jml_tim)){
                             $_SESSION['jml_tim']= $j;
                             $j++;               
+                          }
+                          $k=1;
+                          $_SESSION['menunggu_konfirmasi']= 0;
+                          while($jml = mysqli_fetch_assoc($menunggu_konfirmasi)){
+                            $_SESSION['menunggu_konfirmasi']= $k;
+                            $k++;               
                           }
 
 

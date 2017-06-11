@@ -86,42 +86,49 @@
                 <tbody>
                 <?php
                 $id_user = $_SESSION['id_user'];
-                $sql = mysqli_query($koneksi, "SELECT * FROM penyelenggara WHERE id_user!='$id_user'");
+
+                
+                $sql = mysqli_query($koneksi, "SELECT * FROM penyelenggara WHERE id_user!='$id_user' ");
                  $no = 1;
                   while($row = mysqli_fetch_assoc($sql)){
+
+                    //biar klok udah daftar ndak muncul lg
                   $id_penyelenggara=$row['id_penyelenggara'];
                   $id_user= $_SESSION['id_user'];
-                  $cek = mysqli_query($koneksi, "SELECT * FROM tim WHERE $id_user='$id_user' and id_penyelenggara='$id_penyelenggara'")or die (mysqli_error($koneksi));
+                  $cek = mysqli_query($koneksi, "SELECT * FROM tim WHERE id_user='$id_user' and id_penyelenggara='$id_penyelenggara'")or die (mysqli_error($koneksi));
                   if(mysqli_num_rows($cek) == 0)
                       {
                     if ($row['status_penyelenggara']=='3') {
-                         ?>
-                      <tr>
-                      <td style="text-align: center"><?php echo $no?></td>
-                      <td ><?php 
+                        if ( $row['tim_terdaftar']<= $row['jml_tim'] ) {
+                          ?>
+                              <tr>
+                                  <td style="text-align: center"><?php echo $no?></td>
+                                  <td ><?php 
 
-                            if ($row['id_kategori']=='1') {
-                            echo "Sepak Bola";
-                            }
-                            elseif ($row['id_kategori']=='2') {
-                            echo "Futsal";
-                             } 
-                            else {
-                                echo "Basket";
-                    }?></td>
-                      <td><?php echo $row['nama_lomba']; ?></td>
-                      <td > <?php echo $row['lokasi_lomba']; ?></td>
-                      <td ><?php echo $row['tlp_penyelenggara']; ?></td>
-                      <td style="text-align: center"><?php echo $row['jml_tim'] ; ?></td>
-                      <td style="text-align: center">
-                        
-                        <a href="#" class="btn btn-sm btn-info"   data-id='<?php echo $row["id_penyelenggara"]; ?>'><span  aria-hidden="true"></span> detail </a>
-                  
-                        <a href="#" class="btn btn-sm btn-warning" ket='<?php echo $row["id_kategori"]; ?>'  data-id='<?php echo $row["id_penyelenggara"]; ?>'><span  aria-hidden="true"></span> Daftar </a>
-                      </td>
-                </tr>
-                <?php                     
-                $no++;
+                                        if ($row['id_kategori']=='1') {
+                                        echo "Sepak Bola";
+                                        }
+                                        elseif ($row['id_kategori']=='2') {
+                                        echo "Futsal";
+                                         } 
+                                        else {
+                                            echo "Basket";
+                                }?></td>
+                                  <td><?php echo $row['nama_lomba']; ?></td>
+                                  <td > <?php echo $row['lokasi_lomba']; ?></td>
+                                  <td ><?php echo $row['tlp_penyelenggara']; ?></td>
+                                  <td style="text-align: center"><?php echo $row['jml_tim']. '/' .$row['tim_terdaftar'];  ?></td>
+                                  <td style="text-align: center">
+                                    
+                                    <a href="#" class="btn btn-sm btn-info"   data-id='<?php echo $row["id_penyelenggara"]; ?>'><span  aria-hidden="true"></span> detail </a>
+                              
+                                    <a href="#" class="btn btn-sm btn-warning" ket='<?php echo $row["id_kategori"]; ?>'  data-id='<?php echo $row["id_penyelenggara"]; ?>'><span  aria-hidden="true"></span> Daftar </a>
+                                  </td>
+                            </tr>
+                          <?php
+                           $no++;
+                        }                   
+               
                       }
                     }
                   }
@@ -207,8 +214,8 @@
                   <input type="text" class="form-control" name="tlp_penyelenggara" placeholder="masukan no hp">
                 </div>
                 <div class="form-group">
-                  <label >Jumlah Tim</label>
-                  <input type="text" class="form-control" name="jml_tim" placeholder="masukkan jumlah tim">
+                  <label >Jumlah Tim </label>
+                  <input type="hidden" class="form-control" name="jml_tim" placeholder="masukkan jumlah tim">
                 </div>
                 <div class="form-group">
                    <label><span ></span> Foto Copy KTP Penyelenggara</label>
@@ -287,7 +294,7 @@
       </script>
 
 
-      
+      <!---script daftar tim-->
       <script>
         jQuery(document).ready(function($){
             $('.btn-warning').on('click',function(){
