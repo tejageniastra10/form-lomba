@@ -120,7 +120,7 @@
                       <td style="text-align: center">'.$row['tlp_tim'].'</td>
                       <td style="text-align: center">'.$row['jml_pemain'].'</td>
                       <td style="text-align: center">
-                        <a href="session.php?id_tim='.$row['id_tim'].'" title="Menuju Dashbpard" target="_blank" class="btn btn-sm btn-primary"><span  aria-hidden="true"></span> Ke Dashboard </a>
+                        <a href="session.php?id_tim='.$row['id_tim'].'" title="Menuju Dashbpard" target="_blank" class="btn btn-sm btn-primary"><span  aria-hidden="true"></span>Dashboard </a>
                       </td>
                       
                     </tr>

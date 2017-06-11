@@ -185,7 +185,7 @@
                                                 <td><?php echo $row['nama_penyelenggara'] ?></td>
                                                 <td style="text-align: center;"><?php echo $row['nama_lomba'] ?></td>
                                                 <td style="text-align: center;"><?php echo $row['email_penyelenggara'] ?></td>
-                                                <td style="text-align: center;"><a href="../penyelenggara/pembayaran_penyelenggara/<?php echo $row['pembayaran_penyelenggara'] ?>" target="_blank">Slip Pembayara</a></td>
+                                                <td style="text-align: center;"><a href="../user/proses/pembayaran/<?php echo $row['pembayaran_penyelenggara'] ?>" target="_blank">Slip Pembayara</a></td>
                                                 <td style="text-align: center;">
 
                                                    <a href="javascript:void(0)" class="btn btn-sm btn-info" id="konfirmasi" penyelenggaraId="<?php echo $row['id_penyelenggara'] ?>" onclick="konfirmasi(this);" style="width:40px; height: 34px;"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></a>

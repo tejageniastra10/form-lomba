@@ -80,7 +80,7 @@
                   $id_penyelenggara=$_SESSION['id_penyelenggara'];
                     $sql = mysqli_query($koneksi, "SELECT * FROM statistik WHERE id_penyelenggara='$id_penyelenggara'");
                   if(mysqli_num_rows($sql) == 0){
-                    echo '<tr style="text-align:center;"><td colspan="4">Empty</td></tr>';
+                    echo '<tr style="text-align:center;"><td colspan="7">Empty</td></tr>';
                   }
                   else{
 

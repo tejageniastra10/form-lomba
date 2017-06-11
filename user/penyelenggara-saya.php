@@ -71,13 +71,13 @@
 
               <table id="example1" class="table table-bordered table-striped">
                 <thead style="text-align: center; background: #3c8dbc;color: white">
-                    <td style="width: 50px">No</td>
-                    <td >Kategori lomba</td>
-                    <td >Nama Lomba</td>
-                    <td >Tempat Lomba</td>
-                    <td >Waktu Mulai Lomba</td>
-                    <td >Telphone Penyelenggara</td>
-                    <td>Dashboard</td>
+                    <th style="width: 50px">No</th>
+                    <th >Kategori lomba</th>
+                    <th >Nama Lomba</th>
+                    <th >Tempat Lomba</th>
+                    <th >Waktu Mulai Lomba</th>
+                    <th >Telphone Penyelenggara</th>
+                    <th>Dashboard</th>
                 </thead>
                 <tbody>
               <?php
@@ -95,10 +95,10 @@
                             $Kategori='Sepak Bola';
                       }
                           if ($row['id_kategori']=='2') {
-                            $Kategori='Basket';
+                            $Kategori='futsal';
                        } 
                       if ($row['id_kategori']=='3'){
-                           $Kategori='Futsal'; 
+                           $Kategori='basket'; 
                       }
 
 

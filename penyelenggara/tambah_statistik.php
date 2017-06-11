@@ -89,7 +89,7 @@
                     <select name="namateamA" class="form-control" >
                        <?php
                         $id_p = $_SESSION['id_penyelenggara'];
-                        $sql  = mysqli_query($koneksi, "SELECT * FROM tim");
+                        $sql  = mysqli_query($koneksi, "SELECT * FROM tim WHERE id_penyelenggara= '$id_p' AND id_status='2'");
                         
                         while($data=mysqli_fetch_array($sql)){
                        
@@ -121,7 +121,7 @@
                   <select name="namateamB" class="form-control" >
                        <?php
                         $id_p = $_SESSION['id_penyelenggara'];
-                        $sql  = mysqli_query($koneksi, "SELECT * FROM tim ");
+                        $sql  = mysqli_query($koneksi, "SELECT * FROM tim WHERE id_penyelenggara= '$id_p' AND id_status='2'");
                         
                         while($data=mysqli_fetch_array($sql)){
                        

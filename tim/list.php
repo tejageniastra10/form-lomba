@@ -64,7 +64,12 @@
 
                     <?php
                         $id_tim = $_SESSION['id_tim'];
-                        $result = mysqli_query($koneksi, "SELECT * FROM tim WHERE id_tim='$id_tim'");
+                        $result1 = mysqli_query($koneksi, "SELECT * FROM tim WHERE id_tim='$id_tim'");
+                        $data1 = mysqli_fetch_array($result1);
+                        $id_penyelenggara= $data1['id_penyelenggara'];
+
+
+                        $result = mysqli_query($koneksi, "SELECT * FROM tim WHERE id_penyelenggara='$id_penyelenggara'");
                         while($data = mysqli_fetch_array($result)){ 
                     ?>
                         <tr>

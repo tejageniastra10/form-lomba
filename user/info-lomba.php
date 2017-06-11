@@ -215,7 +215,7 @@
                 </div>
                 <div class="form-group">
                   <label >Jumlah Tim </label>
-                  <input type="hidden" class="form-control" name="jml_tim" placeholder="masukkan jumlah tim">
+                  <input type="text" class="form-control" name="jml_tim" placeholder="masukkan jumlah tim">
                 </div>
                 <div class="form-group">
                    <label><span ></span> Foto Copy KTP Penyelenggara</label>

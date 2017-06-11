@@ -20,7 +20,7 @@ include "../../koneksi.php";
 
 					if(move_uploaded_file($tmp, $path)){
 										
-						$insert = mysqli_query($koneksi, "INSERT INTO penyelenggara(pembayaran_penyelenggara) VALUES('$fotobaru')") or die(mysqli_error($koneksi));
+						$insert = mysqli_query($koneksi, "UPDATE penyelenggara set pembayaran_penyelenggara='$fotobaru' WHERE id_penyelenggara='$id_penyelenggara' ") or die(mysqli_error($koneksi));
 							if($insert)
 							{
 								echo '<script>
