@@ -35,10 +35,9 @@
 
 
           <!-- About Me Box -->
-          <div class="col-md-6">
+          <div class="col-md-9" style="margin: 5px 120px;">
             <div class="box box-primary">
               <div class="box-header with-border">
-                <h3 class="box-title">Profil Peserta</h3>
               </div>
 
               <?php
@@ -49,48 +48,43 @@
             
               ?>
               <!-- /.box-header -->
+              <div class="panel panel-primary">
+                <div class="panel-heading" style="height: 60px;">
+                  <h2 class="panel-title" style="text-align: center; line-height: 40px;">PROFIL PESERTA</h2>
+                </div>
+                <div class="panel-body">
+                  <strong><i class="fa fa-user margin-r-5" style="margin-left: 50px;"></i> Nama </strong>
+                    <p class="text-muted" style="margin-left: 50px; padding-left: 20px;">
+                     <?php echo $row['nama_tim'];  ?>
+                    </p><hr style="margin-left: 50px; margin-right: 50px;">
+
+                    <strong><i class="fa fa-map-marker margin-r-5" style="margin-left: 50px;"></i> Alamat  </strong>
+                    <p class="text-muted" style="margin-left: 50px; padding-left: 20px;">
+                      <?php echo $row['alamat_tim'];  ?>
+                    </p><hr style="margin-left: 50px; margin-right: 50px;">
+
+                    <strong><i class="fa fa-user margin-r-5" style="margin-left: 50px;"></i> Penanggung Jawab</strong>
+                    <p class="text-muted" style="margin-left: 50px; padding-left: 20px;">
+                      <?php echo $row['penanggung_jawab'];  ?>
+                    </p>
+                    <hr style="margin-left: 50px; margin-right: 50px;">
+
+                    <strong><i class="fa  fa-envelope-o margin-r-5" style="margin-left: 50px;"></i> Email</strong>
+                    <p class="text-muted" style="margin-left: 50px; padding-left: 20px;">
+                      <?php echo $row['email_tim'];  ?></p>
+                    <hr style="margin-left: 50px; margin-right: 50px;">
+
+                    <strong><i class="fa fa-phone margin-r-5" style="margin-left: 50px;"></i> No Telepon</strong>
+                    <p class="text-muted" style="margin-left: 50px; padding-left: 20px;"><?php echo $row['tlp_tim'];  ?></p>
+                    <hr style="margin-left: 50px; margin-right: 50px;">
+
+                    <strong><i class="fa fa-user margin-r-5" style="margin-left: 50px;"></i> Jumlah Pemain</strong>
+                    <p class="text-muted" style="margin-left: 50px; padding-left: 20px;"><?php echo $row['jml_pemain'];  ?></p>
+
+                </div>
+              </div>
+
               <div class="box-body">
-               <strong><i class="fa fa-user margin-r-5"></i> Nama </strong>
-                <p >
-                </p>
-                <p class="text-muted">
-                 <?php echo $row['nama_tim'];  ?>
-                </p>
-
-                <hr>
-
-                <strong><i class="fa fa-map-marker margin-r-5"></i> Alamat  </strong>
-                <p >
-                </p>
-                <p class="text-muted">
-                  <?php echo $row['alamat_tim'];  ?>
-                </p>
-
-              <hr>
-
-              <strong><i class="fa fa-user margin-r-5"></i> Penanggung Jawab</strong>
-              <p >
-              </p>
-              <p class="text-muted"><?php echo $row['penanggung_jawab'];  ?></p>
-
-              <hr>
-
-              <strong><i class="fa  fa-envelope-o margin-r-5"></i> Email</strong>
-              <p >
-              </p>
-              <p class="text-muted"><?php echo $row['email_tim'];  ?></p>
-              <hr>
-              <strong><i class="fa fa-phone margin-r-5"></i> No Telepon</strong>
-              <p >
-              </p>
-              <p class="text-muted"><?php echo $row['tlp_tim'];  ?></p>
-              <hr>
-              <strong><i class="fa fa-user margin-r-5"></i> Jumlah Pemain</strong>
-              <p >
-              </p>
-              <p class="text-muted"><?php echo $row['jml_pemain'];  ?></p>
-
-
               <div class="box-body">
                   <a href="#" id="edit" class="btn btn-primary btn-block"><b>Edit Profil</b></a> 
                   
