@@ -8,11 +8,9 @@ include "../../koneksi.php";
 				if(isset($_POST['bayar']))
 				{
 					$id_penyelenggara				= $_POST['id_penyelenggara'];
-					
-
-					
-					$pembayaran_penyelenggara = $_FILES['pembayaran']['name'];
-					$tmp = $_FILES['pembayaran']['tmp_name'];
+									
+					$pembayaran_penyelenggara = $_FILES['pembayaran_penyelenggara']['name'];
+					$tmp = $_FILES['pembayaran_penyelenggara']['tmp_name'];
 					$fotobaru = date('dmYHis').$pembayaran_penyelenggara;
 					$path = "pembayaran/".$fotobaru;
 					

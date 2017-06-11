@@ -95,7 +95,7 @@
                       <td style="text-align:center;">'.$row['golteamA'].' : '.$row['golteamB'].' </td>
                       <td style="text-align:center;">'.$row['jam_pertandingan'].' </td>
                       <td style="text-align:center;">'.$row['tanggal_pertandingan'].' </td>
-                      <td style="text-align: center;"> <a href="detail_statistik.php?view='.$row['id'].'"class="btn btn-sm btn-info" id="detail"><span  aria-hidden="true"></span> detail </a> 
+                      <td style="text-align: center;"> <a href="detail_statistik.php?view='.$row['id'].'"class="btn  btn-info" id="detail"><span  aria-hidden="true"></span> detail </a> 
 
                         <a href="statistik.php?aksi=delete&id='.$row['id'].'" title="Hapus Data" onclick="return confirm(\'Anda yakin akan menghapus data '.$row['fase_pertandingan'].'?\')" class="btn btn-warning btn-warning"><span  aria-hidden="true"></span> hapus </a>  </td>
                        </tr>';
@@ -116,24 +116,13 @@
       </div>
         
    
-      <!-- DataTables -->
-<script src="plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="plugins/datatables/dataTables.bootstrap.min.js"></script>
-<!-- SlimScroll -->
-<script src="plugins/slimScroll/jquery.slimscroll.min.js"></script>
-<!-- FastClick -->
-<script src="plugins/fastclick/fastclick.js"></script>
-<!-- AdminLTE App -->
-<script src="dist/js/app.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="dist/js/demo.js"></script>
-<!-- page script -->
+    
   
 
-              <script src="../user/js/jquery.min.js"></script> 
-              <script src="../user/js/bootstrap.min.js"></script>
-              <script src="../user/js/bootstrapValidator.js"></script>
-               <script src="../user/js/jquery.min.js"></script>
+              
+              
+        <script src="../user/js/jquery.min.js"></script>    
+               
     
 <!-- Script Proses Hapus -->
 <?php
@@ -169,6 +158,8 @@
 
 
  <?php include("komponen/footer.php")  ?>
+
+
 
 </body>
 </html>

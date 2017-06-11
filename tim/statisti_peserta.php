@@ -41,18 +41,14 @@
     </section>
 
     <!-- Main content -->
-    <section class="content">
+   <section class="content">
       <div class="row">
         <div class="col-xs-12">
           <div class="box">
             
             <!-- /.box-header -->
             <div class="box-body">
-
-             <?php
-        if(!isset($_GET["view"]))
-            {?>
-              <table align="center" id="example1" class="table table-bordered table-striped">
+              <table id="example1" class="table table-bordered table-striped">
                 <thead style="text-align: center; background: #615eb2 ;color: white">
                 <tr style="text-align: center;" >
                   <th class="text-center" style="width: 20px">No</th>
@@ -90,9 +86,7 @@
                 
                 </tbody>
               </table>
-          <?php } 
-                  ?>
-
+         
          
             </div>
             <!-- /.box-body -->

@@ -163,7 +163,7 @@
           <h2 style="color: white" ><center><b>Bayar Pendaftaran Lomba</b></center></h2>
         </div>
         <div class="modal-body" style="padding:40px 50px;">
-          <form role="form" action="proses/proses-bayar.php" method="post">
+          <form role="form" action="proses/proses-bayar.php" method="post" enctype="multipart/form-data">
           <div class="form-group">
             <label >Nama Lomba</label>
             <select name="id_penyelenggara" class="form-control" required>
@@ -189,11 +189,11 @@
           </select>
           </div> 
           <div class="form-group">
-              <label><span ></span> Bukti Pembayaran</label>
+              <label>Bukti Pembayaran</label>
               <input type="file" name="pembayaran_penyelenggara" class="form-control" placeholder="foto" required>
             </div>         
           <div class="form-group">
-            <input type="submit" name="bayar" class="btn btn-primary btn-block" value="Upload" />
+            <button  style="background: #3c8dbc"   type="submit" name="bayar" value="Simpan" class="btn btn-success btn-block"></span> Upload</button>
           </div>
         </form>
         </div>     
