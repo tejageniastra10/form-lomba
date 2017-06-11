@@ -103,9 +103,9 @@
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3>Konfirmasi</h3>
+              <h3><?=$_SESSION['menunggu_konfirmasi']?> Menunggu </h3>
 
-              <p>Kegiatan</p>
+              <p>Konfirmasi Penyelenggaraan Lomba</p>
             </div>
             <div class="icon">
               <i class="fa fa-refresh"></i>

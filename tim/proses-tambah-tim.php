@@ -28,6 +28,8 @@ include "../koneksi.php";
 					if(mysqli_num_rows($cek) == 0)
 					{
 						$insert = mysqli_query($koneksi, "INSERT INTO tim(id_penyelenggara,id_kategori,nama_tim, alamat_tim, penanggung_jawab,email_tim, tlp_tim, jml_pemain, id_status,id_user,ktp_tim) VALUES('$id_penyelenggara','$id_kategori','$nama_tim', '$alamat_tim', '$penanggung_jawab', '$email_tim', '$tlp_tim', '$jml_pemain', '$id_status', '$id_user','$fotobaru')") or die(mysqli_error($koneksi));
+
+
 							if($insert)
 							{	
 								echo '<script>

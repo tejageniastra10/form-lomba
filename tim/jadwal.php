@@ -55,148 +55,155 @@
         $sql = "SELECT id_tim FROM tim";
         $result = mysqli_query($koneksi, $sql);
         $jumlah = mysqli_num_rows($result);
-
-    if($jumlah!=16)
-    {?>
-        <div class="alert alert-danger" role="alert"><b>Tim yang terdaftar belum memenuhi kuota, tidak dapat menampilkan hasil undian dan jadwal.</b></div>
-    <?php
-    }
-    else
-    {   
-        if(!isset($_GET['jadwal']))
-        { 
-            { 
-                    require_once("../koneksi.php");
-
-                    $undian = array();
-                    $query3 = "SELECT nama_tim FROM undian INNER JOIN tim ON undian.id_tim = tim.id_penyelenggara";
-                    $result3 = mysqli_query($koneksi, $query3);
-
-                    while($data2 = mysqli_fetch_array($result3)){
-                        $undian[] = $data2['nama_tim'];
-                    }
-                ?>
-                <div class="row">
-                
-                    <div class="col-xs-8 col-sm-6">
-                    <h1>Hasil Undian</h1>
-                        <table class="responstable">
-                            <tr>
-                                <th p align="center" ><b>GRUP A</b></th>
-                            </tr>
-                            <?php for ($i=0; $i < 4; $i++) { ?>
-                            <tr>
-                                <td p align="center" ><?= $undian[$i] ?></td>
-                            </tr>
-                            <?php } ?>
-                        </table>
-                    </div>
-                    <div class="col-xs-4 col-sm-6">
-                    <a href="jadwal.php?jadwal=1" class="btn btn-primary btn-lg pull-right" role="button">Lihat Jadwal</a><br><br><br>
-                        <table class="responstable">
-                            <tr>
-                                <th p align="center" ><b>GRUP B</b></th>
-                            </tr>
-                            <?php for ($i=4; $i < 8; $i++) { ?>
-                            <tr>
-                                <td p align="center" ><?= $undian[$i] ?></td>
-                            </tr>
-                            <?php } ?>                  
-                        </table>
-                    </div>
-                </div>
-                <br>
-
-                <div class="row">
-                    <div class="col-xs-8 col-sm-6">
-                        <table class="responstable">
-                            <tr>
-                                <th p align="center" ><b>GRUP C</b></th>
-                            </tr>
-                            <?php for ($i=8; $i < 12; $i++) { ?>
-                            <tr>
-                                <td p align="center" ><?= $undian[$i] ?></td>
-                            </tr>
-                            <?php } ?>
-                        </table>
-                    </div>
-                    <div class="col-xs-4 col-sm-6">
-                        <table class="responstable">
-                            <tr>
-                                <th p align="center" ><b>GRUP D</b></th>
-                            </tr>
-                            <?php for ($i=12; $i <= 15; $i++) { ?>
-                            <tr>
-                                <td p align="center" ><?= $undian[$i] ?></td>
-                            </tr>
-                            <?php } ?>                       
-                        </table>
-                    </div>
-                </div>
-        <?php   } 
-        }   
-        else
+        $id_penyelenggara = $_SESSION['id_penyelenggara_tim'];
+        $sql1 = mysqli_query($koneksi, "SELECT * FROM penyelenggara WHERE id_penyelenggara='$id_penyelenggara'");
+        while($row = mysqli_fetch_assoc($sql1))
         {
-            require_once("../koneksi.php");
-                    $tim = array();
-                    $query = "SELECT id_tim FROM undian INNER JOIN tim ON undian.id_tim = tim.id_penyelenggara";
-                    $result = mysqli_query($koneksi, $query);
+            $id_penyelenggara=$row['id_penyelenggara'];
+            if ($row['tim_terdaftar']=$row['jml_tim'] )
+            {
+                ?>
+                <div class="alert alert-danger" role="alert"><b>Tim yang terdaftar belum memenuhi kuota, tidak dapat menampilkan hasil undian dan jadwal.</b></div>
+                <?php
+            }
+            else
+            {   
+                if(!isset($_GET['jadwal']))
+                { 
+                    { 
+                            require_once("../koneksi.php");
 
-                    while($data = mysqli_fetch_array($result)){
-                        $tim[] = $data['nama_tim'];
-                    }
+                            $undian = array();
+                            $query3 = "SELECT nama_tim FROM undian INNER JOIN tim ON undian.id_tim = tim.id_penyelenggara";
+                            $result3 = mysqli_query($koneksi, $query3);
 
-        ?>
-        <div class="row">
-                    <div class="col-xs-8 col-sm-6">
-                    <h1>Jadwal Pertandingan</h1>
-                        <table class="responstable">
-                            <tr>
-                                <th p align="center" >PERTANDINGAN</th>
-                            </tr>
-                            <tr>
-                                <td p align="center" ><?php echo"<b>$tim[0]</b> VS <b>$tim[1]</b>"; ?></td>
-                            </tr>
-                            <tr>
-                                <td p align="center" ><?php echo"<b>$tim[4]</b> VS <b>$tim[5]</b>"; ?></td>
-                            </tr>
-                            <tr>
-                                <td p align="center" ><?php echo"<b>$tim[2]</b> VS <b>$tim[3]</b>"; ?></td>
-                            </tr>
-                            <tr>
-                                <td p align="center" ><?php echo"<b>$tim[6]</b> VS <b>$tim[7]</b>"; ?></td>
-                            </tr>
-                            <tr>
-                                <td p align="center" ><?php echo"<b>$tim[0]</b> VS <b>$tim[2]</b>"; ?></td>
-                            </tr>
-                            <tr>
-                                <td p align="center" ><?php echo"<b>$tim[4]</b> VS <b>$tim[6]</b>"; ?></td>
-                            </tr>
-                                <tr>
-                                <td p align="center" ><?php echo"<b>$tim[1]</b> VS <b>$tim[3]</b>"; ?></td>
-                            </tr>
-                            <tr>
-                                <td p align="center" ><?php echo"<b>$tim[5]</b> VS <b>$tim[7]</b>"; ?></td>
-                            </tr>
-                            <tr>
-                                <td p align="center" ><?php echo"<b>$tim[0]</b> VS <b>$tim[3]</b>"; ?></td>
-                            </tr>
-                            <tr>
-                                <td p align="center" ><?php echo"<b>$tim[4]</b> VS <b>$tim[7]</b>"; ?></td>
-                            </tr>
-                            <tr>
-                                <td p align="center" ><?php echo"<b>$tim[1]</b> VS <b>$tim[2]</b>"; ?></td>
-                            </tr>
-                            <tr>
-                                <td p align="center" ><?php echo"<b>$tim[5]</b> VS <b>$tim[6]</b>"; ?></td>
-                            </tr>
+                            while($data2 = mysqli_fetch_array($result3))
+                            {
+                                $undian[] = $data2['nama_tim'];
+                            }
+                        ?>
+                        <div class="row">
+                        
+                            <div class="col-xs-8 col-sm-6">
+                            <h1>Hasil Undian</h1>
+                                <table class="responstable">
+                                    <tr>
+                                        <th p align="center" ><b>GRUP A</b></th>
+                                    </tr>
+                                    <?php for ($i=0; $i < 4; $i++) { ?>
+                                    <tr>
+                                        <td p align="center" ><?= $undian[$i] ?></td>
+                                    </tr>
+                                    <?php } ?>
+                                </table>
+                            </div>
+                            <div class="col-xs-4 col-sm-6">
+                            <a href="jadwal.php?jadwal=1" class="btn btn-primary btn-lg pull-right" role="button">Lihat Jadwal</a><br><br><br>
+                                <table class="responstable">
+                                    <tr>
+                                        <th p align="center" ><b>GRUP B</b></th>
+                                    </tr>
+                                    <?php for ($i=4; $i < 8; $i++) { ?>
+                                    <tr>
+                                        <td p align="center" ><?= $undian[$i] ?></td>
+                                    </tr>
+                                    <?php } ?>                  
+                                </table>
+                            </div>
                         </div>
-                        </table>
-                    </div>
-                    
-    <?php           
-        }
-    } ?>
+                        <br>
+
+                        <div class="row">
+                            <div class="col-xs-8 col-sm-6">
+                                <table class="responstable">
+                                    <tr>
+                                        <th p align="center" ><b>GRUP C</b></th>
+                                    </tr>
+                                    <?php for ($i=8; $i < 12; $i++) { ?>
+                                    <tr>
+                                        <td p align="center" ><?= $undian[$i] ?></td>
+                                    </tr>
+                                    <?php } ?>
+                                </table>
+                            </div>
+                            <div class="col-xs-4 col-sm-6">
+                                <table class="responstable">
+                                    <tr>
+                                        <th p align="center" ><b>GRUP D</b></th>
+                                    </tr>
+                                    <?php for ($i=12; $i <= 15; $i++) { ?>
+                                    <tr>
+                                        <td p align="center" ><?= $undian[$i] ?></td>
+                                    </tr>
+                                    <?php } ?>                       
+                                </table>
+                            </div>
+                        </div>
+                <?php   } 
+                }   
+                else
+                {
+                    require_once("../koneksi.php");
+                            $tim = array();
+                            $query = "SELECT id_tim FROM undian INNER JOIN tim ON undian.id_tim = tim.id_penyelenggara";
+                            $result = mysqli_query($koneksi, $query);
+
+                            while($data = mysqli_fetch_array($result)){
+                                $tim[] = $data['nama_tim'];
+                            }
+
+                        ?>
+                        <div class="row">
+                            <div class="col-xs-8 col-sm-6">
+                            <h1>Jadwal Pertandingan</h1>
+                                <table class="responstable">
+                                    <tr>
+                                        <th p align="center" >PERTANDINGAN</th>
+                                    </tr>
+                                    <tr>
+                                        <td p align="center" ><?php echo"<b>$tim[0]</b> VS <b>$tim[1]</b>"; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td p align="center" ><?php echo"<b>$tim[4]</b> VS <b>$tim[5]</b>"; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td p align="center" ><?php echo"<b>$tim[2]</b> VS <b>$tim[3]</b>"; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td p align="center" ><?php echo"<b>$tim[6]</b> VS <b>$tim[7]</b>"; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td p align="center" ><?php echo"<b>$tim[0]</b> VS <b>$tim[2]</b>"; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td p align="center" ><?php echo"<b>$tim[4]</b> VS <b>$tim[6]</b>"; ?></td>
+                                    </tr>
+                                        <tr>
+                                        <td p align="center" ><?php echo"<b>$tim[1]</b> VS <b>$tim[3]</b>"; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td p align="center" ><?php echo"<b>$tim[5]</b> VS <b>$tim[7]</b>"; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td p align="center" ><?php echo"<b>$tim[0]</b> VS <b>$tim[3]</b>"; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td p align="center" ><?php echo"<b>$tim[4]</b> VS <b>$tim[7]</b>"; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td p align="center" ><?php echo"<b>$tim[1]</b> VS <b>$tim[2]</b>"; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td p align="center" ><?php echo"<b>$tim[5]</b> VS <b>$tim[6]</b>"; ?></td>
+                                    </tr>
+                                </div>
+                                </table>
+                            </div>
+                            
+                <?php           
+                }
+             } 
+    }?>
 
             </div>
             <!-- /.container-fluid -->
