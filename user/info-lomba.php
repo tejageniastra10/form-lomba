@@ -117,7 +117,7 @@
                                   <td><?php echo $row['nama_lomba']; ?></td>
                                   <td > <?php echo $row['lokasi_lomba']; ?></td>
                                   <td ><?php echo $row['tlp_penyelenggara']; ?></td>
-                                  <td style="text-align: center"><?php echo $row['jml_tim']. '/' .$row['tim_terdaftar'];  ?></td>
+                                  <td style="text-align: center"><?php echo $row['tim_terdaftar']. '/' .$row['jml_tim'];  ?></td>
                                   <td style="text-align: center">
                                     
                                     <a href="#" class="btn btn-sm btn-info"   data-id='<?php echo $row["id_penyelenggara"]; ?>'><span  aria-hidden="true"></span> detail </a>
