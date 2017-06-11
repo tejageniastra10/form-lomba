@@ -64,84 +64,47 @@
 
     <!-- Main content -->
     <section class="content">
-      
-    <div id="page-wrapper"><br />
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            
+            <!-- /.box-header -->
+            <div class="box-body">
 
-            <?php if (!isset($_GET['order'])) {
-                  $kolom = 'id_penyelenggara';
-                  $order = 'asc';
-                  }
-                  else if($_GET['order']=='desc')
-                  {
-                    $kolom = 'nama_lomba';
-                    $order = 'desc';
-                    } 
-                  else if($_GET['order']=='asc')
-                  {
-                    $kolom = 'nama_lomba';
-                    $order = 'asc';
-                    } ?>
-
-             <form class="form-inline" method="get">
-                <div class="form-group">
-                  <select name="filter" class="form-control" onchange="form.submit()">
-                    <option value="0">Kategori Lomba</option>
-                    <?php $filter = (isset($_GET['filter']) ? strtolower($_GET['filter']) : NULL);  ?>
-                    <option value="1" <?php if($filter == '1'){ echo 'selected'; } ?>>Sepak Bola</option>
-                    <option value="2" <?php if($filter == '2'){ echo 'selected'; } ?>>Futsal</option>
-                    <option value="3" <?php if($filter == '3'){ echo 'selected'; } ?>>Basket</option>
-                  </select>
-                </div>
-              </form><br />
-
-              <table class="table table-bordered table-striped">
+              <table id="example1" class="table table-bordered table-striped">
                 <thead style="text-align: center; background: #3c8dbc;color: white">
-                    <td style=" width: 50px">No</td>
-                    <td style=" width: 130px">Nama Lomba
-                    <?php
-                        if(!isset($_GET['order']) || $_GET['order']=='desc' )
-                          {?>
-                            <a class="pull-right" href="status-penyelenggaraan.php?order=asc">
-                              <span style="color: white" class="glyphicon glyphicon-triangle-top" aria-hidden="true">
-                              </span></a>
-                        <?php
-                          }
-                          else if($_GET['order']=='asc')
-                            {?>
-                            <a class="pull-right" href="status-penyelenggaraan.php?order=desc">
-                              <span style="color: white" class="glyphicon glyphicon-triangle-bottom" aria-hidden="true">
-                            </a></span>
-                            <?php
-                            }
-                            ?></td>
-                    <td style=" width: 250px">Tempat Lomba</td>
-                    <td style=" width: 150px">Waktu Mulai Lomba</td>
-                    <td style=" width: 200px">Telphone Penyelenggara</td>
-                    <td style=" width: 180px">Jumlah Tim Partisipan</td>
-                    <td>Status</td>
+                    <th style=" width: 20px">No</th>
+                    <th >Kategori</th>
+                    <th >Nama Lomba</th>
+                    <th >Tempat Lomba</th>
+                    <th >Waktu Mulai Lomba</th>
+                    <th >Telphone Penyelenggara</th>
+                    <th >Jumlah Tim Partisipan</th>
+                    <th>Status</th>
                 </thead>
                 <tbody>
               <?php
 
-                  if($filter){
+                  
                     $id_user=$_SESSION['id_user'];
-                    $sql = mysqli_query($koneksi, "SELECT * FROM penyelenggara WHERE id_user='$id_user' AND  id_kategori='$filter'  ORDER BY $kolom $order ");
-                  }else{
-                    $id_user=$_SESSION['id_user'];
-                    $sql = mysqli_query($koneksi, "SELECT * FROM penyelenggara where id_user='$id_user'  ORDER BY $kolom $order");
-                  }
-
-                  if(mysqli_num_rows($sql) == 0){
-                    echo '<tr style="text-align:center;"><td colspan="7">Empty</td></tr>';
-                  }
-                  else{
+                    $sql = mysqli_query($koneksi, "SELECT * FROM penyelenggara where id_user='$id_user' ");
+                  
 
                     $no = 1;
                   while($row = mysqli_fetch_assoc($sql)){
-                      
+                      if ($row['id_kategori']=='1'){
+                            $Kategori='Sepak Bola';
+                            }
+                          if ($row['id_kategori']=='2') {
+                            $Kategori='Basket';
+                            } 
+                          if ($row['id_kategori']=='3'){
+                              $Kategori='Futsal'; 
+                            }
                         echo '
                     <tr>
                       <td style="text-align: center">'.$no.'</td>
+                       <td style="text-align: center">'.$Kategori.'</td>
                       <td style="text-align: center">'.$row['nama_lomba'].'</td>
                       <td style="text-align: center" >'.$row['lokasi_lomba'].'</td>
                       <td style="text-align: center">'.$row['waktu_awal_lomba'].'</td>
@@ -165,17 +128,20 @@
                       </td> </tr>';
                     } else {
                       echo '<td style="text-align: center">
-                        <span class="label label-danger">Akun Ditolak</span> 
+                        <span class="label label-danger">Akun Nonaktif</span> 
                       </td> </tr>';
                     }
                     
                     
                      $no++;                
                   }
-                }
+              
                 ?>
               </tbody>
           </table>
+          </div>
+          </div>
+          </div>
           
     </div><!-- /#page-wrapper -->
     <div style="width: 20%">
@@ -187,7 +153,7 @@
   </div>
 
  
-<!-- Modal log in -->
+<!-- Modal bayar pendaftaran -->
   <div class="modal fade" id="modal-bayar" role="dialog">
     <div class="modal-dialog">
     
@@ -197,7 +163,7 @@
           <h2 style="color: white" ><center><b>Bayar Pendaftaran Lomba</b></center></h2>
         </div>
         <div class="modal-body" style="padding:40px 50px;">
-          <form role="form" action="proses-bayar.php" method="post">
+          <form role="form" action="proses/proses-bayar.php" method="post">
           <div class="form-group">
             <label >Nama Lomba</label>
             <select name="id_penyelenggara" class="form-control" required>
@@ -206,7 +172,7 @@
             $sql = mysqli_query($koneksi, "SELECT * FROM penyelenggara WHERE id_user='$id_user' AND  status_penyelenggara='2'");
             if(mysqli_num_rows($sql) == 0)
             {
-              echo '<tr><td colspan="8">Data Tidak Ditemukan.</td></tr>';
+              echo 'Data Tidak Ditemukan';
             }
             else
             {
@@ -242,7 +208,7 @@
       <!---script daftar penyelenggara-->
         <script src="js/bootstrap.min.js"></script>
 
-      
+ <?php include("alret-logout.php")  ?>     
 
       <!---script bayar -->
 
@@ -254,7 +220,12 @@
       });
       </script>     
 
-
+<script>
+  $(function () {
+    $("#example1").DataTable();
+    
+  });
+</script>
  
 <?php include("scrip/footer.php")  ?>
 

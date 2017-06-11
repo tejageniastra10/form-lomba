@@ -62,7 +62,9 @@
     <!-- Main content -->
     <section class="content">
       
-   
+    <?php
+        if(!isset($_GET["view"]))
+            {?>
       <div style="left :70px"  class="col-lg-10">
       
               <table class="table table-bordered table-striped">
@@ -70,12 +72,12 @@
                     <td style=" width: 50px">No</td>
                     <td style=" width: 200px" >Tanggal Pengumuman</td>
                     <td >Judul pengumuman</td>
-                    <td style=" width: 100px">Detail</td>
+                    <td style=" width: 150px">Detail</td>
                 </thead>
                 <tbody>
                 <?php
                   $id_penyelenggara=$_SESSION['id_penyelenggara'];
-                    $sql = mysqli_query($koneksi, "SELECT * FROM pengumuman WHERE id_penyelenggara='$id_penyelenggara'");
+                    $sql = mysqli_query($koneksi, "SELECT * FROM pengumuman WHERE id_penyelenggara='$id_penyelenggara' ORDER BY id_pengumuman DESC");
                   if(mysqli_num_rows($sql) == 0){
                     echo '<tr style="text-align:center;"><td colspan="4">Empty</td></tr>';
                   }
@@ -89,7 +91,10 @@
                       <td style="text-align: center">'.$no.'</td>
                       <td style="text-align:center;">'.$row['tgl_pengumuman'].'</td>
                       <td style="text-align:center;">'.$row['judul_pengumuman'].'</td>
-                      <td style="text-align: center"> <a href="#" class="btn btn-sm btn-info"   data-id='.$row["id_pengumuman"].'><span  aria-hidden="true"></span> detail </a> </td> </tr>';
+                      <td style="text-align: center"> 
+
+                      <a  title="Hapus Data" pngId="'.$row['id_pengumuman'].'"  class="btn btn-danger btn-sm">hapus</a>
+                      <a href="pengumuman.php?view='.$row['id_pengumuman'].'" class="btn btn-sm btn-info"<span  aria-hidden="true"></span> detail </a> </td> </tr>';
                       $no++;
                   }
                 }
@@ -102,11 +107,55 @@
           </div>
 
           
-    </div><!-- /#page-wrapper -->
-        </section>
-      </div>
-        
-   
+        </div>
+
+          <?php } 
+                  else
+                      {
+                $view=$_GET["view"];
+                $sql  = mysqli_query($koneksi, "SELECT * FROM pengumuman WHERE id_pengumuman = '$view' ");
+                    $row = mysqli_fetch_array($sql);
+                    ?>
+                    <section class="content">
+
+                             <div class="col-md-12">
+                                    <div style="background-color: #e6e8ed" class="box box-primary">
+                                      <div style="background-color: #615eb2; color: white " class="box-header with-border">
+                                        <h2 align="center"><b>Pengumuman</b></h2>
+                                        <h5>Diterbitkan pada : <?= $row['tgl_pengumuman'];?> </h5>
+                                      </div>
+                                    
+                                      <form role="form">
+                                        <div class="box-body">
+                                          <div class="form-group">
+                                            <h4><b>Judul : <?= $row['judul_pengumuman'];?></b></h4>
+                                          </div>
+                                          <h4><b>Isi Pengumuman :</b></h4>
+                                              <span align="justify"><p><?= $row['isi_pengumuman'];?></p>
+
+                                          
+                                          <?php
+                                          if ($row['file_pengumuman']=='') {
+                                            
+                                          }
+                                          else{
+                                          ?>
+
+                                          <div class="form-group">
+                                          <h4><b>Dokumen :</b></h4>
+                                           <a href="../penyelenggara/file_pengumuman/<?=$row['file_pengumuman'];?>" style="background-color: #615eb2 " class="btn btn-sm btn-success" target="_blank  ">Lihat Dokumen</a>
+                                          </div>
+
+                                      <?php }  ?>
+
+                                      </form>
+                                    </div>
+                                    </div>
+                              <?php  } ?>
+                          </section>
+                        </div>
+                              
+                         
 
   
 
@@ -114,8 +163,67 @@
               <script src="../user/js/bootstrap.min.js"></script>
               <script src="../user/js/bootstrapValidator.js"></script>
 
-    
-    
+        <link rel="stylesheet" type="text/css" href="../user/sweetalert-master/dist/sweetalert.css">
+        <script type="text/javascript" src="../user/sweetalert-master/dist/sweetalert.min.js"></script>
+<!---script alret hapus pengumuman-->
+                <script>
+                jQuery(document).ready(function($){
+                    $('.btn-danger').on('click',function(){
+                       var getLink = $(this).attr('href');
+                      var n = $(this).attr("pngId");
+
+                        swal({
+                                title: "Apakah Anda Yakin Ingin Menghapus Pengumuman?",
+                                
+                                type: "warning",
+                                showCancelButton: true,
+                                confirmButtonColor: "#DD6B55",
+                                confirmButtonText: "Ya",
+                                closeOnConfirm: false
+                                },function(){
+                                   window.location="pengumuman.php?aksi=delete&id_pengumuman="+n;
+                            });
+                        return false;
+                    });
+                });
+            </script> 
+
+
+    <!-- proses hapus  -->
+    <?php
+      if(isset($_GET['aksi']) == 'delete'){
+        $id_pengumuman = $_GET['id_pengumuman'];
+        $cek = mysqli_query($koneksi, "SELECT * FROM pengumuman WHERE id_pengumuman='$id_pengumuman'") or die (mysqli_error($koneksi));
+        if(mysqli_num_rows($cek) == 0){
+          echo "<script>
+              
+              window.location.href='pengumuman.php';
+              </script>";
+        }else{
+          $delete = mysqli_query($koneksi, "DELETE FROM pengumuman WHERE id_pengumuman='$id_pengumuman'");
+          if($delete){
+
+                     echo '<script>
+              setTimeout(function() {
+                  swal({
+                      title: "Data Terhapus!",
+                      
+                      type: "success"
+                  }, function() {
+                      window.location = "pengumuman.php";
+                  });
+              });
+          </script>';
+
+          }else{
+            echo "<script>
+              
+              window.location.href='pengumuman.php';
+              </script>";
+          }
+        }
+      }
+      ?>
 
  <?php include("modal/tambah-pengumuman.php")  ?>
 

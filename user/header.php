@@ -113,7 +113,9 @@ if ($_SESSION['id_level']!='2') {
 
           </li>
           <li class="dropdown user user-menu">
-             <a href="../logout.php" class="dropdown-toggle">Sign out</a>
+             <a href="#" id="logout" class="dropdown-toggle">Sign out</a>
+
+
           </li>
 
         
@@ -121,6 +123,7 @@ if ($_SESSION['id_level']!='2') {
         </ul>
       </div>
     </nav>
+
   </header>
   <!-- Left side column. contains the logo and sidebar -->
   <aside class="main-sidebar">

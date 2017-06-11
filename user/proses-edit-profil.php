@@ -1,6 +1,8 @@
 <?php
 
 include "../koneksi.php"; ?>
+<link rel="stylesheet" type="text/css" href="sweetalert-master/dist/sweetalert.css">
+<script type="text/javascript" src="sweetalert-master/dist/sweetalert.min.js"></script>
 
 <?php
         session_start();
@@ -30,8 +32,13 @@ include "../koneksi.php"; ?>
 
           
 
-          if(move_uploaded_file($tmp, $path)){
+          if( $foto==''){
+             $update = mysqli_query($koneksi, "UPDATE user SET nama_user='$nama_user', email_user='$email_user', tlp_user='$tlp_user', alamat_user='$alamat_user', password_user='$password_user' WHERE id_user='$id_user'") or die (mysqli_error());
+          }
+          else{
+            move_uploaded_file($tmp, $path);
             $update = mysqli_query($koneksi, "UPDATE user SET nama_user='$nama_user', email_user='$email_user', tlp_user='$tlp_user', alamat_user='$alamat_user', password_user='$password_user', foto='$fotobaru' WHERE id_user='$id_user'") or die (mysqli_error());
+          }
 
           if($update)
           {
@@ -40,21 +47,24 @@ include "../koneksi.php"; ?>
             $_SESSION['nama_user']=$row1['nama_user'];
             $_SESSION['foto']=$row1['foto'];
 
-            echo "<script>
-              alert('data berhasil di edit ');
-              window.location.href='index.php';
-              </script>";
+            echo '<script>
+              setTimeout(function() {
+                  swal({
+                      title: "Data Berhasil Di Edit!",
+                      
+                      type: "success"
+                  }, function() {
+                      window.location = "index.php";
+                  });
+              });
+          </script>';
 
                 }
           else
           {
             echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Data gagal disimpan, silahkan coba lagi.</div>';
           }
-        }
-        else{
-
-          echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Data gagal disimpan, silahkan coba lagi.</div>';
-        }
+       
         }
         
         
