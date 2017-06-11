@@ -113,7 +113,7 @@
     <div class="modal-dialog">
     
       <div class="modal-content">
-        <div class="modal-header" style="background: #00cc00; padding:25px 30px;">
+        <div class="modal-header" style="background: #0086b3; padding:25px 30px;">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h2 style="color: white" ><center><b>Edit Profil</b></center></h2>
         </div>
@@ -146,7 +146,7 @@
              
             
             
-              <button  style="background: #00cc00"   type="submit" name="edit-tim" value="Simpan" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> simpan</button>
+              <button  style="background: #0086b3"   type="submit" name="edit-tim" value="Simpan" class="btn btn-success btn-block"></span> simpan</button>
           </form>
         </div>     
       </div>

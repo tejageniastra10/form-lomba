@@ -63,10 +63,19 @@
               <div class="panel-body" style="text-align: justify;">
                 <p class="text-muted"><?php echo $data['isi_pengumuman'];  ?></p>
               </div>
+              <?php 
+              if ($data['file_pengumuman']=='') {
+                
+              }
+
+              else{
+              ?>
 
               <div class="panel-footer panel-primary"><a href="../penyelenggara/file_pengumuman/<?php echo $data['file_pengumuman'];?>" target="_blank">
                 Lihat Dokumen 
               </a></div>
+
+              <?php } ?>
             </div>
          
               
