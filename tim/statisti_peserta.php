@@ -72,8 +72,7 @@
                 $id_penyelenggara = $_SESSION['id_penyelenggara_tim'];
                 $sql = mysqli_query($koneksi, "SELECT * FROM statistik where id_penyelenggara='$id_penyelenggara'order by id DESC");
                  $i = 1;
-                  while($row = mysqli_fetch_assoc($sql)){
-              
+                while($row = mysqli_fetch_assoc($sql)){
                 echo '
                           <tr>
                             
