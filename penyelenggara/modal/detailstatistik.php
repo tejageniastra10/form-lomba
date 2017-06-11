@@ -14,8 +14,6 @@
             </div>
         <div class="modal-body" style="padding:40px 50px;">
           <form id="form_tambah_tim" class="form-horizontal" >
-            
-         
             <div class="form-group">
               <label >Fase Pertandingan</label>
               <input type="text" class="form-control"  value="<?php echo $row['fase_pertandingan']; ?>" readonly>

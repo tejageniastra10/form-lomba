@@ -95,7 +95,7 @@
                       <td style="text-align:center;">'.$row['golteamA'].' : '.$row['golteamB'].' </td>
                       <td style="text-align:center;">'.$row['jam_pertandingan'].' </td>
                       <td style="text-align:center;">'.$row['tanggal_pertandingan'].' </td>
-                      <td style="text-align: center;"> <a href="#" class="btn btn-sm btn-info" id="detail"  data-id='.$row['id'].'><span  aria-hidden="true"></span> detail </a> 
+                      <td style="text-align: center;"> <a href="detail_statistik.php?view='.$row['id'].'"class="btn btn-sm btn-info" id="detail"><span  aria-hidden="true"></span> detail </a> 
 
                         <a href="statistik.php?aksi=delete&id='.$row['id'].'" title="Hapus Data" onclick="return confirm(\'Anda yakin akan menghapus data '.$row['fase_pertandingan'].'?\')" class="btn btn-warning btn-warning"><span  aria-hidden="true"></span> hapus </a>  </td>
                        </tr>';
@@ -165,25 +165,7 @@
 
  
 
- <!---script detail statistik-->
-   <script type="text/javascript">
-            $(document).ready(function (){
-                $(".btn-info").click(function (e){
-                    var m = $(this).attr("id");
-                    $.ajax({
-                        url: "modal/detailstatistik.php",
-                        type: "GET",
-                        data : {id: m,},
-                        success: function (ajaxData){
-                            
-                            $("#ModalDetail").modal('show',{backdrop: 'true'});
-                        }
-                    });
-                });
-            });
-        </script>
-
-
+ 
 
 
  <?php include("komponen/footer.php")  ?>

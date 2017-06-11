@@ -62,14 +62,14 @@
     <!-- Main content -->
     <section class="content">
       
-   <div id="page-wrapper">
+   <div id="page-wrapper" style="left :70px"  >
     <div class="row">
-      <div  style="left :70px"  class="col-lg-10">
+      <div  style="left :280px"  class="col-lg-10">
       
-            <form id="form_edit_penyelenggara" class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+            <form id="form_edit_penyelenggara" method="post" enctype="multipart/form-data" style="left: 10px">
               <div class="form-group">
                <div class="row">
-                    <div  class="col-lg-4">
+                    <div  class="col-lg-7">
                   <label>Fase Pertandingan</label>
                   <select name="fase_pertandingan" class="form-control" >
                     <option value="0">Status Fase Pertandingan</option>
@@ -80,17 +80,35 @@
                 </div>
                 </div>
                 </div>
-              <div class="form-group">
+
+
+                 <div class="form-group">
                <div class="row">
-                    <div  class="col-lg-4">
+                    <div  class="col-lg-7">
                   <label >Nama Team Pertama</label>
-                  <input type="text" class="form-control" name="namateamA">
+                    <select name="namateamA" class="form-control" >
+                       <?php
+                        $id_p = $_SESSION['id_penyelenggara'];
+                        $sql  = mysqli_query($koneksi, "SELECT * FROM tim");
+                        
+                        while($data=mysqli_fetch_array($sql)){
+                       
+                        ?>
+                            <option><?php echo $data["nama_tim"] ?></option>
+                       
+                        <?php
+                        }
+                        ?>
+                    </select>
+                    </div>
                 </div>
                 </div>
-                </div>
+               
+
+
                  <div class="form-group">
                   <div class="row">
-                    <div  class="col-lg-4">
+                    <div  class="col-lg-7">
                   <label >Gol Team Pertama</label>
                   <input type="text" class="form-control" name="golteamA">
                 </div>
@@ -98,15 +116,28 @@
                 </div>
                 <div class="form-group">
                 <div class="row">
-                    <div  class="col-lg-4">
+                    <div  class="col-lg-7">
                   <label >Nama Team Kedua</label>
-                  <input type="text" class="form-control" name="namateamB">
+                  <select name="namateamB" class="form-control" >
+                       <?php
+                        $id_p = $_SESSION['id_penyelenggara'];
+                        $sql  = mysqli_query($koneksi, "SELECT * FROM tim ");
+                        
+                        while($data=mysqli_fetch_array($sql)){
+                       
+                        ?>
+                            <option><?php echo $data["nama_tim"] ?></option>
+                       
+                        <?php
+                        }
+                        ?>
+                    </select>
                 </div>
                 </div>
                 </div>
                  <div class="form-group">
                  <div class="row">
-                    <div  class="col-lg-4">
+                    <div  class="col-lg-7">
                   <label >Gol Team Kedua</label>
                   <input type="text" class="form-control" name="golteamB">
                 </div>
@@ -114,7 +145,7 @@
                 </div>
                 <div class="form-group">
                 <div class="row">
-                    <div  class="col-lg-4">
+                    <div  class="col-lg-7">
                   <label >Jam Petandingan</label>
                   <input type="text"  class="form-control"  name="jam_pertandingan" value="<?php echo date("h : i") ?> " >
                 </div>
@@ -122,7 +153,7 @@
                 </div>
                 <div class="form-group">
                 <div class="row">
-                    <div  class="col-lg-4">
+                    <div  class="col-lg-7">
                   <label > Tanggal Pertandingan Pertandingan</label>
                   <input type="date" class="form-control" name="tanggal_pertandingan" placeholder="masukan waktu">
                 </div>
@@ -130,14 +161,14 @@
                 </div>
               <div class="form-group">
               <div class="row">
-                    <div  class="col-lg-4">
+                    <div  class="col-lg-7">
                 <label > Keterangan</label>
                 <textarea rows="6" class="form-control" name="keterangan" placeholder="Masukkan isi keterangan"></textarea>
               </div>
               </div>
               </div>
                 
-                <div class=" col-xs-3">
+                <div class=" col-xs-7">
                   <button type="submit" type="submit" name="tambah" value="tambah_statistik" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Tambah</button>
                 </div>
                 <input  name="id_penyelenggara" value="<?php echo $_SESSION['id_penyelenggara']; ?> " type="hidden">
