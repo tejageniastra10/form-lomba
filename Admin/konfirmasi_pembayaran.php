@@ -50,47 +50,7 @@
                 <div class="navbar-right" style="background-color: #20B2AA !important;">
                     <ul class="nav navbar-nav">
                         <!-- Notifications: style can be found in dropdown.less -->
-                        <li class="dropdown notifications-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-warning"></i>
-                                <span class="label label-warning">10</span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li class="header">You have 10 notifications</li>
-                                <li>
-                                    <!-- inner menu: contains the actual data -->
-                                    <ul class="menu">
-                                        <li>
-                                            <a href="#">
-                                                <i class="ion ion-ios7-people info"></i> 5 new members joined today
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-warning danger"></i> Very long description here that may not fit into the page and may cause design problems
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-users warning"></i> 5 new members joined
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <a href="#">
-                                                <i class="ion ion-ios7-cart success"></i> 25 sales made
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="ion ion-ios7-person danger"></i> You changed your username
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="footer"><a href="#">View all</a></li>
-                            </ul>
-                        </li>
+                        
                        
                         <!-- User Account: style can be found in dropdown.less -->
                         <li class="dropdown user user-menu">
@@ -225,7 +185,7 @@
                                                 <td><?php echo $row['nama_penyelenggara'] ?></td>
                                                 <td style="text-align: center;"><?php echo $row['nama_lomba'] ?></td>
                                                 <td style="text-align: center;"><?php echo $row['email_penyelenggara'] ?></td>
-                                                <td style="text-align: center;"><img src="../user/pembayaran/<?php echo $row['pembayaran_penyelenggara'] ?>" style="width:75px; height:60px";/></td>
+                                                <td style="text-align: center;"><a href="../penyelenggara/pembayaran_penyelenggara/<?php echo $row['pembayaran_penyelenggara'] ?>" target="_blank">Slip Pembayara</a></td>
                                                 <td style="text-align: center;">
 
                                                    <a href="javascript:void(0)" class="btn btn-sm btn-info" id="konfirmasi" penyelenggaraId="<?php echo $row['id_penyelenggara'] ?>" onclick="konfirmasi(this);" style="width:40px; height: 34px;"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></a>

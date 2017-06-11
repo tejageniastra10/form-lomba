@@ -48,7 +48,7 @@
                             <div class="form-group">
                                 <label class="col-lg-6 control-label">Waktu Awal</label>
                                 <div class="col-lg-5">
-                                    <textarea style="width: 200px" name="alamat" class="form-control" readonly><?php echo $row['waktu_awal_lomba'];?></textarea>
+                                    <input style="width: 200px;"  class="form-control" type="text" name="waktu_awal_lomba" value="<?php echo $row['waktu_awal_lomba']; ?>" readonly/>
                                 </div>
                             </div>
 
@@ -84,13 +84,6 @@
                                 <label class="col-lg-6 control-label">Jumlah Tim</label>
                                 <div class="col-lg-5">
                                     <input style="width: 200px;"  class="form-control" type="text" name="no_tlp" value="<?php echo $row['jml_tim']; ?>" readonly/>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-lg-6 control-label">Pembayaran</label>
-                                <div class="col-lg-5">
-                                    <input style="width: 200px;"  class="form-control" type="text" name="no_tlp" value="<?php echo $row['pembayaran_penyelenggara']; ?>" readonly/>
                                 </div>
                             </div>
 
